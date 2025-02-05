@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/modules/module-header.css">
     <link rel="stylesheet" href="./css/modules/module-footer.css">
+    <!-- CSS spécifique -->
+    {{#each styles}}
+        <link rel="stylesheet" href="{{this}}">
+    {{/each}}
+
+    <!-- JS spécifique -->
+    {{#each scripts}}
+        <script type="module" src="{{this}}"></script>
+    {{/each}}
 </head>
 <body>
      {{>header}} 
