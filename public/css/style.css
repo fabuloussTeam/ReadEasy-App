@@ -1,0 +1,31 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.wrapper {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+main {
+    flex: 1;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin: 0 0 1rem;
+}
