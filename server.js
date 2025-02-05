@@ -13,6 +13,7 @@ import cspOption from './csp-options.js'
 const app = express();
 app.engine('handlebars', expressHandlebars());
 app.set('view engine', 'handlebars');
+app.set("views", "./views");
 
 // Ajout de middlewares
 app.use(helmet(cspOption));
@@ -36,7 +37,6 @@ app.get('/', (request, response) => {
 app.get('/moduleheader', async (request, response) => {
     response.render("modules/module-header", {
         titre: "ReadEasy | Modules bar de navigation",
-       
       });
 });
 
@@ -55,7 +55,14 @@ app.get('/modulecaroussel', async (request, response) => {
       });
 });
 
-
+// Route vers la pages apropos
+app.get('/readeasyapropos', async (request, response) => {
+    response.render("pages/apropos", {
+        titre: "ReadEasy | Page a propos",
+        styles: ["/css/pages/apropos.css"],
+        scripts: ["/js/pages/apropos.js"],
+      });
+});
 
 
 // Renvoyer une erreur 404 pour les routes non définies
