@@ -1,4 +1,33 @@
-footer .footerText {
-    color: red;
-    font-size: large;
+.footer-container {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-weight: bold;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: black;
+}
+
+.footer-logo {
+  height: 50px;
+}
+
+hr {
+  margin: 10px 0;
+  border: 0;
+  border-top: 1px solid black;
+}
+
+.footer-text {
+  font-size: 14px;
+  color: gray;
 }
