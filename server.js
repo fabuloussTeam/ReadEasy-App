@@ -52,6 +52,7 @@ app.get('/modulefooter', async (request, response) => {
 app.get('/modulecaroussel', async (request, response) => {
     response.render("modules/module-caroussel", {
         titre: "ReadEasy | Modules caroussel image",
+        styles: ["/css/modules/module-caroussel.css"],
       });
 });
 
