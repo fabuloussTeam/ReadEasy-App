@@ -1,6 +1,6 @@
-.footer-container {
+.wrapper {
   text-align: center;
-  padding: 20px;
+  padding: 1rem;
   font-family: Arial, sans-serif;
 }
 
@@ -8,7 +8,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 2rem;
   font-weight: bold;
 }
 
@@ -18,7 +19,7 @@
 }
 
 .footer-logo {
-  height: 50px;
+  height: 40px;
 }
 
 hr {
