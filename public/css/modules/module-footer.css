@@ -1,15 +1,19 @@
-.wrapper {
-  text-align: center;
-  padding: 1rem;
+.footer-wrapper {
+  width: 100%;
+  max-width: none; /* Assure que le footer prend toute la largeur */
+  padding: 0;
   font-family: Arial, sans-serif;
+  background-color: rgb(240, 7, 7);
 }
 
 .footer-links {
+  width: 100%;
+  padding: 0 40px; /* Ajoute un peu d'espace aux extrémités */
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
   font-weight: bold;
 }
 
@@ -19,16 +23,19 @@
 }
 
 .footer-logo {
-  height: 40px;
+  height: 80px; /* Réduit la taille du logo */
+  max-width: 150px; /* Empêche qu'il prenne trop de place */
 }
 
 hr {
-  margin: 10px 0;
+  width: 100%; /* Assure que la ligne touche bien les bords */
+  margin: 15px 0;
   border: 0;
   border-top: 1px solid black;
 }
 
 .footer-text {
-  font-size: 14px;
+  font-size: 10px;
   color: gray;
+  text-align: center;
 }
