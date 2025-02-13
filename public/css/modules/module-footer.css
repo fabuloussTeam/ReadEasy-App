@@ -1,41 +1,63 @@
-.footer-wrapper {
-  width: 100%;
-  max-width: none; /* Assure que le footer prend toute la largeur */
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: rgb(240, 7, 7);
+body {
+  margin: 0;
 }
 
-.footer-links {
-  width: 100%;
-  padding: 0 40px; /* Ajoute un peu d'espace aux extrémités */
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+footer .footer-wrapper, nav ul {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  font-weight: bold;
+  justify-content: space-around;
+}
+ul {
+  padding: 0;
 }
 
-.footer-links a {
+footer .footer-wrapper {
+  align-items: center;
+}
+
+nav a {
   text-decoration: none;
   color: black;
 }
 
+footer li {
+  list-style: none;
+  margin: 60px;
+  text-transform: capitalize;
+  font-weight: bolder;
+  margin-bottom: 0;
+}
+
 .footer-logo {
-  height: 80px; /* Réduit la taille du logo */
-  max-width: 150px; /* Empêche qu'il prenne trop de place */
+  height: 55px; 
+  max-width: 100px;
 }
 
 hr {
-  width: 100%; /* Assure que la ligne touche bien les bords */
-  margin: 15px 0;
+  width: 90%; 
+  max-width: 1200px;
   border: 0;
   border-top: 1px solid black;
+  margin: 15px auto;
 }
 
 .footer-text {
   font-size: 10px;
   color: gray;
+  font-size: small;
   text-align: center;
+  margin: 0 auto;
+  padding-bottom: 15px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+@media screen and (max-width: 1200px) {
+  footer {
+  padding: 10px;
+  }
 }
