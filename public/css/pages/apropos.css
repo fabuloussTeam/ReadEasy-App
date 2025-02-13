@@ -1,3 +1,48 @@
-#apropos{
-    color: green
+.apropos {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.left, .right {
+    flex: 1;
+}
+.left {
+    padding-right: 30px;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo img {
+    width: 85px;
+}
+h1 {
+    font-size: 22px;
+}
+h2 {
+    font-size: 18px;
+    margin-top: 20px;
+}
+p {
+    font-size: 14px;
+    color: #555;
+}
+.right img {
+    width: 100%;
+    border-radius: 5px;
+}
+.contact {
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.8;
 }
