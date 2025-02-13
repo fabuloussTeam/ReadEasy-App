@@ -56,6 +56,24 @@ app.get('/modulecaroussel', async (request, response) => {
       });
 });
 
+// Route vers le module presentation livre style 01 
+app.get('/modulepresentationstyleun', async (request, response) => {
+    response.render("modules/module-presentation-livre-premiere", {
+        titre: "ReadEasy | Modules presentation d'un livre style un",
+        styles: ["/css/modules/module-presentation-livre-premiere.css"],
+        scripts: ["/js/modules/module-presentation-livre-premiere.js"],
+      });
+});
+// Route vers le module presentation livre style 02
+app.get('/modulepresentationstyledeux', async (request, response) => {
+    response.render("modules/module-presentation-livre-deuxieme", {
+        titre: "ReadEasy | Modules presentation d'un livre style deux",
+        styles: ["/css/modules/module-presentation-livre-deuxieme.css"],
+        scripts: ["/js/modules/module-presentation-livre-deuxieme.js"],
+
+      });
+});
+
 // Route vers la pages apropos
 app.get('/readeasyapropos', async (request, response) => {
     response.render("pages/apropos", {
