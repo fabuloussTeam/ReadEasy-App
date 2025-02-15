@@ -74,6 +74,24 @@ app.get('/modulepresentationstyledeux', async (request, response) => {
       });
 });
 
+// Route vers le module connexion utilisateur
+app.get('/moduleconnexion', async (request, response) => {
+    response.render("modules/module-connexion", {
+        titre: "ReadEasy | Module connexion utilisateur",
+        styles: ["/css/modules/module-connexion.css"],
+        scripts: ["/js/modules/module-connexion.js"],
+      });
+});
+
+// Route vers le module creation de compte utilisateur
+app.get('/modulecreationdecompte', async (request, response) => {
+    response.render("modules/module-creationdecompte", {
+        titre: "ReadEasy | Module creation de compte ",
+        styles: ["/css/modules/module-creationdecompte.css"],
+        scripts: ["/js/modules/module-creationdecompte.js"],
+    });
+});
+
 // Route vers la pages apropos
 app.get('/readeasyapropos', async (request, response) => {
     response.render("pages/apropos", {
