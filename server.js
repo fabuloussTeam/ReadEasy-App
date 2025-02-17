@@ -37,6 +37,8 @@ app.get('/', (request, response) => {
 app.get('/moduleheader', async (request, response) => {
     response.render("modules/module-header", {
         titre: "ReadEasy | Modules bar de navigation",
+        styles: ["/css/modules/module-header.css"],
+        scripts: ["/js/modules/module-header.js"],
       });
 });
 
@@ -45,6 +47,8 @@ app.get('/moduleheader', async (request, response) => {
 app.get('/modulefooter', async (request, response) => {
     response.render("modules/module-footer", {
         titre: "ReadEasy | Modules pied de page",
+        styles: ["/css/modules/module-footer.css"],
+        scripts: ["/js/modules/module-footer.js"],
       });
 });
 

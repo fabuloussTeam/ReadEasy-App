@@ -1,124 +1,107 @@
-nav li {
-  list-style: none; /*Enlever les points des listes*/
-  display: inline-block; /*Aligner les elements de liste horizontalement*/
-  margin-right: 15px;
-}
-nav li:last-of-type {
-  margin-right: 0;
-}
-ul {
+* {
+  margin: 0;
   padding: 0;
-}
-header a {
-  text-decoration: none; /*Supprimer le soulignage des liens*/
-  color: #007bff;
-  font-size: medium;
-  text-transform: capitalize;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-}
-.logo,
-nav {
-  display: inline-block;
-}
-
-.wrapper {
-  margin: 0 auto;
-  max-width: 1200px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
-.logo {
-  width: 10%;
-}
-.logo a {
-  text-transform: uppercase;
-  font-size: 25px;
-}
-
-nav {
-  width: 75%;
-  text-align: right;
+header {
+  background-color: #ffffff;
+  color: #211f1f;
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.search-container {
+.logo-img {
+  width: 50px;
+  height: auto; 
+  overflow: hidden;
+}
+
+.logo-img img {
+  width: 50px;
+  height: 100%; 
+  object-fit: cover; 
+  object-position: center; 
+}
+
+header  nav {
+  flex: 1;
+  padding-left: 1em;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  margin-left: 2.5rem;
+}
+
+header nav ul li {
+  margin-left: 1.5em;
+}
+
+header nav ul li a, .search-btn  {
+  color: #18A0FB;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.auth-buttons > #signupBtn {
+  background-color: #18A0FB;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.auth-buttons > #loginBtn {
+  background-color: #ffffff;
+  color: #18A0FB;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid rgb(128, 128, 128);
+}
+
+.auth-buttons button:hover {
+  background-color: #777;
+}
+
+.search-container{
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  padding: 5px 10px;
-  background-color: white;
+  padding-top: 4px;
 }
 
-.search-input {
-  border: none;
-  outline: none;
-  padding: 5px;
-  width: 150px;
-  font-size: 14px;
-}
-
-.search-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  color: black;
-}
-
-/* Style des boutons icônes */
-.icon-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
+.search-container button{
   font-size: 18px;
-  color: black;
-  padding: 5px 10px;
-}
-
-/* Effet au survol */
-.search-btn:hover {
-  color: rgb(0, 221, 255);
-}
-
-/* Style général des boutons */
-.login,
-.signup {
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 5px;
+  border: none;
+  background-color: transparent;
+  margin-right: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-/* Style du bouton Connexion (bouton avec bordure) */
-.login {
-  background: none;
-  color: #007bff; /* Bleu */
-  border: 2px solid #007bff;
+.search-container input.search-input {
+  padding: 5px;
+  border: 1px solid #797878;
+  border-radius: 5px;
+  display: none;
 }
 
-/* Style du bouton Créer un Compte (bouton plein) */
-.signup {
-  background: #007bff;
-  color: white;
-  border: 2px solid #007bff;
-}
 
-/* Effet au survol */
-.login:hover {
-  background: #007bff;
-  color: white;
-}
-
-.signup:hover {
-  background: #0056b3;
-  border-color: #0056b3;
-}
-
-.logo img {
-  width: 120px; /* Ajuste la largeur selon ton besoin */
-  height: auto; /* Garde le ratio de l'image */
-  max-height: 50px; /* Ajuste la hauteur max si nécessaire */
-}
