@@ -13,8 +13,6 @@
     gap: 10px;
 }
 
-
-
 .container:hover {
     display: flex;
     flex-direction: column;
@@ -31,8 +29,6 @@
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
-
-
 
 .header-livre-a-laune h2 {
     font-size: 1.5em;
