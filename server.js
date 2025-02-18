@@ -56,18 +56,9 @@ app.get('/modulefooter', async (request, response) => {
 app.get('/modulecaroussel', async (request, response) => {
 
     var imgs = [
-        {
-            url: "https://user-images.githubusercontent.com/78242022/273443252-b034e050-3d70-48ef-9f0f-2d77ef9b2604.jpg",
-            alt: "Image 01"
-        },
-        {
-            url: "https://user-images.githubusercontent.com/78242022/273443252-b034e050-3d70-48ef-9f0f-2d77ef9b2604.jpg",
-            alt: "Image 02"
-        },
-        {
-            url: "https://user-images.githubusercontent.com/78242022/273443248-130249b5-87b7-423d-9281-48d810bcd30d.jpg",
-            alt: "Image 03"
-        }
+        { url: "https://user-images.githubusercontent.com/78242022/273443252-b034e050-3d70-48ef-9f0f-2d77ef9b2604.jpg", alt: "Image 01" },
+        { url: "https://user-images.githubusercontent.com/78242022/273443252-b034e050-3d70-48ef-9f0f-2d77ef9b2604.jpg", alt: "Image 02" },
+        { url: "https://user-images.githubusercontent.com/78242022/273443248-130249b5-87b7-423d-9281-48d810bcd30d.jpg", alt: "Image 03" }
     ]
 
     response.render("modules/module-caroussel", {
@@ -93,6 +84,23 @@ app.get('/modulepresentationstyledeux', async (request, response) => {
         styles: ["/css/modules/module-presentation-livre-deuxieme.css"],
         scripts: ["/js/modules/module-presentation-livre-deuxieme.js"],
 
+      });
+});
+
+// Route vers un livre a la une
+app.get('/modulelivrealaune', async (request, response) => {
+
+    var imgslivres = [
+        { url: "/images/bible-1868070_640.jpg", alt: "Image 01" },
+        { url: "/images/books-5211309_640.jpg", alt: "Image 02" },
+        { url: "/images/library-1147815_640.jpg", alt: "Image 03" }
+    ]
+
+    response.render("modules/module-livre-a-laune", {
+        titre: "ReadEasy | Modules presentation d'un livre a la une",
+        styles: ["/css/modules/module-livre-a-laune.css"],
+        scripts: ["/js/modules/module-livre-a-laune.js"],
+        imgslivres: imgslivres
       });
 });
 

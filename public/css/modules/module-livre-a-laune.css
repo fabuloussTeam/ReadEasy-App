@@ -1,0 +1,74 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(147, 147, 147, 0.1);
+    font-size: small;
+    border-radius: 15px;
+    padding: 10px;
+    gap: 10px;
+}
+
+
+
+.container:hover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: small;
+    border-radius: 5px;
+    padding: 5px;
+    gap: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+
+
+.header-livre-a-laune h2 {
+    font-size: 1.5em;
+    color: #444;
+    padding: 8px 8px 0 8px;
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.imglivre {
+    width: 300px;
+    height: 250px;
+    overflow: hidden;
+    margin-top: 0;
+    padding: 0;
+    border-radius: 15px;
+}
+  
+.imglivre img {
+    position: relative;
+    object-fit: cover;
+    object-position: center; 
+    margin-top: 0;
+    padding: 0;
+}
+
+.content-livre-a-laune {
+    padding: 0 8px 8px 8px;
+    
+}
+
+.content-livre-a-laune p {
+   font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    text-align: justify;
+}
+  
+
+
