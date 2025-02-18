@@ -54,9 +54,27 @@ app.get('/modulefooter', async (request, response) => {
 
 // Route vers le module footer
 app.get('/modulecaroussel', async (request, response) => {
+
+    var imgs = [
+        {
+            url: "https://user-images.githubusercontent.com/78242022/273443252-b034e050-3d70-48ef-9f0f-2d77ef9b2604.jpg",
+            alt: "Image 01"
+        },
+        {
+            url: "https://user-images.githubusercontent.com/78242022/273443252-b034e050-3d70-48ef-9f0f-2d77ef9b2604.jpg",
+            alt: "Image 02"
+        },
+        {
+            url: "https://user-images.githubusercontent.com/78242022/273443248-130249b5-87b7-423d-9281-48d810bcd30d.jpg",
+            alt: "Image 03"
+        }
+    ]
+
     response.render("modules/module-caroussel", {
         titre: "ReadEasy | Modules caroussel image",
         styles: ["/css/modules/module-caroussel.css"],
+        scripts: ["/js/modules/module-caroussel.js"],
+        images: imgs
       });
 });
 

@@ -1,5 +1,22 @@
-.carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-    width: 70%;
-    margin: auto;
-  }
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+
+#slider {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-size: cover;
+}
+
+#slider * {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100% !important;
+  width: 100% !important;
+}
