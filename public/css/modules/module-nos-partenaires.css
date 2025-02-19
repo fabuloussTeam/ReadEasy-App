@@ -1,0 +1,46 @@
+.container-nos-partenaires {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 950px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container-nos-partenaires h2 {
+    color: #333;
+    font-weight: 250px;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.container-nos-partenaires p {
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 1.2em;
+}
+
+.partners {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.partner {
+    margin: 10px;
+    text-align: center;
+}
+
+.partner img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.partner p {
+    color: #333;
+    font-weight: bold;
+}

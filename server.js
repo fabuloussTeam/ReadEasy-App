@@ -104,13 +104,15 @@ app.get('/moduleespacepublicitaire', async (request, response) => {
       });
 });  
 
-app.get('/modulelivrealaune', async (request, response) => {
-    response.render("modules/module-livre-a-laune", {
-        titre: "ReadEasy | Modules presentation d'un livre a la une",
-        styles: ["/css/modules/module-livre-a-laune.css"],
-        scripts: ["/js/modules/module-livre-a-laune.js"],
+// Route vers module nos partenaires
+app.get('/modulenospartenaires', async (request, response) => {
+    response.render("modules/module-nos-partenaires", {
+        titre: "ReadEasy | Modules nos partenaires",
+        styles: ["/css/modules/module-nos-partenaires.css"],
+        scripts: ["/js/modules/module-nos-partenaires.js"],
       });
 });
+
 
 // Route vers le module connexion utilisateur
 app.get('/moduleconnexion', async (request, response) => {
