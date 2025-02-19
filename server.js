@@ -83,24 +83,32 @@ app.get('/modulepresentationstyledeux', async (request, response) => {
         titre: "ReadEasy | Modules presentation d'un livre style deux",
         styles: ["/css/modules/module-presentation-livre-deuxieme.css"],
         scripts: ["/js/modules/module-presentation-livre-deuxieme.js"],
-
       });
 });
 
-// Route vers un livre a la une
+// Route vers module un livre a la une
 app.get('/modulelivrealaune', async (request, response) => {
-
-    var imgslivres = [
-        { url: "/images/bible-1868070_640.jpg", alt: "Image 01" },
-        { url: "/images/books-5211309_640.jpg", alt: "Image 02" },
-        { url: "/images/library-1147815_640.jpg", alt: "Image 03" }
-    ]
-
     response.render("modules/module-livre-a-laune", {
         titre: "ReadEasy | Modules presentation d'un livre a la une",
         styles: ["/css/modules/module-livre-a-laune.css"],
         scripts: ["/js/modules/module-livre-a-laune.js"],
-        imgslivres: imgslivres
+      });
+});
+
+// Route vers module espace publicitaire
+app.get('/moduleespacepublicitaire', async (request, response) => {
+    response.render("modules/module-espace-publicitaire", {
+        titre: "ReadEasy | Modules espace publicitaire",
+        styles: ["/css/modules/module-espace-publicitaire.css"],
+        scripts: ["/js/modules/module-espace-publicitaire.js"],
+      });
+});  
+
+app.get('/modulelivrealaune', async (request, response) => {
+    response.render("modules/module-livre-a-laune", {
+        titre: "ReadEasy | Modules presentation d'un livre a la une",
+        styles: ["/css/modules/module-livre-a-laune.css"],
+        scripts: ["/js/modules/module-livre-a-laune.js"],
       });
 });
 
