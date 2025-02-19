@@ -1,48 +1,83 @@
 .apropos {
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+display: flex;
+
+justify-content: center;
+flex-direction: column;
+padding: 20px;
+font-family: Arial, sans-serif;
+line-height: 1.6;
+margin: 0;
+border: 1px solid #ddd;
+border-radius: 10px;
+
 }
+
 .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
 }
-.left, .right {
-    flex: 1;
+
+.apropos:nth-child(1) {
+align-self: flex-start; /* Seul ce bloc sera aligné à la fin */
 }
-.left {
-    padding-right: 30px;
+
+.straight-line {
+    width: 75%;
+    border: 1px solid #9e9d9d;
+    align-self: center;
+    transform: rotate(90deg); 
 }
+
+.left, .right{
+    width: 200rem;
+}
+
 .logo {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
+    line-height: 1;
+    margin: 0 70px;
 }
+
 .logo img {
     width: 85px;
 }
-h1 {
-    font-size: 22px;
+
+.apropos-title {
+    font-size: 1.8em;
+    max-width: 30%;
 }
-h2 {
+
+.left  h2 {
     font-size: 18px;
     margin-top: 20px;
+    font-weight: 700;
 }
+
 p {
     font-size: 14px;
     color: #555;
 }
-.right img {
-    width: 100%;
-    border-radius: 5px;
-}
+
 .contact {
     margin-top: 20px;
     font-size: 14px;
     line-height: 1.8;
 }
+
+.right .img-apropos {
+    width: 100%;
+    height: 100px; 
+    overflow: hidden;
+  }
+  
+  .img-apropos img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    object-position: center; 
+  }
+  
