@@ -1,0 +1,71 @@
+// importer ler client prisma
+import { PrismaClient } from "@prisma/client";
+
+//Creer une instance de prisma
+const prisma = new PrismaClient();
+
+/**
+ * Pour ajouter une tache
+ * @param {*} description
+ */
+export const addlivre = async (isbn, titre, description, prix, est_gratuit, auteur) => {
+    const livre = await prisma.livre.create({
+        data: {
+            isbn,
+            titre,
+            description,
+            prix,
+            est_gratuit,
+            auteur
+        },
+    });
+    return livre;
+};
+
+/**
+ * Obtenir la liste de toutes les taches
+ * @returns la liste des taches
+ */
+export const getlivres = async () => {
+    const livres = await prisma.livre.findMany();
+    return livres;
+};
+
+/**
+ * Route pour mettre à jour un livre
+ * @param {*} id 
+ * @returns 
+ */
+export const updatelivre = async (
+    id_livre,
+    isbn,
+    titre,
+    description,
+    prix,
+    est_gratuit,
+    auteur
+ ) => {
+
+    const livre = await prisma.livre.findUnique({
+        where: {
+            id_livre,
+        },
+    });
+
+    const updatedlivre = await prisma.livre.update({
+        where: {
+            id_livre,
+        },
+
+        data: {
+            isbn : isbn,
+            titre : titre,
+            description : description,
+            prix : prix,
+            est_gratuit : est_gratuit,
+            auteur : auteur 
+        },
+    });
+
+    return updatedlivre;
+};

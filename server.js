@@ -8,6 +8,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
 import cspOption from './csp-options.js'
+import { addlivre, getlivres, updatelivre } from './model/readeasy.js';
 
 // Création du serveur
 const app = express();
@@ -29,6 +30,64 @@ app.get('/', (request, response) => {
         title: 'Page d\'accueil',
     });
 });
+
+// ======================================================================
+
+// Route pour ajouter un livre
+app.post("/api/livre", async (request, response) => {
+    try {
+        const { 
+            isbn,
+            titre,
+            description,
+            prix,
+            est_gratuit,
+            auteur
+          } = request.body;
+        const livre = await addlivre(isbn, titre, description, prix, est_gratuit, auteur);
+        return response
+            .status(200)
+            .json({ livre, message: "Livre ajoutée avec succès" });
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
+// Route pour obtenir la liste des livres
+app.get("/api/livres", async (request, response) => {
+    try {
+        const livres = await getlivres();
+        return response.status(200).json(livres);
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
+// Route pour mettre à jour un livre
+app.patch("/api/livre/:id_livre", async (request, response) => {
+    try {
+        const id_livre = parseInt(request.params.id_livre);
+        console.log(id_livre);
+        
+        const livre = await updatelivre(id_livre);
+        return response
+            .status(200)
+            .json({ livre, message: "livre mise à jour avec succès" });
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 /** Creation de mes route pour modules */
