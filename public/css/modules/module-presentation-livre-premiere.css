@@ -1,5 +1,52 @@
-/** ----------- CSS pour le module presentation-livre-premiere -------------*/
+.image-section {
+  float: left;
+  margin-right: 30px;
+}
 
-.style-un h2 {
-    color: rgb(215, 9, 9);
+.text-section h2 {
+  text-transform: capitalize;
+  margin-top: 10rem;
+  margin-bottom: 30px;
+}
+
+.text-section p {
+  margin-left: auto;
+  width: 10rem;
+}
+
+.pay-links li {
+  list-style: none;
+}
+
+.description {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  background-color: #0d75f8;
+  padding: 10px 20px;
+  border-radius: 5px;
+  width: 40px;
+}
+
+.description:hover {
+    background-color: #0d75f8; 
+    color: white; 
+  }
+
+.pay-links a {
+  text-decoration: none;
+  color: #00bbee;
+  border: solid #00bbee;
+  display: inline-block;
+  padding: 10px 20px;
+  width: 190px;
+  border-radius: 5px;
+  margin-left: 30rem;
+  margin-top: 3rem;
+}
+
+.pay-links li:first-child a {
+    background-color: black; 
+    color: white; 
+    border-color: black; 
 }
