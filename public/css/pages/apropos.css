@@ -1,6 +1,6 @@
 .apropos {
 display: flex;
-
+width: 1228px;
 justify-content: center;
 flex-direction: column;
 padding: 20px;
@@ -39,7 +39,6 @@ align-self: flex-start; /* Seul ce bloc sera aligné à la fin */
     align-items: center;
     gap: 20px;
     line-height: 1;
-    margin: 0 70px;
 }
 
 .logo img {
