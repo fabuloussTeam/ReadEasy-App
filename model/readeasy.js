@@ -58,14 +58,24 @@ export const updatelivre = async (
         },
 
         data: {
-            isbn : isbn,
-            titre : titre,
-            description : description,
-            prix : prix,
-            est_gratuit : est_gratuit,
-            auteur : auteur 
+            isbn,
+            titre,
+            description,
+            prix,
+            est_gratuit,
+            auteur,
         },
     });
 
     return updatedlivre;
+};
+
+// Route pour supprimer un livre
+export const deletelivre = async (id_livre) => {
+    const livre = await prisma.livre.delete({
+        where: {
+            id_livre,
+        },
+    });
+    return livre;
 };

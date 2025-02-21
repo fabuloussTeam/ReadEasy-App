@@ -8,7 +8,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
 import cspOption from './csp-options.js'
-import { addlivre, getlivres, updatelivre } from './model/readeasy.js';
+import { addlivre, getlivres, updatelivre, deletelivre } from './model/readeasy.js';
 
 // Création du serveur
 const app = express();
@@ -66,13 +66,43 @@ app.get("/api/livres", async (request, response) => {
 // Route pour mettre à jour un livre
 app.patch("/api/livre/:id_livre", async (request, response) => {
     try {
-        const id_livre = parseInt(request.params.id_livre);
-        console.log(id_livre);
-        
-        const livre = await updatelivre(id_livre);
+        const id_livre = parseInt(request.params.id_livre);   
+
+        const {
+            isbn,
+            titre,
+            description,
+            prix,
+            est_gratuit,
+            auteur
+        } = request.body;
+
+        const livre = await updatelivre(
+            id_livre,
+            isbn,
+            titre,
+            description,
+            prix,
+            Boolean(est_gratuit), // Ensure est_gratuit is a boolean
+            auteur
+        );
+
         return response
             .status(200)
             .json({ livre, message: "livre mise à jour avec succès" });
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
+//route pour supprimer un livre
+app.delete("/api/livre/:id_livre", async (request, response) => {
+    try {
+        const id_livre = parseInt(request.params.id_livre);
+        const livre = await deletelivre(id_livre);
+        return response
+            .status(200)
+            .json({ livre, message: "livre supprimée avec succès" });
     } catch (error) {
         return response.status(400).json({ error: error.message });
     }
