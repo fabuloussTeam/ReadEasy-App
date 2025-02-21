@@ -42,9 +42,18 @@ app.post("/api/livre", async (request, response) => {
             description,
             prix,
             est_gratuit,
-            auteur
+            auteur,
+            url
           } = request.body;
-        const livre = await addlivre(isbn, titre, description, prix, est_gratuit, auteur);
+        const livre = await addlivre(
+            isbn, 
+            titre, 
+            description, 
+            prix, 
+            est_gratuit, 
+            auteur,
+            url
+        );
         return response
             .status(200)
             .json({ livre, message: "Livre ajoutée avec succès" });
@@ -74,7 +83,8 @@ app.patch("/api/livre/:id_livre", async (request, response) => {
             description,
             prix,
             est_gratuit,
-            auteur
+            auteur,
+            url
         } = request.body;
 
         const livre = await updatelivre(
@@ -84,7 +94,8 @@ app.patch("/api/livre/:id_livre", async (request, response) => {
             description,
             prix,
             Boolean(est_gratuit), // Ensure est_gratuit is a boolean
-            auteur
+            auteur,
+            url
         );
 
         return response

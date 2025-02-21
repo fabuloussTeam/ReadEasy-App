@@ -18,6 +18,7 @@ model livre {
   prix          Decimal
   est_gratuit   Boolean @default(false)
   auteur        String?
+  url           String?
 }
 
 model utilisateur {
