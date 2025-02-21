@@ -2,7 +2,7 @@
 import 'dotenv/config';
 
 // Importer les fichiers et librairies
-import express, { json, url_imageencoded } from 'express';
+import express, { json, urlencoded } from 'express';
 import expressHandlebars from 'express-handlebars';
 import helmet from 'helmet';
 import compression from 'compression';
@@ -21,7 +21,7 @@ app.use(helmet(cspOption));
 app.use(compression());
 app.use(cors());
 app.use(json());
-app.use(url_imageencoded({ extended: false }));
+app.use(urlencoded({ extended: false }));
 app.use(express.static('public'));
 
 // Ajouter les routes ici ...
@@ -118,16 +118,6 @@ app.delete("/api/livre/:id_livre", async (request, response) => {
         return response.status(400).json({ error: error.message });
     }
 });
-
-
-
-
-
-
-
-
-
-
 
 
 

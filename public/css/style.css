@@ -12,17 +12,120 @@ body {
     min-height: 100vh;
 }
 
-.wrapper {
-  /**  max-width: 950px;*/
+.main-wrapper {
+   max-width: 1300px;
    width: 100%;
     margin: 0 auto;
     padding: 1rem;
 }
 
-dt {
-    font-weight: bold;
-}
 
-dd {
-    margin: 0 0 1rem;
-}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  header {
+    background-color: #ffffff;
+    color: #211f1f;
+    padding: 5px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .logo-img {
+    width: 50px;
+    height: auto; 
+    overflow: hidden;
+  }
+  
+  .logo-img img {
+    width: 50px;
+    height: 100%; 
+    object-fit: cover; 
+    object-position: center; 
+  }
+  
+  header  nav {
+    flex: 1;
+    padding-left: 1em;
+  }
+  
+  header nav ul {
+    list-style: none;
+    display: flex;
+    margin-left: 2.5rem;
+  }
+  
+  header nav ul li {
+    margin-left: 1.5em;
+  }
+  
+  header nav ul li a, .search-btn  {
+    color: #18A0FB;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  header nav ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .auth-buttons > #signupBtn {
+    background-color: #18A0FB;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .auth-buttons > #loginBtn {
+    background-color: #ffffff;
+    color: #18A0FB;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid rgb(128, 128, 128);
+  }
+  
+  .auth-buttons button:hover {
+    background-color: #777;
+  }
+  
+  .search-container{
+    display: flex;
+    align-items: center;
+    padding-top: 4px;
+  }
+  
+  .search-container button{
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .search-container input.search-input {
+    padding: 5px;
+    border: 1px solid #797878;
+    border-radius: 5px;
+    display: none;
+  }
+  
+  
+  
