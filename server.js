@@ -2,7 +2,7 @@
 import 'dotenv/config';
 
 // Importer les fichiers et librairies
-import express, { json, urlencoded } from 'express';
+import express, { json, url_imageencoded } from 'express';
 import expressHandlebars from 'express-handlebars';
 import helmet from 'helmet';
 import compression from 'compression';
@@ -21,7 +21,7 @@ app.use(helmet(cspOption));
 app.use(compression());
 app.use(cors());
 app.use(json());
-app.use(urlencoded({ extended: false }));
+app.use(url_imageencoded({ extended: false }));
 app.use(express.static('public'));
 
 // Ajouter les routes ici ...
@@ -43,7 +43,7 @@ app.post("/api/livre", async (request, response) => {
             prix,
             est_gratuit,
             auteur,
-            url
+            url_image
           } = request.body;
         const livre = await addlivre(
             isbn, 
@@ -52,7 +52,7 @@ app.post("/api/livre", async (request, response) => {
             prix, 
             est_gratuit, 
             auteur,
-            url
+            url_image
         );
         return response
             .status(200)
@@ -84,7 +84,7 @@ app.patch("/api/livre/:id_livre", async (request, response) => {
             prix,
             est_gratuit,
             auteur,
-            url
+            url_image
         } = request.body;
 
         const livre = await updatelivre(
@@ -95,7 +95,7 @@ app.patch("/api/livre/:id_livre", async (request, response) => {
             prix,
             Boolean(est_gratuit), // Ensure est_gratuit is a boolean
             auteur,
-            url
+            url_image
         );
 
         return response
@@ -142,7 +142,6 @@ app.get('/moduleheader', async (request, response) => {
       });
 });
 
-
 // Route vers le module footer
 app.get('/modulefooter', async (request, response) => {
     response.render("modules/module-footer", {
@@ -156,9 +155,9 @@ app.get('/modulefooter', async (request, response) => {
 app.get('/modulecaroussel', async (request, response) => {
 
     var imgs = [
-        { url: "https://user-images.githubusercontent.com/78242022/273443252-b034e050-3d70-48ef-9f0f-2d77ef9b2604.jpg", alt: "Image 01" },
-        { url: "https://user-images.githubusercontent.com/78242022/273443252-b034e050-3d70-48ef-9f0f-2d77ef9b2604.jpg", alt: "Image 02" },
-        { url: "https://user-images.githubusercontent.com/78242022/273443248-130249b5-87b7-423d-9281-48d810bcd30d.jpg", alt: "Image 03" }
+        { url_image: "https://user-images.githubusercontent.com/78242022/273443252-b034e050-3d70-48ef-9f0f-2d77ef9b2604.jpg", alt: "Image 01" },
+        { url_image: "https://user-images.githubusercontent.com/78242022/273443252-b034e050-3d70-48ef-9f0f-2d77ef9b2604.jpg", alt: "Image 02" },
+        { url_image: "https://user-images.githubusercontent.com/78242022/273443248-130249b5-87b7-423d-9281-48d810bcd30d.jpg", alt: "Image 03" }
     ]
 
     response.render("modules/module-caroussel", {
@@ -245,7 +244,7 @@ app.get('/readeasyapropos', async (request, response) => {
 // Renvoyer une erreur 404 pour les routes non définies
 app.use(function (request, response) {
     // Renvoyer simplement une chaîne de caractère indiquant que la page n'existe pas
-    response.status(404).send(request.originalUrl + ' not found.');
+    response.status(404).send(request.originalurl_image + ' not found.');
 });
 
 // Démarrage du serveur

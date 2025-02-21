@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
  * Pour ajouter une tache
  * @param {*} description
  */
-export const addlivre = async (isbn, titre, description, prix, est_gratuit, auteur, url) => {
+export const addlivre = async (isbn, titre, description, prix, est_gratuit, auteur, nom_image) => {
     const livre = await prisma.livre.create({
         data: {
             isbn,
@@ -17,7 +17,7 @@ export const addlivre = async (isbn, titre, description, prix, est_gratuit, aute
             prix,
             est_gratuit,
             auteur,
-            url,
+            nom_image,
         },
     });
     return livre;
@@ -45,7 +45,7 @@ export const updatelivre = async (
     prix,
     est_gratuit,
     auteur,
-    url
+    nom_image
  ) => {
 
     const livre = await prisma.livre.findUnique({
@@ -66,7 +66,7 @@ export const updatelivre = async (
             prix,
             est_gratuit,
             auteur,
-            url
+            nom_image
         },
     });
 
