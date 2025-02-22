@@ -1,5 +1,5 @@
 
-.container {
+.card-livre-a-laune .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,7 +12,7 @@
     padding: 10px;
     gap: 10px;
 }
-
+/**
 .container:hover {
     display: flex;
     flex-direction: column;
@@ -28,7 +28,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
-}
+} */
 
 .header-livre-a-laune h2 {
     font-size: 1.5em;
