@@ -1,5 +1,5 @@
 .image-section {
-  float: left;
+  float: right;
   margin-right: 30px;
 }
 
@@ -10,12 +10,8 @@
 }
 
 .text-section p {
-  margin-left: auto;
+  margin-left: 27rem;
   width: 10rem;
-}
-
-.pay-links li {
-  list-style: none;
 }
 
 .description {
@@ -23,15 +19,22 @@
   font-weight: bold;
   color: white;
   background-color: #0d75f8;
-  padding: 10px 20px;
+  padding: 10px 30px;
   border-radius: 5px;
-  width: 40px;
 }
 
 .description:hover {
-    background-color: #0d75f8; 
-    color: white; 
-  }
+  background-color: #0d75f8;
+  color: white;
+}
+
+.pay-links {
+  margin-top: 2rem;
+}
+
+.pay-links li {
+  list-style: none;
+}
 
 .pay-links a {
   text-decoration: none;
@@ -41,12 +44,12 @@
   padding: 10px 20px;
   width: 190px;
   border-radius: 5px;
-  margin-left: 30rem;
-  margin-top: 3rem;
+  margin-left: 20rem;
+  margin-bottom: 1.3rem;
 }
 
 .pay-links li:first-child a {
-    background-color: black; 
-    color: white; 
-    border-color: black; 
+  background-color: black;
+  color: white;
+  border-color: black;
 }
