@@ -44,6 +44,30 @@ app.get('/', async (request, response) => {
     }
 });
 
+
+
+
+
+// Route vers la pages apropos
+app.get('/readeasyapropos', async (request, response) => {
+    response.render("pages/apropos", {
+        titre: "ReadEasy | Page a propos",
+        styles: ["/css/pages/apropos.css"],
+        scripts: ["/js/pages/apropos.js"],
+      });
+});
+
+app.get('/nos-livres', async (request, response) => {
+    response.render("pages/livres", {
+        titre: "ReadEasy | Nos livres",
+        styles: ["/css/pages/livres.css"],
+        scripts: ["/js/pages/livres.js"],
+      });
+});
+
+
+
+
 // ======================================================================
 
 // Route pour ajouter un livre
@@ -80,6 +104,10 @@ app.get("/api/livres", async (request, response) => {
     try {
         const livres = await getlivres();
         return response.status(200).json(livres);
+
+
+
+
     } catch (error) {
         return response.status(400).json({ error: error.message });
     }
@@ -133,8 +161,11 @@ app.delete("/api/livre/:id_livre", async (request, response) => {
 });
 
 
+// ======================================================================
 
-/** Creation de mes route pour modules */
+
+
+/*********** Creation des modules reuitilisables *********/
 
 // Route vers le module bar de Navigation
 app.get('/moduleheader', async (request, response) => {
@@ -234,14 +265,6 @@ app.get('/modulecreationdecompte', async (request, response) => {
     });
 });
 
-// Route vers la pages apropos
-app.get('/readeasyapropos', async (request, response) => {
-    response.render("pages/apropos", {
-        titre: "ReadEasy | Page a propos",
-        styles: ["/css/pages/apropos.css"],
-        scripts: ["/js/pages/apropos.js"],
-      });
-});
 
 
 // Renvoyer une erreur 404 pour les routes non définies

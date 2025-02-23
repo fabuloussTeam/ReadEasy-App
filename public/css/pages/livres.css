@@ -1,6 +1,15 @@
-.book-container-two {
+
+
+
+/** --- CSS pour le module presentation-livre-premiere -------------*/
+
+.book-style-one {
+    width: 100%;
+  }
+  
+  .book-container {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
@@ -8,9 +17,9 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border: 1px solid #670f0f;
   }
-
- 
-.book-description {
+  
+  
+  .book-description {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -101,8 +110,33 @@
     object-position: center;
     margin-top: 0;
     padding: 0;
-    width: 100%;
+    width: 75%;
     margin: 0 auto;
   }
-  
+  /** End module presentation-livre-premiere */
+
+  /** --- CSS pour le module presentation-livre-deuxieme -------------*/
+
+  .book-container-two {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #670f0f;
+  }
+  /** End module presentation-livre-deuxieme */
+
+  /** Livres ajustements */
+  .livres{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #670f0f;
+  } 
+
+
+
+
   
