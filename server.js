@@ -9,6 +9,7 @@ import compression from 'compression';
 import cors from 'cors';
 import cspOption from './csp-options.js'
 import { addlivre, getlivres, updatelivre, deletelivre } from './model/readeasy.js';
+import { getRandomBooks } from './public/js/home.js';
 
 // Création du serveur
 const app = express();
@@ -24,11 +25,23 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(express.static('public'));
 
-// Ajouter les routes ici ...
-app.get('/', (request, response) => {
-    response.render('home', {
-        title: 'Page d\'accueil',
-    });
+
+app.get('/', async (request, response) => {
+    try {
+        const meslivresalaune = await getlivres();
+        const randomBooks = getRandomBooks(meslivresalaune, 4);
+        console.log(`Random books: ${randomBooks.map(book => book.titre).join(', ')}`);
+        
+        response.render('home', {
+            titre: "Arlequin et Roman | ReadEasy",
+            styles: ["/css/home.css"],
+            scripts: ["/js/home.js"],
+            livres: randomBooks,
+        });
+    } catch (error) {
+        console.error('Error fetching books:', error);
+        response.status(500).send('Internal Server Error');
+    }
 });
 
 // ======================================================================

@@ -1,161 +1,165 @@
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-*, *::before, *::after {
-    box-sizing: inherit
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .main-wrapper {
-   max-width: 1300px;
-   width: 100%;
-    margin: 0 auto;
-    padding: 1rem;
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
-  }
-  
-  header {
-    background-color: #ffffff;
-    color: #211f1f;
-    padding: 5px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  .logo-img {
-    width: 50px;
-    height: auto; 
-    overflow: hidden;
-  }
-  
-  .logo-img img {
-    width: 50px;
-    height: 100%; 
-    object-fit: cover; 
-    object-position: center; 
-  }
-  
-  header  nav {
-    flex: 1;
-    padding-left: 1em;
-  }
-  
-   nav ul {
-    list-style: none;
-    display: flex;
-    margin-left: 2.5rem;
-    align-items: center;
-    padding-top: 8px;
-  }
-  
-  header nav ul li {
-    margin-left: 1.5em;
-    padding-top: 5px;
-  }
-  
-  header nav ul li a, .search-btn  {
-    color: #18A0FB;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  header nav ul li a:hover {
-    text-decoration: underline;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .auth-buttons {
-    display: flex;
-    align-items: center;
-  }
-  
-  .auth-buttons > #signupBtn {
-    background-color: #18A0FB;
-    color: #fff;
-    border: none;
-    padding: 8px 15px;
-    margin-left: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .auth-buttons > #loginBtn {
-    background-color: #ffffff;
-    color: #18A0FB;
-    padding: 8px 15px;
-    margin-left: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    border: 1px solid rgb(128, 128, 128);
-  }
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+}
 
+header {
+  background-color: #ffffff;
+  color: #211f1f;
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-  .auth-buttons > #disconnectBtn {
-    background-color: #8462ff;
-    color: #ffffff;
-    padding: 8px 15px;
-    margin-left: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    border: 1px solid rgb(128, 128, 128);
-  }
+.logo-img {
+  width: 50px;
+  height: auto;
+  overflow: hidden;
+}
 
-  .auth-buttons > .user-status > a {
-    color: #18A0FB;
-    font-weight: bold;
-    padding: 8px 5px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 5px;
-   /** border: 1px solid rgb(128, 128, 128);*/
-  }
+.logo-img img {
+  width: 50px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 
-  .auth-buttons button:hover {
-    background-color: #777;
-  }
-  
-  .search-container{
-    display: flex;
-    align-items: center;
-    padding-top: 4px;
-  }
-  
-  .search-container button{
-    font-size: 18px;
-    border: none;
-    background-color: transparent;
-    margin-right: 5px;
-    cursor: pointer;
-  }
-  
-  .search-container input.search-input {
-    padding: 5px;
-    border: 1px solid #797878;
-    border-radius: 5px;
-    display: none;
-  }
+header nav {
+  flex: 1;
+  padding-left: 1em;
+}
 
-  /***** CSS for the footer *****/
-  
+nav ul {
+  list-style: none;
+  display: flex;
+  margin-left: 2.5rem;
+  align-items: center;
+  padding-top: 8px;
+}
+
+header nav ul li {
+  margin-left: 1.5em;
+  padding-top: 5px;
+}
+
+header nav ul li a,
+.search-btn {
+  color: #18a0fb;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.auth-buttons > #signupBtn {
+  background-color: #18a0fb;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.auth-buttons > #loginBtn {
+  background-color: #ffffff;
+  color: #18a0fb;
+  padding: 8px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid rgb(128, 128, 128);
+}
+
+.auth-buttons > #disconnectBtn {
+  background-color: #8462ff;
+  color: #ffffff;
+  padding: 8px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid rgb(128, 128, 128);
+}
+
+.auth-buttons > .user-status > a {
+  color: #18a0fb;
+  font-weight: bold;
+  padding: 8px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 5px;
+  /** border: 1px solid rgb(128, 128, 128);*/
+}
+
+.auth-buttons button:hover {
+  background-color: #777;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.search-container button {
+  font-size: 18px;
+  border: none;
+  background-color: transparent;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.search-container input.search-input {
+  padding: 5px;
+  border: 1px solid #797878;
+  border-radius: 5px;
+  display: none;
+}
+
+/**End CSS for the header**/
+
+/***** CSS for the footer *****/
+
 footer {
   background-color: #f8f8f8;
   display: flex;
@@ -165,7 +169,7 @@ footer {
   width: 100%;
 }
 
-.footer-wrapper{
+.footer-wrapper {
   display: flex;
   width: 100%;
 }
@@ -174,7 +178,6 @@ footer {
   display: flex;
   justify-content: center;
   width: 100%;
-  
 }
 
 .footer-wrapper nav ul {
@@ -186,7 +189,6 @@ footer {
   padding-right: 50px;
   margin: 0 auto;
 }
-
 
 footer nav a {
   text-decoration: none;
@@ -212,22 +214,23 @@ footer .footer-wrapper ul li:nth-child(4) {
 
 .logo-img {
   width: 50px;
-  height: auto; 
+  height: auto;
   overflow: hidden;
 }
 
 .logo-img img {
   width: 100%;
-  height: 100%; 
-  object-fit: cover; 
-  object-position: center; 
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 hr {
-  width: 95%; 
+  width: 95%;
   border: 1px solid rgb(128, 128, 128);
   margin: 15px 0;
-  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 .footer-text {
@@ -238,257 +241,3 @@ hr {
   margin: 0 auto;
   padding-bottom: 15px;
 }
-
-
-/** Carousel CSS **/
-.carousel-caption h5, .carousel-caption p {
-  color: #fff;
-  font-size: 1.5rem;
- 
-}
-
-
-/** CSS module card a la une **/
-
-
-.cardLivreALaUne {
-  display: flex;
-  flex-direction: column;
-  margin: 5px 0;
-  padding: 40px 0px;
-}
-
-.card-livre-title{
-  width: 400px;
-  margin-bottom: 10px;
-}
-
-.card-livre-title h1 {
- font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.5em;
-  text-align: left;  
-  line-height: 2.0rem;
-  color: rgb(68, 66, 66);
-  padding: 5px;
-  font-weight: 550;
-}
-
-.card-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 5px;
-}
-
-.card-content .livre-a-laune:last-child{
-  align-self: flex-start !important;
-  align-items: flex-start;
-}
-
-
-
-.livre-a-laune {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(147, 147, 147, 0.1);
-  font-size: small;
-  border-radius: 15px;
-  padding: 15px;
-  margin-bottom: 10px;
-  gap: 10px;
-}
-
-.livre-a-laune:hover {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-size: small;
-  border-radius: 5px;
-  padding: 5px;
-  gap: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-}
-
-.header-livre-a-laune{
-  margin: 0 auto;
-}
-
-.header-livre-a-laune h2 {
-  font-size: 1.5em;
-  color: #444;
-  padding: 8px 8px 0 8px;
-  margin-top: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.imglivre {
-  width: 280px;
-  height: 250px;
-  overflow: hidden;
-  margin-top: 0;
-  padding: 0;
-  border-radius: 15px;
-}
-
-.imglivre img {
-  position: relative;
-  object-fit: cover;
-  object-position: center; 
-  margin-top: 0;
-  padding: 0;
-}
-
-.content-livre-a-laune {
-  padding: 0 8px 8px 8px;
-  
-}
-
-.content-livre-a-laune p {
- font-family: Arial, Helvetica, sans-serif;
-  font-size: 1em;
-  text-align: justify;
-}
-
-/** CSS module espace publicitaire **/
-
-
-.espace-publicitaire{
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  padding: 1em;
-  background-color: #F5F5F5;
-}
-
-.espace-publicitaire > div:last-child {
-  height: auto; 
-  overflow: hidden;
-}
-
-.espace-publicitaire > div img {
-  width: 100%;
-  height: 100%; 
-  object-fit: cover; 
-  object-position: center; 
-}
-
-.espace-publicitaire > div{
-  flex: 1;
-}
-
-.container-espace-publicitaire {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-  background-color: #F5F5F5;
-  padding: 20px 80px;
-  border-radius: 0;
-  box-shadow: 0 0 10px #F5F5F5;
-  opacity: 1;
-}
-
-.container-espace-publicitaire h2 {
-  color: #333;
-  font-size: 1.5rem;
-}
-
-.container-espace-publicitaire p {
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.container-espace-publicitaire button {
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 250px;
-  margin: 0 auto;
-}
-
-.container-espace-publicitaire button:hover {
-  background-color: #0056b3;
-}
-/** End CSS module espace publicitaire **/
-
-/** Start CSS module nos partenaires **/
-
-.nos-partenaires{
-  width: 100%;
-  margin: 10px 0, 5px 0;
-  padding: 5px 0;
-}
-.container-nos-partenaires {
-  text-align: center;
-  background-color: #fff;
-  padding: 20px 50px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #ffffff;
-  max-width: 950px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.container-nos-partenaires h2 {
-  color: #333;
-  font-weight: 250px;
-  padding: 10px;
-  margin-bottom: 20px;
-  font-size: 1.5em;
-}
-
-.container-nos-partenaires p {
-  color: #666;
-  margin-bottom: 40px;
-  font-size: 1.2em;
-}
-
-.partners {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.partner {
-  margin: 10px;
-  text-align: center;
-}
-
-.partner img {
-  width: 100px;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-.partner p {
-  color: #333;
-  font-weight: bold;
-}
-
-
-
-
-
-
-
-
-  
-  
-  
