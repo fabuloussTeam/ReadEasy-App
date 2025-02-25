@@ -76,6 +76,15 @@
   cursor: pointer;
 }
 
+.card-content a {
+  display: block;
+  text-decoration: none;
+  box-sizing: inherit;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #666;
+  
+}
+
 .header-livre-a-laune {
   margin: 0 auto;
 }

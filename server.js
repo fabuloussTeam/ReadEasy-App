@@ -8,7 +8,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
 import cspOption from './csp-options.js'
-import { addlivre, getlivres, updatelivre, deletelivre } from './model/readeasy.js';
+import { addlivre, getlivres, updatelivre, deletelivre, getlivre } from './model/readeasy.js';
 import { getRandomBooks } from './public/js/home.js';
 
 // Création du serveur
@@ -73,8 +73,8 @@ app.get('/nos-livres', async (request, response) => {
 // Afficher un livre
 app.get('/livre/:id_livre', async (request, response) => {
     const id_livre = parseInt(request.params.id_livre);
-    const livre = await getlivres(id_livre);
-
+    const livre = await getlivre(id_livre);
+ 
     response.render("pages/livre", {
         titre: `ReadEasy | ${livre.titre}`,
         styles: ["/css/pages/livre.css", "/css/style.css"],

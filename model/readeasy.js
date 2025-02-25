@@ -34,6 +34,19 @@ export const getlivres = async () => {
 };
 
 /**
+ * Obtenir un livre
+ */
+export const getlivre = async (id_livre) => {
+    
+    const livre = await prisma.livre.findUnique({
+        where: {
+            id_livre,
+        },
+    });
+    return livre;
+}
+
+/**
  * Route pour mettre à jour un livre
  * @param {*} id 
  * @returns 
