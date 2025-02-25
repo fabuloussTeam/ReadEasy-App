@@ -5,7 +5,7 @@
 
     <div class="card-content">
         {{#each livres}}
-        <div class="livre-a-laune">
+        <a href="/livre/{{this.id_livre}}"><div class="livre-a-laune">
             <div class="header-livre-a-laune">
                 <div class="imglivre"><img
                         src="/assets/images/livres/{{this.url_image}}"
@@ -14,9 +14,9 @@
             </div>
             <div class="content-livre-a-laune">
                 <p>{{this.description}}</p>
-                <button class="btn-livre-a-laune btn btn-outline-primary">Lire la suite</button>
+                 <a href="/livre/{{this.id_livre}}"></a><button class="btn-livre-a-laune btn btn-outline-primary">Lire la suite</button></a>
             </div>
-        </div>
+        </div></a>
         {{/each}}
 
         <!--  <div class="livre-a-laune">

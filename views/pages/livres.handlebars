@@ -4,20 +4,21 @@
             <h1>Nos Livres</h1>
         </div>
         <div class="list-des-livres">
-        {{#each livres}}
-            <div class="list-des-livres-item">
-                <div class="header-livre-a-laune">
-                    <div class="imglivre"><img
-                            src="/assets/images/livres/{{this.url_image}}"
-                            alt="Img" /></div>
-                </div>
-                <div class="content-livre-a-laune">
-                    <h2>{{this.titre}}</h2>
-                    <p>{{this.description}}</p>
-                    <button class="btn-livre-a-laune btn btn-outline-primary">Lire la suite</button>
-                </div>
-            </div>
-        {{/each}}
+            {{#each livres}}
+            <a href="/livre/{{this.id_livre}}" class="link-livre">
+                <div class="list-des-livres-item">
+                    <div class="header-livre-a-laune">
+                        <div class="imglivre"><img
+                                src="/assets/images/livres/{{this.url_image}}"
+                                alt="Img" /></div>
+                    </div>
+                    <div class="content-livre-a-laune">
+                        <h2>{{this.titre}}</h2>
+                        <p>{{this.description}}</p>
+                        <a href="/livre/{{this.id_livre}}"><button class="btn-livre-a-laune btn btn-outline-primary">Lire la suite</button></a>
+                    </div>
+                </div></a>
+            {{/each}}
         </div>
     </div>
 

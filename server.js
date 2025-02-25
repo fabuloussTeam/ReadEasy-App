@@ -48,7 +48,7 @@ app.get('/', async (request, response) => {
 
 
 
-// Route vers la pages apropos
+// la pages apropos
 app.get('/readeasyapropos', async (request, response) => {
     response.render("pages/apropos", {
         titre: "ReadEasy | Page a propos",
@@ -57,8 +57,9 @@ app.get('/readeasyapropos', async (request, response) => {
       });
 });
 
-app.get('/nos-livres', async (request, response) => {
 
+// Afficher tous les livres
+app.get('/nos-livres', async (request, response) => {
     const vosLivres = await getlivres();
 
     response.render("pages/livres", {
@@ -66,6 +67,19 @@ app.get('/nos-livres', async (request, response) => {
         styles: ["/css/pages/livres.css"],
         scripts: ["/js/pages/livres.js"],
         livres: vosLivres
+      });
+});
+
+// Afficher un livre
+app.get('/livre/:id_livre', async (request, response) => {
+    const id_livre = parseInt(request.params.id_livre);
+    const livre = await getlivres(id_livre);
+
+    response.render("pages/livre", {
+        titre: `ReadEasy | ${livre.titre}`,
+        styles: ["/css/pages/livre.css", "/css/style.css"],
+        scripts: ["/js/pages/livre.js"],
+        livre
       });
 });
 
@@ -108,9 +122,6 @@ app.get("/api/livres", async (request, response) => {
     try {
         const livres = await getlivres();
         return response.status(200).json(livres);
-
-
-
 
     } catch (error) {
         return response.status(400).json({ error: error.message });

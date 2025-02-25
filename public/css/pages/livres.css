@@ -95,6 +95,20 @@
   height: 100%;
 }
 
+.content-livre-a-laune h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+}
+
+.link-livre {
+  display: block;
+  text-decoration: none;
+  color: #7c7b7b;
+  font-size: 0.9rem;;
+}
+
 
 
 
