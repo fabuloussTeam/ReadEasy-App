@@ -1,140 +1,100 @@
 
 
+/** CSS module liste des livres **/
 
-/** --- CSS pour le module presentation-livre-premiere -------------*/
+.livres-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items:flex-start;
+  margin-top: 20px;
+}
 
-.book-style-one {
-    width: 100%;
-  }
-  
-  .book-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #670f0f;
-  }
-  
-  
-  .book-description {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-  
-  .book-title h1 {
-      font-size: 1.8em;
-      margin: 0;
-  }
-    
-  .book-details {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 15px 0;
-  }
-  
-  .book-details > div:first-child {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: first baseline;
-    flex-wrap: wrap;
-  
-  }
-  
-  .book-details > div:last-child {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-  }
-  
-  .book-details .price {
-    font-size: 1.2em;
-    color: #000;
-    align-self: flex-end;
-  }
-  
-  .book-details div:first-child button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-  }
-  
-  .book-details div:last-child button {
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      margin: 5px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1em;
-      width: 200px;
-  }
-  
-  .book-details div:last-child button:first-child {
-      background-color: #000000;
-      color: #fff;
-  }
-  
-  .book-details div:last-child button:last-child {
-      background-color: #ffffff;
-      color: #0d98ef;
-      border: 1px solid #0d98ef;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .book-image {
-    overflow: hidden;
-    margin-top: 0;
-    padding: 0;
-    border-radius: 15px;
-  }
-  
-  .book-image img {
-    display: flex;
-    justify-content: center;
-    object-fit: cover;
-    object-position: center;
-    margin-top: 0;
-    padding: 0;
-    width: 75%;
-    margin: 0 auto;
-  }
-  /** End module presentation-livre-premiere */
+.livres-container .livres-title {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border: 1px solid #000;
+  width: 100%;
+  height: 800px;
+  background-image: url("../../assets/pagelivres.jpg");
+}
 
-  /** --- CSS pour le module presentation-livre-deuxieme -------------*/
+.livres-title h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+   text-transform: uppercase; 
+   writing-mode: vertical-lr;
+   text-orientation: upright;
+   color: #fff;
+}
 
-  .book-container-two {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #670f0f;
-  }
-  /** End module presentation-livre-deuxieme */
 
-  /** Livres ajustements */
-  .livres{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #670f0f;
-  } 
+.list-des-livres{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.list-des-livres-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(147, 147, 147, 0.1);
+  font-size: small;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.list-des-livres-item:hover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: small;
+  border-radius: 5px;
+  padding: 5px;
+  gap: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+
+.imglivre {
+  width: 280px;
+  height: 250px;
+  overflow: hidden;
+  margin-top: 0;
+  padding: 0;
+  border-radius: 15px;
+}
+
+.imglivre img {
+  position: relative;
+  object-fit: cover;
+  object-position: center;
+  margin-top: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
 
 
 

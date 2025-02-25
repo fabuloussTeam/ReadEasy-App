@@ -58,10 +58,14 @@ app.get('/readeasyapropos', async (request, response) => {
 });
 
 app.get('/nos-livres', async (request, response) => {
+
+    const vosLivres = await getlivres();
+
     response.render("pages/livres", {
         titre: "ReadEasy | Nos livres",
         styles: ["/css/pages/livres.css"],
         scripts: ["/js/pages/livres.js"],
+        livres: vosLivres
       });
 });
 

@@ -3,10 +3,21 @@
         <div class="livres-title">
             <h1>Nos Livres</h1>
         </div>
-        <div class="livres-list">
-            {{#each livres}}
-                {{>modules/module-presentation-livre-premiere}}
-            {{/each}}
+        <div class="list-des-livres">
+        {{#each livres}}
+            <div class="list-des-livres-item">
+                <div class="header-livre-a-laune">
+                    <div class="imglivre"><img
+                            src="/assets/images/livres/{{this.url_image}}"
+                            alt="Img" /></div>
+                </div>
+                <div class="content-livre-a-laune">
+                    <h2>{{this.titre}}</h2>
+                    <p>{{this.description}}</p>
+                    <button class="btn-livre-a-laune btn btn-outline-primary">Lire la suite</button>
+                </div>
+            </div>
+        {{/each}}
         </div>
     </div>
 
