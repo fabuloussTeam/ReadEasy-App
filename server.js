@@ -45,9 +45,6 @@ app.get('/', async (request, response) => {
 });
 
 
-
-
-
 // la pages apropos
 app.get('/readeasyapropos', async (request, response) => {
     response.render("pages/apropos", {
@@ -80,6 +77,33 @@ app.get('/livre/:id_livre', async (request, response) => {
         styles: ["/css/pages/livre.css", "/css/style.css"],
         scripts: ["/js/pages/livre.js"],
         livre
+      });
+});
+
+// Supprimer un livre
+app.delete("/livre", async (request, response) => {
+    try {
+        const id_livre = parseInt(request.params.id_livre);
+        const livre = await deletelivre(id_livre);
+        if(response.ok) {
+            bouton.parentNode.parentNode.remove();
+        }
+       return response
+            .status(200)
+            .json({ livre, message: "livre supprimée avec succès" });
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
+
+
+//page de connexion
+app.get('/connexion', async (request, response) => {
+    response.render("partials/modules/connexion", {
+        titre: "ReadEasy | Bienvenu, connexion utilisateur",
+        styles: ["/css/pages/connexion.css"],
+        scripts: ["/js/modules/connexion.js"],
       });
 });
 

@@ -117,7 +117,14 @@
 }
 
 .content-livre-a-laune {
-  padding: 0 8px 8px 8px;
+  padding: 0 8px 8px 3px;
+  
+}
+
+.content-livre-a-laune > div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 .content-livre-a-laune p {

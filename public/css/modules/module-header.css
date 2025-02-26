@@ -60,6 +60,7 @@ header nav ul li a:hover {
 }
 
 .auth-buttons > #signupBtn {
+  display: block;
   background-color: #18A0FB;
   color: #fff;
   border: none;

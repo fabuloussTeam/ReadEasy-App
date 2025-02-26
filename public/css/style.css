@@ -109,6 +109,19 @@ header nav ul li a:hover {
   cursor: pointer;
   border-radius: 5px;
   border: 1px solid rgb(128, 128, 128);
+  text-decoration: none !important;
+}
+
+.auth-buttons > #loginBtn:hover {
+  background-color: #ffffff;
+  color: #18a0fb;
+  padding: 8px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid rgb(128, 128, 128);
+  text-decoration: none !important;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .auth-buttons > #disconnectBtn {

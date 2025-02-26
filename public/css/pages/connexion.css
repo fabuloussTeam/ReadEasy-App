@@ -1,0 +1,110 @@
+.connexion-account {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+.formulaire_connexion {
+    padding: 40px;
+    flex: 1;
+}
+
+.formulaire_connexion h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.formulaire_connexion label {
+    display: block;
+    margin-bottom: 3px;
+    font-weight: bold;
+    color: #555;
+}
+
+.formulaire_connexion input[type="email"],
+.formulaire_connexion input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+
+}
+
+form > button:last-child {
+    width: 180px;
+    align-self: flex-end;
+}
+
+.remember-me {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.remember-me div {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.remember-me input[type="checkbox"] {
+   margin-bottom: 0;
+   padding-bottom: 5px;
+}
+
+.formulaire_connexion a {
+    color: #007BFF;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.formulaire_connexion a:hover {
+    text-decoration: underline;
+}
+
+.formulaire_connexion button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.formulaire_connexion button:hover {
+    background-color: #0056b3;
+}
+
+.right {
+    flex: 1;
+    overflow: hidden;
+}
+
+.bookshelf {
+    min-width: 300px;
+    min-height: 300px;
+    margin: 0 auto;
+}
+
+.bookshelf img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
