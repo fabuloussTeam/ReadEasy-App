@@ -1,6 +1,7 @@
 .connexion-account {
     display: flex;
     flex-direction: row;
+    align-items: center;
     max-width: 100%;
     margin: 0 auto;
     background-color: #fff;
@@ -100,6 +101,8 @@ form > button:last-child {
 .bookshelf {
     min-width: 300px;
     min-height: 300px;
+    max-width: 500px;
+    max-height: 400px;
     margin: 0 auto;
 }
 
