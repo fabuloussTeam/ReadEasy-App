@@ -35,7 +35,7 @@ app.get('/', async (request, response) => {
         response.render('home', {
             titre: "Arlequin et Roman | ReadEasy",
             styles: ["/css/home.css"],
-            scripts: ["/js/home.js", "/js/modules/module-livre-a-laune.js"],
+            scripts: ["/js/home.js", "js/modules/module-livre-a-laune.js"],
             livres: randomBooks,
         });
     } catch (error) {
