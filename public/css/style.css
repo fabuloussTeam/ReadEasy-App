@@ -99,6 +99,8 @@ header nav ul li a:hover {
   margin-left: 10px;
   cursor: pointer;
   border-radius: 5px;
+  text-decoration: none !important;
+
 }
 
 .auth-buttons > #loginBtn {
