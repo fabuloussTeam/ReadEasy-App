@@ -1,3 +1,7 @@
+/**
+ * Supprimer un livre de la liste à la une
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
     const boutonsDelete = document.querySelectorAll('.supprimer-btn');
     

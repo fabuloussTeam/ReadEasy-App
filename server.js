@@ -80,23 +80,6 @@ app.get('/livre/:id_livre', async (request, response) => {
       });
 });
 
-// Supprimer un livre
-/**app.delete("/livre", async (request, response) => {
-    try {
-        const id_livre = parseInt(request.params.id_livre);
-        const livre = await deletelivre(id_livre);
-        if(response.ok) {
-            bouton.parentNode.parentNode.remove();
-        }
-       return response
-            .status(200)
-            .json({ livre, message: "livre supprimée avec succès" });
-    } catch (error) {
-        return response.status(400).json({ error: error.message });
-    }
-});
-
-*/
 
 //page de connexion
 app.get('/connexion', async (request, response) => {
@@ -107,6 +90,14 @@ app.get('/connexion', async (request, response) => {
       });
 });
 
+//page de connexion
+app.get('/creer-un-compte', async (request, response) => {
+    response.render("partials/modules/creer-un-compte", {
+        titre: "ReadEasy | Creer un compte utilisateur",
+        styles: ["/css/pages/creer-un-compte.css"],
+        scripts: ["/js/modules/creer-un-compte.js"],
+      });
+});
 
 
 
