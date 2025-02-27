@@ -35,7 +35,7 @@ app.get('/', async (request, response) => {
         response.render('home', {
             titre: "Arlequin et Roman | ReadEasy",
             styles: ["/css/home.css"],
-            scripts: ["/js/home.js"],
+            scripts: ["/js/home.js", "/js/modules/module-livre-a-laune.js"],
             livres: randomBooks,
         });
     } catch (error) {
@@ -81,7 +81,7 @@ app.get('/livre/:id_livre', async (request, response) => {
 });
 
 // Supprimer un livre
-app.delete("/livre", async (request, response) => {
+/**app.delete("/livre", async (request, response) => {
     try {
         const id_livre = parseInt(request.params.id_livre);
         const livre = await deletelivre(id_livre);
@@ -96,7 +96,7 @@ app.delete("/livre", async (request, response) => {
     }
 });
 
-
+*/
 
 //page de connexion
 app.get('/connexion', async (request, response) => {
