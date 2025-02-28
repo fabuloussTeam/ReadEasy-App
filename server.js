@@ -54,7 +54,6 @@ app.get('/readeasyapropos', async (request, response) => {
       });
 });
 
-
 // Afficher tous les livres
 app.get('/nos-livres', async (request, response) => {
     const vosLivres = await getlivres();
@@ -79,6 +78,25 @@ app.get('/livre/:id_livre', async (request, response) => {
         livre
       });
 });
+
+
+
+
+
+//Creer une publication
+app.get('/publier-un-livre', async (request, response) => {
+    response.render("partials/modules/publier-un-livre", {
+        titre: "ReadEasy | Publier un livre",
+        styles: ["/css/modules/publier-un-livre.css"],
+        scripts: ["/js/modules/publier-un-livre.js"],
+    });
+});
+
+
+
+
+
+
 
 
 //page de connexion

@@ -1,0 +1,30 @@
+<div class="form-container">
+        <h1>Publier un Livre</h1>
+        <form id="publishForm">
+            <label for="title">Titre</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Description générale ou Brief résumé</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="author">Auteur</label>
+            <input type="text" id="author" name="author" required>
+
+            <label for="isbn">ISBN</label>
+            <input type="text" id="isbn" name="isbn" required>
+            <div class="livre-info">
+                 <label for="price">Prix
+                  <input type="text" id="price" name="price"  readonly>
+                 </label> 
+                 <label for="gratuit"><input type="checkbox" id="gratuit" name="gratuit" value="1">Cochez si Gratuit</checkbox></label>
+            </div>
+           
+            <label for="cover">Photo de couverture (jpg, jpeg, png)</label>
+            <input type="file" id="cover" name="cover" accept="image/jpeg, image/png" required>
+
+            <label for="document">Document (.pdf, .docx)</label>
+            <input type="file" id="document" name="document" accept=".pdf, .docx" required>
+
+            <button type="submit">Publier</button>
+        </form>
+    </div>

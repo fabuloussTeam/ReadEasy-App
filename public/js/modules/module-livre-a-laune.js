@@ -1,7 +1,3 @@
-/**
- * Supprimer un livre de la liste à la une
- */
-
 document.addEventListener('DOMContentLoaded', () => {
     const boutonsDelete = document.querySelectorAll('.supprimer-btn');
     
@@ -13,21 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Préparer les données
         const data = {
-            echangeId: parseInt(bouton.dataset.id)
+            id_livre: parseInt(bouton.dataset.id)
         }
 
         console.log(data);
         
         try {
             // Envoyer la requête au serveur
-            const response = await fetch(`/api/livre/${data.livreId}`, {
+            const response = await fetch(`/api/livre/${data.id_livre}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' }
             });
 
             // Redirection à la page d'accueil si tout a bien fonctionner
             if (response.ok) {
-                console.log('Livre supprimer');
+                console.log('Book deleted');
                 bouton.closest('.livre-a-laune').remove();
             } else {
                 console.error('Failed to delete book');

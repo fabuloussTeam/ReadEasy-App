@@ -1,0 +1,76 @@
+.form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+  width: 100%;
+  max-height: auto;
+  overflow: hidden;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#publishForm .label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#publishForm input[type="text"],
+textarea,
+input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#publishForm button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#publishForm button:hover {
+  background-color: #218838;
+}
+
+form#publishForm {
+  width: 50%;
+  min-width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#publishForm .livre-info {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    border: 1px solid #300505;
+    align-items: center;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+#publishForm .livre-info > label input {
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+#publishForm button:last-child{
+    width: 150px;
+    align-self: flex-end;
+}
