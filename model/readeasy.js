@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
  * @param {*} isbn
  * @param {*} description
  */
-export const addlivre = async (isbn, titre, description, prix, est_gratuit, auteur, url_image) => {
+export const addlivre = async (isbn, titre, description, prix, est_gratuit, auteur, url_image, document) => {
     const livre = await prisma.livre.create({
         data: {
             isbn,
@@ -19,6 +19,7 @@ export const addlivre = async (isbn, titre, description, prix, est_gratuit, aute
             est_gratuit,
             auteur,
             url_image,
+            document
         },
     });
     return livre;
@@ -59,7 +60,8 @@ export const updatelivre = async (
     prix,
     est_gratuit,
     auteur,
-    url_image
+    url_image,
+    document
  ) => {
 
     const livre = await prisma.livre.findUnique({
@@ -80,7 +82,8 @@ export const updatelivre = async (
             prix,
             est_gratuit,
             auteur,
-            url_image
+            url_image,
+            document
         },
     });
 

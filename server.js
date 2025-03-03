@@ -35,6 +35,7 @@ app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(express.static('public'));
+app.use('/uploads', express.static('uploads'));
 
 
 app.get('/', async (request, response) => {
@@ -204,7 +205,8 @@ app.patch("/api/livre/:id_livre", async (request, response) => {
             prix,
             est_gratuit,
             auteur,
-            url_image
+            url_image,
+            document
         } = request.body;
 
         const livre = await updatelivre(
@@ -215,7 +217,8 @@ app.patch("/api/livre/:id_livre", async (request, response) => {
             prix,
             Boolean(est_gratuit), // Ensure est_gratuit is a boolean
             auteur,
-            url_image
+            url_image,
+            document
         );
 
         return response

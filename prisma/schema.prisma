@@ -19,6 +19,7 @@ model livre {
   est_gratuit   Boolean @default(false)
   auteur        String?
   url_image     String?
+  document      String?
 }
 
 model utilisateur {
