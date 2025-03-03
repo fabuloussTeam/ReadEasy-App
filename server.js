@@ -15,7 +15,16 @@ import { getRandomBooks } from './public/js/home.js';
 // Création du serveur
 const app = express();
 const upload = multer({ dest: 'uploads/' });
-app.engine('handlebars', expressHandlebars());
+
+const hbs = expressHandlebars.create({
+    helpers: {
+        concat: (str1, str2) => {
+            return str1 + str2;
+        }
+    }
+});
+
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set("views", "./views");
 
@@ -345,5 +354,5 @@ app.use(function (request, response) {
 
 // Démarrage du serveur
 app.listen(process.env.PORT);
-console.info(`Serveurs démarré:`);
+console.info(`Serveur démarré:`);
 console.info(`http://localhost:${ process.env.PORT }`);
