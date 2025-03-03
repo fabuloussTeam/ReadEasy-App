@@ -7,12 +7,14 @@ import expressHandlebars from 'express-handlebars';
 import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
+import multer from 'multer';
 import cspOption from './csp-options.js'
 import { addlivre, getlivres, updatelivre, deletelivre, getlivre } from './model/readeasy.js';
 import { getRandomBooks } from './public/js/home.js';
 
 // Création du serveur
 const app = express();
+const upload = multer({ dest: 'uploads/' });
 app.engine('handlebars', expressHandlebars());
 app.set('view engine', 'handlebars');
 app.set("views", "./views");
@@ -95,10 +97,6 @@ app.get('/publier-un-livre', async (request, response) => {
 
 
 
-
-
-
-
 //page de connexion
 app.get('/connexion', async (request, response) => {
     response.render("partials/modules/connexion", {
@@ -117,12 +115,34 @@ app.get('/creer-un-compte', async (request, response) => {
       });
 });
 
-
-
-// ======================================================================
+//======================================================================
 
 // Route pour ajouter un livre
+app.post("/api/livre", upload.fields([{ name: 'url_image' }, { name: 'document' }]), async (request, response) => {
+    try {
+        let { isbn, titre, description, prix, est_gratuit, auteur } = request.body;
+
+        if (!request.files['url_image'] || !request.files['document']) {
+            return response.status(400).json({ error: 'Les fichiers url_image et document sont requis.' });
+        }
+
+        const url_image = request.files['url_image'][0].filename;
+        const document = request.files['document'][0].filename;
+
+        est_gratuit = Boolean(parseInt(est_gratuit)); // Ensure est_gratuit is a boolean
+        prix = parseFloat(prix);
+
+        const livre = await addlivre(isbn, titre, description, prix, est_gratuit, auteur, url_image, document);
+        return response.status(200).json({ livre, message: "Livre ajouté avec succès" });
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+// ======================================================================
+/*
+// Route pour ajouter un livre
 app.post("/api/livre", async (request, response) => {
+   
     try {
         const { 
             isbn,
@@ -133,6 +153,8 @@ app.post("/api/livre", async (request, response) => {
             auteur,
             url_image
           } = request.body;
+         console.log("c'est mange:"+ isbn, titre, description, prix, est_gratuit, auteur, url_image);
+          
         const livre = await addlivre(
             isbn, 
             titre, 
@@ -149,7 +171,7 @@ app.post("/api/livre", async (request, response) => {
         return response.status(400).json({ error: error.message });
     }
 });
-
+*/
 // Route pour obtenir la liste des livres
 app.get("/api/livres", async (request, response) => {
     try {
