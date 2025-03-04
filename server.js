@@ -378,6 +378,16 @@ app.get('/modulecreationdecompte', async (request, response) => {
 });
 
 
+// Route vers le module creation de compte utilisateur
+app.get('/panierachats', async (request, response) => {
+    response.render("modules/module-panier-achats", {
+        titre: "ReadEasy | Module panier d'achat ",
+        styles: ["/css/modules/module-panier-achats.css"],
+        scripts: ["/js/modules/module-panier-achats.js"],
+    });
+});
+
+
 
 // Renvoyer une erreur 404 pour les routes non définies
 app.use(function (request, response) {
