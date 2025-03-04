@@ -20,6 +20,8 @@ model livre {
   auteur        String?
   url_image     String?
   document      String?
+  utilisateur   utilisateur @relation(fields: [id_utilisateur], references: [id_utilisateur])
+  id_utilisateur Int     @default(1) // Assuming 1 is the ID of the default user
 }
 
 model utilisateur {
@@ -29,7 +31,5 @@ model utilisateur {
   courriel          String
   mot_de_passe      String
   acces             Int     @default(1)
+  livres            livre[]
 }
-
-
-

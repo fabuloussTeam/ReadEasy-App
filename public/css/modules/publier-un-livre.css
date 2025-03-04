@@ -59,7 +59,7 @@ form#publishForm {
     flex-direction: row;
     flex-wrap: wrap;
     margin: 0 auto;
-    border: 1px solid #300505;
+   /**border: 1px solid #300505;*/
     align-items: center;
     padding-bottom: 10px;
     width: 100%;

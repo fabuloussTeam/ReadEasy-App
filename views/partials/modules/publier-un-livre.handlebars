@@ -5,10 +5,15 @@
             <input type="text" id="description" name="description" placeholder="Description" required>
             <input type="text" id="auteur" name="auteur" placeholder="Auteur" required>
             <input type="text" id="isbn" name="isbn" placeholder="ISBN" required>
-            <input type="number" id="prix" name="prix" placeholder="Prix" required>
-            <input type="checkbox" id="est_gratuit" name="est_gratuit"> Gratuit
+            <div class="livre-info">
+                <input type="number" id="prix" name="prix" placeholder="Prix" required>
+                <label for="est_gratuit">
+                 <input type="checkbox" id="est_gratuit" name="est_gratuit"> Est gratuit</label>
+            </div>
+            <label for="url_image">Image de couverture</label>
             <input type="file" id="url_image" name="url_image" required>
-            <input type="file" id="document" name="document" required>
+            <label for="document">Livre (.Pdf)</label>
+            <input type="file" id="document" name="document"  required>
             <button type="submit">Publier</button>
         </form>
     </div>

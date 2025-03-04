@@ -11,6 +11,7 @@ import multer from 'multer';
 import cspOption from './csp-options.js'
 import { addlivre, getlivres, updatelivre, deletelivre, getlivre } from './model/readeasy.js';
 import { getRandomBooks } from './public/js/home.js';
+import { toutLesUtilisateurs } from './model/utilisateur.js';
 
 // Création du serveur
 const app = express();
@@ -92,9 +93,6 @@ app.get('/livre/:id_livre', async (request, response) => {
 });
 
 
-
-
-
 //Creer une publication
 app.get('/publier-un-livre', async (request, response) => {
     response.render("partials/modules/publier-un-livre", {
@@ -103,8 +101,6 @@ app.get('/publier-un-livre', async (request, response) => {
         scripts: ["/js/modules/publier-un-livre.js"],
     });
 });
-
-
 
 
 //page de connexion
@@ -266,6 +262,40 @@ app.get('/modulefooter', async (request, response) => {
         scripts: ["/js/modules/module-footer.js"],
       });
 });
+
+
+/**
+ * ========================================================================================================
+ * Recuperer tous les utilisateurs
+ * 
+ */
+
+// Route pour obtenir la liste des utilisateurs
+app.get("/api/toutlesutilisateurs", async (request, response) => {
+    try {
+        const utilisateurs = await toutLesUtilisateurs();
+        return response.status(200).json(utilisateurs);
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Route vers le module footer
 app.get('/modulecaroussel', async (request, response) => {
