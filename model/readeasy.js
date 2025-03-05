@@ -64,12 +64,7 @@ export const updatelivre = async (
     document
  ) => {
 
-    const livre = await prisma.livre.findUnique({
-        where: {
-            id_livre,
-        },
-    });
-
+    
     const updatedlivre = await prisma.livre.update({
         where: {
             id_livre,

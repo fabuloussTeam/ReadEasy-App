@@ -4,12 +4,14 @@
 
 // Importer le client Prisma
 import { PrismaClient } from "@prisma/client";
+//import { hash } from 'bcryptjs';
+
 
 // Créer une instance de Prisma
 const prisma = new PrismaClient();
 
 /**
- * Récupérer tous les utilisateurs sans mot de passe
+ * Récupérer tous les utilisateurs avec leurs livres
  */
 export async function toutLesUtilisateurs() {
     try {
@@ -33,5 +35,111 @@ export async function toutLesUtilisateurs() {
     }
 }
 
+/**
+ * Récupérer un utilisateur par son ID avec ses livres
+ * @param {number} id_utilisateur 
+ */
+export async function utilisateurParId(id_utilisateur) {
+    try {
+        const user = await prisma.utilisateur.findUnique({
+            where: {
+                id_utilisateur
+            },
+            select: {
+                id_utilisateur: true,
+                nom: true,
+                prenom: true,
+                courriel: true,
+                acces: true,
+                mot_de_passe: true,
+                livres: true,
+            }
+        });
+        return user;
+    } catch (error) {
+        console.error("Error retrieving user:", error);
+        throw error;
+    } finally {
+        await prisma.$disconnect();
+    }
+}
+
+/** 
+ * Mettre a jour un utilisateur
+ * @param {number} id_utilisateur
+ * 
+ *   */
+export async function mettreAJourUtilisateur(id_utilisateur, nom, prenom, courriel, acces, mot_de_passe) {
+
+    try {
+        const user = await prisma.utilisateur.update({
+            where: {
+                id_utilisateur
+            },
+            data: {
+                nom,
+                prenom,
+                courriel,
+                acces,
+                mot_de_passe,
+            }
+        });
+        return user;
+    } catch (error) {
+        console.error("Error updating user:", error);
+        throw error;
+    } finally {
+        await prisma.$disconnect();
+    }
+}
+
+/**
+ * Supprimer un utilisateur
+ * @param {number} id_utilisateur 
+ */
+export async function supprimerUtilisateur(id_utilisateur) {
+    try {
+        const user = await prisma.utilisateur.delete({
+            where: {
+                id_utilisateur
+            }
+        });
+        return user;
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        throw error;
+    } finally {
+        await prisma.$disconnect();
+    }
+}
+//     });
 
 
+/**
+ * cree un utilisateur
+ * @param {string} nom
+ * @param {string} prenom
+ * @param {string} courriel
+ * @param {string} acces
+ * @param {string} mot_de_passe
+ * 
+ */
+export async function creerUtilisateur(nom, prenom, courriel, acces, mot_de_passe) {
+    try {
+        const user = await prisma.utilisateur.create({
+            data: {
+                nom,
+                prenom,
+                courriel,
+                acces,
+                mot_de_passe
+            }
+        });
+        return user;
+    } catch (error) {
+        console.error("Error creating user:", error);
+        throw error;
+    } finally {
+        await prisma.$disconnect();
+    }
+}

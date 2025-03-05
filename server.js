@@ -11,7 +11,10 @@ import multer from 'multer';
 import cspOption from './csp-options.js'
 import { addlivre, getlivres, updatelivre, deletelivre, getlivre } from './model/readeasy.js';
 import { getRandomBooks } from './public/js/home.js';
-import { toutLesUtilisateurs } from './model/utilisateur.js';
+import { toutLesUtilisateurs,
+         utilisateurParId,
+         mettreAJourUtilisateur,
+         creerUtilisateur } from './model/utilisateur.js';
 
 // Création du serveur
 const app = express();
@@ -279,6 +282,41 @@ app.get("/api/toutlesutilisateurs", async (request, response) => {
         return response.status(400).json({ error: error.message });
     }
 });
+
+// Route pour obtenir un utilisateur par son ID
+app.get("/api/utilisateur/:id_utilisateur", async (request, response) => {
+    try {
+        const id_utilisateur = parseInt(request.params.id_utilisateur);
+        const utilisateur = await utilisateurParId(id_utilisateur);
+        return response.status(200).json(utilisateur);
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
+// Route pour mettre à jour un utilisateur
+app.patch("/api/utilisateur/:id_utilisateur", async (request, response) => {
+    try {
+        const id_utilisateur = parseInt(request.params.id_utilisateur);
+        const { nom, prenom, courriel, acces, mot_de_passe } = request.body;
+        const utilisateur = await mettreAJourUtilisateur(id_utilisateur, nom, prenom, courriel, acces, mot_de_passe);
+        return response.status(200).json({ utilisateur, message: "Utilisateur mis à jour avec succès" });
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
+// Route pour creer un utilisateur
+app.post("/api/utilisateur", async (request, response) => {
+    try {
+        const { nom, prenom, courriel, acces, mot_de_passe } = request.body;
+        const utilisateur = await creerUtilisateur(nom, prenom, courriel, acces, mot_de_passe);
+        return response.status(200).json({ utilisateur, message: "Utilisateur créé avec succès" });
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
 
 
 

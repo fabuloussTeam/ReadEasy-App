@@ -30,6 +30,6 @@ model utilisateur {
   prenom            String?
   courriel          String
   mot_de_passe      String
-  acces             Int     @default(1)
+  acces             Int     @default(0)
   livres            livre[]
 }
