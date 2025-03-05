@@ -111,7 +111,7 @@ app.get('/connexion', async (request, response) => {
     response.render("partials/modules/connexion", {
         titre: "ReadEasy | Bienvenu, connexion utilisateur",
         styles: ["/css/pages/connexion.css"],
-        scripts: ["/js/modules/connexion.js"],
+        scripts: ["/js/pages/connexion.js"],
       });
 });
 
