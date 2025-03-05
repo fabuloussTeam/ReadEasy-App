@@ -4,8 +4,7 @@
 
 // Importer le client Prisma
 import { PrismaClient } from "@prisma/client";
-//import { hash } from 'bcryptjs';
-
+import { hash } from 'bcryptjs';
 
 // Créer une instance de Prisma
 const prisma = new PrismaClient();
@@ -22,7 +21,7 @@ export async function toutLesUtilisateurs() {
                 prenom: true,
                 courriel: true,
                 acces: true,
-                mot_de_passe: true,
+                mot_de_passe: false, // Exclude mot_de_passe field
                 livres: true,
             }
         });
@@ -51,7 +50,7 @@ export async function utilisateurParId(id_utilisateur) {
                 prenom: true,
                 courriel: true,
                 acces: true,
-                mot_de_passe: true,
+                mot_de_passe: false, // Exclude mot_de_passe field
                 livres: true,
             }
         });
@@ -70,8 +69,10 @@ export async function utilisateurParId(id_utilisateur) {
  * 
  *   */
 export async function mettreAJourUtilisateur(id_utilisateur, nom, prenom, courriel, acces, mot_de_passe) {
-
     try {
+        // Hash the password before updating
+        const hashedPassword = await hash(mot_de_passe, 10);
+
         const user = await prisma.utilisateur.update({
             where: {
                 id_utilisateur
@@ -81,7 +82,7 @@ export async function mettreAJourUtilisateur(id_utilisateur, nom, prenom, courri
                 prenom,
                 courriel,
                 acces,
-                mot_de_passe,
+                mot_de_passe: hashedPassword,
             }
         });
         return user;
@@ -112,11 +113,9 @@ export async function supprimerUtilisateur(id_utilisateur) {
         await prisma.$disconnect();
     }
 }
-//     });
-
 
 /**
- * cree un utilisateur
+ * Créer un utilisateur
  * @param {string} nom
  * @param {string} prenom
  * @param {string} courriel
@@ -126,13 +125,16 @@ export async function supprimerUtilisateur(id_utilisateur) {
  */
 export async function creerUtilisateur(nom, prenom, courriel, acces, mot_de_passe) {
     try {
+        // Hash the password before saving
+        const hashedPassword = await hash(mot_de_passe, 10);
+
         const user = await prisma.utilisateur.create({
             data: {
                 nom,
                 prenom,
                 courriel,
                 acces,
-                mot_de_passe
+                mot_de_passe: hashedPassword
             }
         });
         return user;
