@@ -120,7 +120,7 @@ app.get('/creer-un-compte', async (request, response) => {
     response.render("partials/modules/creer-un-compte", {
         titre: "ReadEasy | Creer un compte utilisateur",
         styles: ["/css/pages/creer-un-compte.css"],
-        scripts: ["/js/modules/creer-un-compte.js"],
+        scripts: ["/js/pages/creer-un-compte.js"],
       });
 });
 
@@ -241,32 +241,6 @@ app.delete("/api/livre/:id_livre", async (request, response) => {
     }
 });
 
-
-// ======================================================================
-
-
-
-/*********** Creation des modules reuitilisables *********/
-
-// Route vers le module bar de Navigation
-app.get('/moduleheader', async (request, response) => {
-    response.render("modules/module-header", {
-        titre: "ReadEasy | Modules bar de navigation",
-        styles: ["/css/modules/module-header.css"],
-        scripts: ["/js/modules/module-header.js"],
-      });
-});
-
-// Route vers le module footer
-app.get('/modulefooter', async (request, response) => {
-    response.render("modules/module-footer", {
-        titre: "ReadEasy | Modules pied de page",
-        styles: ["/css/modules/module-footer.css"],
-        scripts: ["/js/modules/module-footer.js"],
-      });
-});
-
-
 /**
  * ========================================================================================================
  * Recuperer tous les utilisateurs
@@ -334,8 +308,27 @@ app.post("/api/utilisateur", async (request, response) => {
 
 
 
+/*********** Creation des modules reuitilisables *********/
+
+// Route vers le module bar de Navigation
+app.get('/moduleheader', async (request, response) => {
+    response.render("modules/module-header", {
+        titre: "ReadEasy | Modules bar de navigation",
+        styles: ["/css/modules/module-header.css"],
+        scripts: ["/js/modules/module-header.js"],
+      });
+});
 
 // Route vers le module footer
+app.get('/modulefooter', async (request, response) => {
+    response.render("modules/module-footer", {
+        titre: "ReadEasy | Modules pied de page",
+        styles: ["/css/modules/module-footer.css"],
+        scripts: ["/js/modules/module-footer.js"],
+      });
+});
+
+
 app.get('/modulecaroussel', async (request, response) => {
 
     var imgs = [
