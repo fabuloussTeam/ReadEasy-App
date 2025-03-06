@@ -23,7 +23,7 @@ document.getElementById('form-creer-un-compte').addEventListener('submit', async
             body: JSON.stringify({ nom, prenom, courriel, mot_de_passe })
         })
         if (response.ok) {
-            location.href = '/';
+            location.href = '/connexion';
         } else {
             const errorData = await response.json();
             alert(`Erreur: ${errorData.error}`);

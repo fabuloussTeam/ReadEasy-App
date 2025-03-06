@@ -106,18 +106,24 @@ app.get('/', async (request, response) => {
         const meslivresalaune = await getlivres();
         const randomBooks = getRandomBooks(meslivresalaune, 4);
        // console.log(`Random books: ${randomBooks.map(book => book.titre).join(', ')}`);
-       
+       let itOption = false;
        // verification des session
        console.log(`request reauest user: ${JSON.stringify(request.user)}`);
        console.log(`request session:  ${ JSON.stringify(request.session)}`);
        console.log(`request session user:  ${ JSON.stringify(request.session.passport)}`);
+
+       if (request.user && (request.session.passport.user == request.user.id_utilisateur)) {
+          // console.log(`request user: ${JSON.stringify(request.user)}`);
+            itOption = true;
+       }
 
         response.render('home', {
             titre: "Arlequin et Roman | ReadEasy",
             styles: ["/css/home.css"],
             scripts: ["/js/home.js", "js/modules/module-livre-a-laune.js"],
             livres: randomBooks,
-            user: request.user
+            user: request.user,
+            itOption
         });
     } catch (error) {
         console.error('Error fetching books:', error);
@@ -153,11 +159,17 @@ app.get('/livre/:id_livre', async (request, response) => {
     const id_livre = parseInt(request.params.id_livre);
     const livre = await getlivre(id_livre);
  
+
+    console.log(livre.est_gratuit);
+    
+
     response.render("pages/livre", {
         titre: `ReadEasy | ${livre.titre}`,
         styles: ["/css/pages/livre.css", "/css/style.css"],
         scripts: ["/js/pages/livre.js"],
-        livre
+        livre,
+        user: request.user
+
       });
 });
 

@@ -11,10 +11,17 @@
                         <button class="book-show">Apercu</button>
                         <span class="price">PRICE: {{livre.prix}}CAD</span>
                     </div>
+                    {{#if user}}
                     <div>
+                        {{#unless livre.est_gratuit}}
                         <button class="add-to-cart">Ajouter au panier</button>
                         <button class="buy-now">Achetez maintenant</button>
+                        {{/unless}}
+                        {{#if livre.est_gratuit}}
+                        <button class="download">Telecharger</buuton>
+                        {{/if}}
                     </div>
+                    {{/if}}
                 </div>
             </div>
             <div class="book-image">
