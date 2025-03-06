@@ -22,8 +22,10 @@ function prepareDonnee() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('publishForm').addEventListener('submit', async (event) => {
+    document.getElementById('updateForm').addEventListener('submit', async (event) => {
         event.preventDefault();
+
+        const id_livre = document.getElementById('id_livre').value;
 
         // Préparer les données
         const data = prepareDonnee();
@@ -49,14 +51,14 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('document', data.document);
 
         try {
-            const response = await fetch('/api/livre', {
-                method: 'POST',
+            const response = await fetch(`/api/livre/${id_livre}`, {
+                method: 'PATCH',
                 body: formData
             });
 
             // Envoyer la requête au serveur
             if (response.ok) {
-                location.href = '/';
+                location.href = '/nos-livres';
             } else {
                 const errorData = await response.json();
                 alert(`Erreur: ${errorData.error}`);
@@ -66,5 +68,4 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Une erreur est survenue lors de la publication du livre.');
         }
     });
-
 });

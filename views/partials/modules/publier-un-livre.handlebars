@@ -1,7 +1,9 @@
 <div class="form-container">
-        <h1>Publier un Livre</h1>
+        {{#unless livre}}<h1>Publier un Livre</h1>{{/unless}}
+        {{#if livre}} <h1>Modifier ce Livre</h1> {{/if}}
+         {{#unless livre}}
         <form id="publishForm">
-            <input type="text" id="titre" name="titre" placeholder="Titre" required>
+            <input type="text" id="titre" name="titre" placeholder="Titre"  required>
             <input type="text" id="description" name="description" placeholder="Description" required>
             <input type="text" id="auteur" name="auteur" placeholder="Auteur" required>
             <input type="text" id="isbn" name="isbn" placeholder="ISBN" required>
@@ -16,4 +18,30 @@
             <input type="file" id="document" name="document"  required>
             <button type="submit">Publier</button>
         </form>
+        {{/unless}}
+
+      
+         {{#if livre}}
+        
+        <form id="updateForm">
+            <input type="hidden" id="id_livre" name="id_livre" value="{{livre.id_livre}}">
+            <input type="text" id="titre" name="titre" placeholder="Titre"  value="{{livre.titre}}" required>
+            <input type="text" id="description" name="description" placeholder="Description" value="{{livre.description}}" required>
+            <input type="text" id="auteur" name="auteur" placeholder="Auteur" value="{{livre.auteur}}" required>
+            <input type="text" id="isbn" name="isbn" placeholder="ISBN" value="{{livre.isbn}}" required>
+            <div class="livre-info">
+                <input type="number" id="prix" name="prix" placeholder="Prix" value="{{livre.prix}}" required>
+                <label for="est_gratuit">
+                 <input type="checkbox" id="est_gratuit" checked="{{livre.est_gratuit}}" name="est_gratuit"> Est gratuit</label>
+            </div>
+            <label for="url_image">Image de couverture</label>
+            <input type="file" id="url_image" name="url_image" required>
+            <label for="document">Livre (.Pdf)</label>
+            <input type="file" id="document" name="document" required>
+             <a class="annuler"  href="/livre/{{livre.id_livre}}">Annuler</a>
+            <button class="modifier" type="submit">Modifier</button>
+        </form>
+        {{/if}}
+        
+       
     </div>

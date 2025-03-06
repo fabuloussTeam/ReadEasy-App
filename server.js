@@ -171,6 +171,20 @@ app.get('/publier-un-livre', async (request, response) => {
     });
 });
 
+
+// Mise a jour d'un livre
+app.get('/modifier-un-livre/:id_livre', async (request, response) => {
+    const id_livre = parseInt(request.params.id_livre);
+    const livre = await getlivre(id_livre);
+    response.render("partials/modules/publier-un-livre", {
+        titre: "ReadEasy | Modifier un livre",
+        styles: ["/css/modules/publier-un-livre.css", "/css/style.css"],
+        scripts: ["/js/modules/modifier-un-livre.js"],
+        livre,
+        user: request.user //Utilistateur connecter
+    });
+});
+
 //page de connexion
 app.get('/connexion', async (request, response) => {
     response.render("partials/modules/connexion", {
@@ -213,6 +227,27 @@ app.post("/api/livre", upload.fields([{ name: 'url_image' }, { name: 'document' 
         return response.status(400).json({ error: error.message });
     }
 });
+
+// Route pour modifier un livre
+app.patch("/api/livre/:id_livre", upload.fields([{ name: 'url_image' }, { name: 'document' }]), async (request, response) => {
+    try {
+        const id_livre = parseInt(request.params.id_livre);
+        let { isbn, titre, description, prix, est_gratuit, auteur } = request.body;
+        if (!request.files['url_image'] || !request.files['document']) {
+            return response.status(400).json({ error: 'Les fichiers url_image et document sont requis.' });
+        }
+
+        const url_image = request.files['url_image'][0].filename;
+        const document = request.files['document'][0].filename;
+        est_gratuit = Boolean(parseInt(est_gratuit)); // Ensure est_gratuit is a boolean
+        prix = parseFloat(prix);
+        await updatelivre(id_livre, isbn, titre, description, prix, est_gratuit, auteur, url_image, document);
+        return response.status(200).json({ message: "Livre mis à jour avec succès" });
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
 // ======================================================================
 /*
 // Route pour ajouter un livre
