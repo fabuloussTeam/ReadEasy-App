@@ -14,13 +14,14 @@ h1 {
   margin-bottom: 20px;
 }
 
-#publishForm .label {
+#publishForm .label, #updateForm .label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-#publishForm input[type="text"],
+#publishForm input[type="text"], #publishForm input[type="number"], 
+#updateForm input[type="text"], #updateForm input[type="number"],
 textarea,
 input[type="file"] {
   width: 100%;
@@ -30,7 +31,7 @@ input[type="file"] {
   border-radius: 4px;
 }
 
-#publishForm button {
+#publishForm button, #updateForm button {
   width: 100%;
   padding: 10px;
   background-color: #28a745;
@@ -44,7 +45,11 @@ input[type="file"] {
   background-color: #218838;
 }
 
-form#publishForm {
+#updateForm button:hover {
+  background-color: #97d0fa;
+}
+
+form#publishForm, form#updateForm {
   width: 50%;
   min-width: 300px;
   margin: 0 auto;
@@ -53,7 +58,7 @@ form#publishForm {
 }
 
 
-#publishForm .livre-info {
+#publishForm .livre-info, #updateForm .livre-info {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -65,12 +70,12 @@ form#publishForm {
     width: 100%;
 }
 
-#publishForm .livre-info > label input {
+#publishForm .livre-info > label input, #updateForm .livre-info > label input {
     font-weight: bold;
     margin-right: 20px;
 }
 
-#publishForm button:last-child{
+#publishForm button:last-child, #updateForm button:last-child {
     width: 150px;
     align-self: flex-end;
 }

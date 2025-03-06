@@ -111,3 +111,12 @@ form > button:last-child {
     height: 100%;
     object-fit: cover;
 }
+
+#erreur-auth {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none
+
+}

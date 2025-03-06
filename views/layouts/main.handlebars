@@ -21,7 +21,7 @@
         <script type="module" src="{{this}}"></script>
     {{/each}}
 </head>
-<body>
+<body {{#if user}} style="background-color: rgb(167, 232, 232);" {{/if}} >
   <div class="main-wrapper">
 
      {{>header}} 
