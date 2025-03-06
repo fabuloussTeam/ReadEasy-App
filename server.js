@@ -8,17 +8,24 @@ import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
 import multer from 'multer';
-import cspOption from './csp-options.js'
+import session from 'express-session';
+import memorystore from "memorystore";
+import passport from "passport";
+import { PrismaClient } from '@prisma/client';
+import cspOption from './csp-options.js';
 import { addlivre, getlivres, updatelivre, deletelivre, getlivre } from './model/readeasy.js';
 import { getRandomBooks } from './public/js/home.js';
 import { toutLesUtilisateurs,
          utilisateurParId,
          mettreAJourUtilisateur,
          creerUtilisateur } from './model/utilisateur.js';
+import "./authentification.js";
 
 // Création du serveur
 const app = express();
 const upload = multer({ dest: 'uploads/' });
+// Initialisation de la base de données de session
+const MemoryStore = memorystore(session);
 
 const hbs = expressHandlebars.create({
     helpers: {
@@ -37,22 +44,80 @@ app.use(helmet(cspOption));
 app.use(compression());
 app.use(cors());
 app.use(json());
+// Configure session management
+app.use(
+    session({
+      cookie: { maxAge: 3600000 },
+      name: process.env.npm_package_name,
+      store: new MemoryStore({ checkPeriod: 3600000 }),
+      resave: false,
+      saveUninitialized: false,
+      secret: process.env.SESSION_SECRET,
+    })
+);
+
 app.use(urlencoded({ extended: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static('public'));
 app.use('/uploads', express.static('uploads'));
 
 
+// API endpoint for user login
+app.post('/api/connexion', async (request, response, next) => {
+    if (
+        request.body.courriel &&
+        request.body.motdepasse
+      ) {
+        passport.authenticate("local", (erreur, utilisateur, info) => {
+          if (erreur) {
+            next(erreur);
+          } else if (!utilisateur) {
+            response.status(401).json(info);
+          } else {
+            request.logIn(utilisateur, (erreur) => {
+              if (erreur) {
+                next(erreur);
+              }
+              response.status(200).end();
+            });
+          }
+        })(request, response, next);
+      } else {
+        response.status(400).end();
+      }
+});
+
+// APi deconnexion d'un utilisateur
+app.post("/api/deconnexion", (request, response, next) => {
+    request.logOut((erreur) => {
+      if (erreur) {
+        next(erreur);
+      }
+      response.redirect("/");
+    });
+  });
+
+
+  // API pour affiche la page d'acceuil
 app.get('/', async (request, response) => {
+
     try {
         const meslivresalaune = await getlivres();
         const randomBooks = getRandomBooks(meslivresalaune, 4);
-        console.log(`Random books: ${randomBooks.map(book => book.titre).join(', ')}`);
-        
+       // console.log(`Random books: ${randomBooks.map(book => book.titre).join(', ')}`);
+       
+       // verification des session
+       console.log(`request reauest user: ${JSON.stringify(request.user)}`);
+       console.log(`request session:  ${ JSON.stringify(request.session)}`);
+       console.log(`request session user:  ${ JSON.stringify(request.session.passport)}`);
+
         response.render('home', {
             titre: "Arlequin et Roman | ReadEasy",
             styles: ["/css/home.css"],
             scripts: ["/js/home.js", "js/modules/module-livre-a-laune.js"],
             livres: randomBooks,
+            user: request.user
         });
     } catch (error) {
         console.error('Error fetching books:', error);
@@ -60,13 +125,13 @@ app.get('/', async (request, response) => {
     }
 });
 
-
 // la pages apropos
 app.get('/readeasyapropos', async (request, response) => {
     response.render("pages/apropos", {
         titre: "ReadEasy | Page a propos",
         styles: ["/css/pages/apropos.css"],
         scripts: ["/js/pages/apropos.js"],
+        user: request.user
       });
 });
 
@@ -78,7 +143,8 @@ app.get('/nos-livres', async (request, response) => {
         titre: "ReadEasy | Nos livres",
         styles: ["/css/pages/livres.css"],
         scripts: ["/js/pages/livres.js"],
-        livres: vosLivres
+        livres: vosLivres,
+        user: request.user
       });
 });
 
@@ -95,16 +161,15 @@ app.get('/livre/:id_livre', async (request, response) => {
       });
 });
 
-
 //Creer une publication
 app.get('/publier-un-livre', async (request, response) => {
     response.render("partials/modules/publier-un-livre", {
         titre: "ReadEasy | Publier un livre",
         styles: ["/css/modules/publier-un-livre.css"],
         scripts: ["/js/modules/publier-un-livre.js"],
+        user: request.user
     });
 });
-
 
 //page de connexion
 app.get('/connexion', async (request, response) => {
@@ -115,7 +180,8 @@ app.get('/connexion', async (request, response) => {
       });
 });
 
-//page de connexion
+
+//page de creation de compte
 app.get('/creer-un-compte', async (request, response) => {
     response.render("partials/modules/creer-un-compte", {
         titre: "ReadEasy | Creer un compte utilisateur",
@@ -290,16 +356,6 @@ app.post("/api/utilisateur", async (request, response) => {
         return response.status(400).json({ error: error.message });
     }
 });
-
-
-
-
-
-
-
-
-
-
 
 
 

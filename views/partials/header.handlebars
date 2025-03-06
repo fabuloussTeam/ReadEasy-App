@@ -15,14 +15,26 @@
       <input type="text" class="search-input" /></div></li>
     </ul>
   </nav>
+   {{#if user}}  
   <a href="/publier-un-livre" class="publier-livre"><i class="fa-regular fa-square-plus"></i>Publier</a>
+  {{/if}}
 <div class="auth-buttons">
   <div class="user-status">
     <a href=""><i class="fa-solid fa-basket-shopping fa-xl" style="color: #2fa5ff;"></i></a> 
+  {{#if user}}   
     <a href=""><i class="fa-regular fa-circle-user fa-xl" style="color: #2fa5ff;"></i></a> 
+  {{/if}}
   </div>
+    {{#unless user}}
   <a href="/connexion" id="loginBtn">Connexion</button></a>
-  <button id="disconnectBtn">deconnexion</button>
+  {{/unless}}
+   {{#if user}}
+   <form method="post" action="/api/deconnexion">
+          <input type="submit" value="Déconnexion" id="disconnectBtn" />
+      </form>
+  {{/if}}
+   {{#unless user}}
   <a href="/creer-un-compte" id="signupBtn">Créer un Compte</a>
+  {{/unless}}
  </div>
 </header>

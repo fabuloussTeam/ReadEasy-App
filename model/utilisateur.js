@@ -63,6 +63,26 @@ export async function utilisateurParId(id_utilisateur) {
     }
 }
 
+/**
+ * Récupérer un utilisateur par son courriel
+ * @param {string} courriel 
+ */
+export async function utilisateurParCourriel(courriel) {
+    try {
+        const user = await prisma.utilisateur.findUnique({
+            where: {
+                courriel: courriel
+            }
+        });
+        return user;
+    } catch (error) {
+        console.error("Error retrieving user by email:", error);
+        throw error;
+    } finally {
+        await prisma.$disconnect();
+    }
+}
+
 /** 
  * Mettre a jour un utilisateur
  * @param {number} id_utilisateur

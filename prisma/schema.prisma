@@ -28,7 +28,7 @@ model utilisateur {
   id_utilisateur    Int     @id @default(autoincrement())
   nom               String
   prenom            String?
-  courriel          String
+  courriel          String  @unique
   mot_de_passe      String
   acces             Int     @default(0)
   livres            livre[]
