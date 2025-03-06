@@ -1,3 +1,171 @@
-.panier-achats{
-    color: #3ca149;
+/* Styles généraux */
+.cart-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    width: 100%;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-left {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+}
+
+.cart-left h2 {
+    margin-bottom: 15px;
+    margin-top: 80px;
+}
+
+/* Liste des articles */
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacement entre les items */
+    width: 90%;
+    max-width: 700px;
+    margin-top: 60px;
+}
+
+/* Un article */
+.cart-item {
+    display: flex;
+    align-items: flex-start; /* Aligner le titre et le bouton */
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px 0; /* Augmenter l'espacement vertical */
+}
+
+.cart-item img {
+    width: 120px; /* Augmenter la taille des images */
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Détails de l'article */
+.item-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Alignement vertical */
+}
+
+/* Titre en gras */
+.item-title {
+    font-weight: bold;
+    font-size: 16px; /* Taille légèrement augmentée */
+    margin-bottom: 5px; /* Espacement avec quantité */
+}
+
+/* Conteneur pour la quantité et le prix */
+.item-qty-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+    gap: 35px; /* Espace entre la quantité et le prix */
+}
+
+/* Quantité */
+.item-qty {
+    font-size: 14px;
+}
+
+/* Prix */
+.item-price {
+    font-weight: bold; /* Le prix en gras */
+    margin-top: 20px; /* Espacement vertical */
+}
+
+/* Bouton "remove-item" */
+.remove-item {
+    background: none;
+    border: none; /* Supprimer les bordures */
+    font-size: 15px; /* Taille légèrement augmentée */
+    cursor: pointer;
+    color: #555;
+    margin-left: 10px; /* Espace entre le bouton et le contenu */
+    align-self: flex-start; /* Aligner en haut avec le titre */
+}
+
+/* Résumé du panier */
+.cart-summary {
+    background-color: #d8f3dc;
+    padding: 15px;
+    margin-top: 80px;
+    width: 250px;
+}
+
+.cart-summary label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.cart-summary input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.cart-summary p {
+    margin: 6px 0;
+    margin-top: 15px;
+}
+
+.checkout-button {
+    width: 100%;
+    background-color: #555;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 40px auto 0;
+}
+
+.checkout-button:hover {
+    background-color: #15222f;
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cart-container {
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+    }
+
+    .cart-left {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .cart-summary {
+        width: 100%;
+        max-width: 300px;
+        margin-top: 20px;
+    }
+
+    .cart-items {
+        width: 100%;
+        align-items: center;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 }
