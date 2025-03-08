@@ -1,14 +1,13 @@
 function prepareDonnee() {
     const titre = document.getElementById('titre').value;
-    const description = document.getElementById('description').value;
+    let description = document.getElementById('description').value;
     const auteur = document.getElementById('auteur').value;
     const isbn = document.getElementById('isbn').value;
     const prix = document.getElementById('prix').value;
     const est_gratuit = document.getElementById('est_gratuit').checked;
     const url_image = document.getElementById('url_image').files[0];
     const documentFile = document.getElementById('document').files[0];
-
-
+ 
     return {
         isbn: isbn,
         titre: titre,

@@ -4,6 +4,7 @@ import 'dotenv/config';
 // Importer les fichiers et librairies
 import express, { json, urlencoded } from 'express';
 import expressHandlebars from 'express-handlebars';
+import Handlebars from 'handlebars';
 import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
@@ -21,6 +22,15 @@ import { toutLesUtilisateurs,
          creerUtilisateur } from './model/utilisateur.js';
 import "./authentification.js";
 
+// Register a custom helper to truncate description to the first 20 words
+Handlebars.registerHelper('truncateDescription', function(description) {
+    const words = description.split(' ');
+    if (words.length > 20) {
+        return words.slice(0, 20).join(' ') + '...';
+    }
+    return description;
+});
+
 // Création du serveur
 const app = express();
 const upload = multer({ dest: 'uploads/' });
@@ -34,6 +44,7 @@ const hbs = expressHandlebars.create({
         }
     }
 });
+
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -116,6 +127,7 @@ app.get('/', async (request, response) => {
           // console.log(`request user: ${JSON.stringify(request.user)}`);
             itOption = true;
        }
+      
 
         response.render('home', {
             titre: "Arlequin et Roman | ReadEasy",

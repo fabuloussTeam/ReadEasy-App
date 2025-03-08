@@ -4,11 +4,11 @@
     {{#unless livre}}
     <form id="publishForm">
         <input type="text" id="titre" name="titre" placeholder="Titre" required>
-        <input type="text" id="description" name="description" placeholder="Description" required>
+        <textarea id="description" name="description" placeholder="Description" rows="4" required></textarea>
         <input type="text" id="auteur" name="auteur" placeholder="Auteur" required>
         <input type="text" id="isbn" name="isbn" placeholder="ISBN" required>
         <div class="livre-info">
-            <input type="number" id="prix" name="prix" placeholder="Prix" required>
+            <input type="number" id="prix" name="prix" placeholder="Prix" min="0" value="0" required>
             <label for="est_gratuit">
                 <input type="checkbox" id="est_gratuit" name="est_gratuit"> Est gratuit</label>
         </div>
@@ -24,11 +24,11 @@
     <form id="updateForm">
         <input type="hidden" id="id_livre" name="id_livre" value="{{livre.id_livre}}">
         <input type="text" id="titre" name="titre" placeholder="Titre" value="{{livre.titre}}" required>
-        <input type="text" id="description" name="description" placeholder="Description" value="{{livre.description}}" required>
+        <textarea id="description" name="description" placeholder="Description"  rows="4" required>{{livre.description}}</textarea>
         <input type="text" id="auteur" name="auteur" placeholder="Auteur" value="{{livre.auteur}}" required>
         <input type="text" id="isbn" name="isbn" placeholder="ISBN" value="{{livre.isbn}}" required>
         <div class="livre-info">
-            <input type="number" id="prix" name="prix" placeholder="Prix" value="{{livre.prix}}" required>
+            <input type="number" id="prix" name="prix" placeholder="Prix" min="0" value="{{livre.prix}}" required>
             <label for="est_gratuit">
                 <input type="checkbox" id="est_gratuit" checked="{{livre.est_gratuit}}" name="est_gratuit"> Est gratuit</label>
         </div>

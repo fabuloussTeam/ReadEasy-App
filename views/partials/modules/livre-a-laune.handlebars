@@ -13,7 +13,7 @@
                 <h2>{{this.titre}}</h2>
             </div>
             <div class="content-livre-a-laune">
-                <p>{{this.description}}</p>
+                <p>{{truncateDescription this.description}}</p>
                 <div>
                  <a href="/livre/{{this.id_livre}}"><button class="btn-livre-a-laune btn btn-outline-primary">Lire la suite</button></a>
                  <a href="#"><i class="fa-regular fa-thumbs-up"></i></a>
@@ -27,20 +27,5 @@
         </div>
         </a>
         {{/each}}
-
-        <!--  <div class="livre-a-laune">
-            <div class="header-livre-a-laune">
-                <div class="imglivre"><img
-                        src="https://user-images.githubusercontent.com/78242022/282697428-7690f46f-5446-475a-be69-dbf5d8ccfacd.png"
-                        alt="Img" /></div>
-                <h2>Seed ut perspiciatis</h2>
-            </div>
-            <div class="content-livre-a-laune">
-                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
-                    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
-                    nesciunt.Noque porro quisquam est.</p>
-                <button class="btn-livre-a-laune btn btn-outline-primary">Lire la suite</button>
-            </div>
-        </div> -->
     </div>
 </div>
