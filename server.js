@@ -246,6 +246,16 @@ app.get('/creer-un-compte', async (request, response) => {
       });
 });
 
+// Route vers le panier d'achats
+app.get('/panier-achats', async (request, response) => {
+    response.render("partials/modules/panier-achats", {
+        titre: "ReadEasy | Module panier d'achat ",
+        styles: ["/css/modules/module-panier-achats.css"],
+        scripts: ["/js/modules/module-panier-achats.js"],
+        user: request.user //Utilistateur connecter
+    });
+});
+
 //======================================================================
 
 // Route pour ajouter un livre

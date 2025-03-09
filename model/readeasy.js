@@ -91,6 +91,9 @@ export const deletelivre = async (id_livre) => {
         where: {
             id_livre,
         },
+        orderBy: {
+            createdAt: 'desc' // Assuming 'createdAt' is the field storing the creation date
+        },
     });
     return livre;
 };
