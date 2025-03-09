@@ -9,6 +9,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
 import multer from 'multer';
+import path from 'path';
 import session from 'express-session';
 import memorystore from "memorystore";
 import passport from "passport";
@@ -22,18 +23,22 @@ import { toutLesUtilisateurs,
          creerUtilisateur } from './model/utilisateur.js';
 import "./authentification.js";
 
-// Register a custom helper to truncate description to the first 20 words
-Handlebars.registerHelper('truncateDescription', function(description) {
-    const words = description.split(' ');
-    if (words.length > 20) {
-        return words.slice(0, 20).join(' ') + '...';
-    }
-    return description;
-});
-
 // Création du serveur
 const app = express();
-const upload = multer({ dest: 'uploads/' });
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/'); // Ensure this directory exists
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname)); // Append the file extension
+    }
+});
+
+
+const upload = multer({ storage: storage });
+
+//const upload = multer({ dest: 'uploads/' });
 // Initialisation de la base de données de session
 const MemoryStore = memorystore(session);
 
@@ -45,6 +50,14 @@ const hbs = expressHandlebars.create({
     }
 });
 
+// Register a custom helper to truncate description to the first 20 words
+Handlebars.registerHelper('truncateDescription', function(description) {
+    const words = description.split(' ');
+    if (words.length > 20) {
+        return words.slice(0, 20).join(' ') + '...';
+    }
+    return description;
+});
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -128,7 +141,6 @@ app.get('/', async (request, response) => {
             itOption = true;
        }
       
-
         response.render('home', {
             titre: "Arlequin et Roman | ReadEasy",
             styles: ["/css/home.css"],
@@ -194,7 +206,6 @@ app.get('/publier-un-livre', async (request, response) => {
         user: request.user
     });
 });
-
 
 // Mise a jour d'un livre
 app.get('/modifier-un-livre/:id_livre', async (request, response) => {
