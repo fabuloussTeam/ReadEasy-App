@@ -154,7 +154,8 @@ export async function creerUtilisateur(nom, prenom, courriel, acces, mot_de_pass
                 prenom,
                 courriel,
                 acces,
-                mot_de_passe: hashedPassword
+                mot_de_passe: hashedPassword,
+                createdAt: new Date() 
             }
         });
         return user;

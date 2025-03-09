@@ -19,7 +19,8 @@ export const addlivre = async (isbn, titre, description, prix, est_gratuit, aute
             est_gratuit,
             auteur,
             url_image,
-            document
+            document,
+            createdAt: new Date() 
         },
     });
     return livre;
@@ -30,7 +31,11 @@ export const addlivre = async (isbn, titre, description, prix, est_gratuit, aute
  * @returns la liste des taches
  */
 export const getlivres = async () => {
-    const livres = await prisma.livre.findMany();
+    const livres = await prisma.livre.findMany({
+        orderBy: {
+            createdAt: 'desc' // Assuming 'createdAt' is the field storing the creation date
+        }
+});
     return livres;
 };
 
@@ -90,9 +95,6 @@ export const deletelivre = async (id_livre) => {
     const livre = await prisma.livre.delete({
         where: {
             id_livre,
-        },
-        orderBy: {
-            createdAt: 'desc' // Assuming 'createdAt' is the field storing the creation date
         },
     });
     return livre;
