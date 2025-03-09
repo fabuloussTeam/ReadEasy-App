@@ -10,6 +10,8 @@ import compression from 'compression';
 import cors from 'cors';
 import multer from 'multer';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
 import session from 'express-session';
 import memorystore from "memorystore";
 import passport from "passport";
@@ -22,6 +24,11 @@ import { toutLesUtilisateurs,
          mettreAJourUtilisateur,
          creerUtilisateur } from './model/utilisateur.js';
 import "./authentification.js";
+import { log } from 'console';
+
+// Define __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Création du serveur
 const app = express();
@@ -368,10 +375,30 @@ app.patch("/api/livre/:id_livre", async (request, response) => {
 app.delete("/api/livre/:id_livre", async (request, response) => {
     try {
         const id_livre = parseInt(request.params.id_livre);
-        const livre = await deletelivre(id_livre);
-        return response
-            .status(200)
-            .json({ livre, message: "livre supprimée avec succès" });
+        const livre = await getlivre(id_livre);
+
+        if (livre) {
+            // Delete the files associated with the book
+            const url_image_path = path.join(__dirname, 'uploads', livre.url_image);
+            const document_path = path.join(__dirname, 'uploads', livre.document);
+            console.log(`url_image_path: ${url_image_path}`);
+            console.log(`document_path: ${document_path}`);
+
+            // Check if the files exist and delete them
+            if (fs.existsSync(url_image_path)) {
+                fs.unlinkSync(url_image_path);
+            }
+            if (fs.existsSync(document_path)) {
+                fs.unlinkSync(document_path);
+            }
+
+            // Delete the book from the database
+            await deletelivre(id_livre);
+            return response.status(200).json({ livre, message: "Livre supprimé avec succès" });
+        } else {
+            return response.status(404).json({ error: 'Livre non trouvé' });
+        }
+
     } catch (error) {
         return response.status(400).json({ error: error.message });
     }
