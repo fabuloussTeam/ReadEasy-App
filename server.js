@@ -25,6 +25,11 @@ import { toutLesUtilisateurs,
          creerUtilisateur } from './model/utilisateur.js';
 import "./authentification.js";
 import { log } from 'console';
+import { addCommande,
+         getAllCommandeUser,
+         getCommandes,
+         deleteCommandeBook
+        } from './model/monPanier.js';
 
 // Define __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -41,7 +46,6 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + path.extname(file.originalname)); // Append the file extension
     }
 });
-
 
 const upload = multer({ storage: storage });
 
@@ -190,10 +194,8 @@ app.get('/livre/:id_livre', async (request, response) => {
     const id_livre = parseInt(request.params.id_livre);
     const livre = await getlivre(id_livre);
  
-
     console.log(livre.est_gratuit);
     
-
     response.render("pages/livre", {
         titre: `ReadEasy | ${livre.titre}`,
         styles: ["/css/pages/livre.css", "/css/style.css"],
@@ -236,7 +238,6 @@ app.get('/connexion', async (request, response) => {
       });
 });
 
-
 //page de creation de compte
 app.get('/creer-un-compte', async (request, response) => {
     response.render("partials/modules/creer-un-compte", {
@@ -273,7 +274,12 @@ app.post("/api/livre", upload.fields([{ name: 'url_image' }, { name: 'document' 
         est_gratuit = Boolean(parseInt(est_gratuit)); // Ensure est_gratuit is a boolean
         prix = parseFloat(prix);
 
-        const livre = await addlivre(isbn, titre, description, prix, est_gratuit, auteur, url_image, document);
+
+        
+        const id_utilisateur = request.user.id_utilisateur;
+     
+
+        const livre = await addlivre(isbn, titre, description, prix, est_gratuit, auteur, url_image, document, id_utilisateur);
         return response.status(200).json({ livre, message: "Livre ajouté avec succès" });
     } catch (error) {
         return response.status(400).json({ error: error.message });
@@ -293,7 +299,10 @@ app.patch("/api/livre/:id_livre", upload.fields([{ name: 'url_image' }, { name: 
         const document = request.files['document'][0].filename;
         est_gratuit = Boolean(parseInt(est_gratuit)); // Ensure est_gratuit is a boolean
         prix = parseFloat(prix);
-        await updatelivre(id_livre, isbn, titre, description, prix, est_gratuit, auteur, url_image, document);
+
+        const id_utilisateur = request.user.id_utilisateur;
+
+        await updatelivre(id_livre, isbn, titre, description, prix, est_gratuit, auteur, url_image, document, id_utilisateur);
         return response.status(200).json({ message: "Livre mis à jour avec succès" });
     } catch (error) {
         return response.status(400).json({ error: error.message });
@@ -465,6 +474,54 @@ app.post("/api/utilisateur", async (request, response) => {
 });
 
 
+/** ============================================================
+ *  Mon panier d'achats
+ * 
+ */
+
+// Route pour ajouter un livre au panier
+app.post("/api/panier", async (request, response) => {
+    try {
+        const { id_utilisateur, id_livre, quantite } = request.body;
+        const commande = await addCommande(id_utilisateur, id_livre, quantite);
+        return response.status(200).json({ commande, message: "Commande ajoutée avec succès" });
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
+// Route pour obtenir la liste des commandes
+app.get("/api/panier", async (request, response) => {
+    try {
+        const commandes = await getCommandes();
+        return response.status(200).json(commandes);
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
+// Route pour obternir les commandes d'un utilisateur
+app.get("/api/panier/:id_utilisateur", async (request, response) => {
+    try {
+        const id_utilisateur = parseInt(request.params.id_utilisateur);
+        const commandes = await getAllCommandeUser(id_utilisateur);
+        return response.status(200).json(commandes);
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
+// Route pour supprimer une commande
+app.delete("/api/panier/:id_panier/:id_utilisateur", async (request, response) => {
+    try {
+        const id_panier = parseInt(request.params.id_panier);
+        const id_utilisateur = parseInt(request.params.id_utilisateur);
+        const commande = await deleteCommandeBook(id_panier, id_utilisateur);
+        return response.status(200).json({ commande, message: "Commande supprimée avec succès" });
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
 
 
 

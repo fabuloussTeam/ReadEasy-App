@@ -20,9 +20,10 @@ model livre {
   auteur        String?
   url_image     String?
   document      String?
-  createdAt     DateTime  @default(now()) // Add this line
+  createdAt     DateTime  @default(now())
   utilisateur   utilisateur @relation(fields: [id_utilisateur], references: [id_utilisateur])
   id_utilisateur Int     @default(1) // Assuming 1 is the ID of the default user
+  monPaniers    monPanier[] // Relation to monPanier
 }
 
 model utilisateur {
@@ -32,6 +33,17 @@ model utilisateur {
   courriel          String  @unique
   mot_de_passe      String
   acces             Int     @default(0)
-  createdAt         DateTime  @default(now()) // Add this line
+  createdAt         DateTime  @default(now())
   livres            livre[]
+  monPaniers        monPanier[] // Relation to monPanier
+}
+
+model monPanier {
+  id_panier      Int          @id @default(autoincrement())
+  utilisateur    utilisateur  @relation(fields: [id_utilisateur], references: [id_utilisateur])
+  id_utilisateur Int
+  livre          livre        @relation(fields: [id_livre], references: [id_livre])
+  id_livre       Int
+  quantite       Int          @default(1) // Add this line
+  createdAt      DateTime     @default(now())
 }
