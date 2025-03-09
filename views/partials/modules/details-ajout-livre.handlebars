@@ -1,0 +1,27 @@
+   <div class="livre-panier">
+    <div class="ajout-livre-panier">
+        <div class="imglivre"><img 
+        src="/uploads/{{livre.url_image}}" 
+        alt="Img livres"></div>
+        <div class="container-details-ajout-livre">
+            <h1>{{livre.titre}}</h1>
+            <div class="pricing">
+                <span class="original-price">$40.00</span>
+                <span class="discounted-price">CAD {{livre.prix}}</span>
+            </div>
+            <p class="description">
+                {{livre.description}}
+            </p>
+            <div class="quantity-control">
+                <button class="quantity-btn minus">-</button>
+                <input type="text" class="quantity" value="1" readonly>
+                <button class="quantity-btn plus">+</button>
+            </div>
+            <button class="add-to-basket-button">Ajouter au maintenant</button>
+            <div class="details">
+                <p><strong>SKU:</strong>{{livre.isbn}}</p>
+                <p><strong>Categories:</strong> eBook, Entreprenariat</p>
+            </div>
+        </div>
+   </div>
+</div>

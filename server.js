@@ -257,6 +257,23 @@ app.get('/panier-achats', async (request, response) => {
     });
 });
 
+
+//Route pour details ajouts d'un livre
+app.get('/details-ajout-livre/:id_livre', async (request, response) => {
+
+    const id_livre = parseInt(request.params.id_livre);
+    const livre = await getlivre(id_livre);
+ 
+    response.render("partials/modules/details-ajout-livre", {
+        titre: "ReadEasy | Details ajout d'un livre",
+        styles: ["/css/modules/details-ajout-livre.css", "/css/style.css"],
+        scripts: ["/js/modules/details-ajout-livre.js"],
+        user: request.user, //Utilistateur connecter
+        livre
+    });
+});
+
+
 //======================================================================
 
 // Route pour ajouter un livre

@@ -15,7 +15,7 @@
                         {{#unless livre.est_gratuit}}
                          {{#unless user}} <a href="/connexion" ><button class="add-to-cart">Ajouter au panier</button></a>{{/unless}} 
                          {{#if user}}  <button class="buy-now">Achetez maintenant</button> {{/if}}
-                         {{#if user}} <button class="add-to-cart">Ajouter au panier</button> {{/if}}
+                         {{#if user}} <a href="/details-ajout-livre/{{livre.id_livre}}"><button class="add-to-cart">Ajouter au panier</button></a> {{/if}}
                          {{/unless}}
                         {{#if livre.est_gratuit}}
                         <button class="download">Telecharger</button>

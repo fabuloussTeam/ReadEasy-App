@@ -1,0 +1,119 @@
+.livre-panier {
+   width: 100%;
+   border: 1px solid #190505;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.ajout-livre-panier{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: self-start;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+
+.imglivre {
+    width: 500px;
+    height: 450px;
+    overflow: hidden;
+    margin-top: 0;
+    padding: 0;
+    border-radius: 15px;
+    text-align: center;
+}
+  
+.imglivre img {
+    position: relative;
+    object-fit: cover;
+    object-position: center; 
+    margin-top: 0;
+    padding: 0;
+    width: 70%;
+}
+
+.container-details-ajout-livre {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.pricing {
+    margin-bottom: 20px;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 10px;
+}
+
+.discounted-price {
+    font-size: 20px;
+    color: #e74c3c;
+}
+
+.description {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.quantity-btn {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quantity-btn:hover {
+    background-color: #2980b9;
+}
+
+.quantity {
+    width: 50px;
+    text-align: center;
+    margin: 0 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.add-to-basket-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-to-basket-button:hover {
+    background-color: #2980b9;
+}
+
+.details {
+    font-size: 12px;
+    color: #666;
+    margin-top: 20px;
+}
