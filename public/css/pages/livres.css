@@ -5,7 +5,7 @@
 .livres-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
   align-items:flex-start;
   margin-top: 20px;
 }
