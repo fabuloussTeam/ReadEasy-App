@@ -253,6 +253,19 @@ app.get('/creer-un-compte', async (request, response) => {
       });
 });
 
+//page de modification de compte
+app.get('/monProfile', async (request, response) => {
+     const id_utilisateur = parseInt(request.user.id_utilisateur);
+    const utilisateur = await utilisateurParId(id_utilisateur);
+    response.render("partials/modules/profil-utilisateur", {
+        titre: "ReadEasy | Page profil utilisateur",
+        styles: ["/css/pages/profil-utilisateur.css"],
+        scripts: ["/js/pages/profil-utilisateur.js"],
+        utilisateur,
+        user: request.user //Utilistateur connecter
+    });
+});
+
 // Route vers le panier d'achats
 app.get('/panierAchats', async (request, response) => {
 
