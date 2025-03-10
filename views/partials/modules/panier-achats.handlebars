@@ -2,14 +2,14 @@
     <div class="cart-left">
         <h2>Mon panier</h2>
         <div class="cart-items">
-            {{#each cardItems}}
+            {{#each mesCommades}}
                 <div class="cart-item">
-                    <img src="/assets/images/book-4860093_640.png" alt="Livre {{this.id_livre}}">
+                    <img src="/uploads/{{this.livre.url_image}}" alt="Livre {{this.id_livre}}">
                     <div class="item-details">
-                        <p class="item-title">Travailler à partir de la maison - Tome un</p>
+                        <p class="item-title">{{this.livre.titre}}</p>
                         <div class="item-qty-price">
                             <p class="item-qty">qty: {{this.quantite}}</p>
-                            <p class="item-price">$795.00 CAD</p>
+                            <p class="item-price">{{this.livre.prix}} CAD</p>
                         </div>
                     </div>
                     <button class="remove-item">x</button>
@@ -33,9 +33,9 @@
     <div class="cart-summary">
         <label for="promo-code">Saisir votre code promo</label>
         <input type="text" id="promo-code">
-        <p class="subtotal">Sous-total: <span>$1,120.00</span></p>
-        <p class="shipping">Frais de livraison: <span>$0.00</span></p>
-        <p class="total">Total: <span>$1,120.00</span></p>
+        <p class="subtotal">Sous-total: <span>{{total}} CAD</span></p>
+        <p class="shipping">Tax Supplementaire: <span>$0.00</span></p>
+        <p class="total">Total: <span>{{total}} CAD</span></p>
         <button class="checkout-button">P a i e</button>
     </div>
 </div>

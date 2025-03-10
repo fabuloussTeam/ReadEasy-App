@@ -49,5 +49,42 @@ export const deleteCommandeBook = async (id_panier, id_utilisateur) => {
 }
 
 
+/** Recuperer tous les livres et toutes les colonnes de monPanier qu'un utilisateur a ajoutés dans monPanier */
+export const getLivresEtDetailsDansPanier = async (id_utilisateur) => {
+    const livresEtDetails = await prisma.monPanier.findMany({
+        where: {
+            id_utilisateur,
+        },
+        include: {
+            livre: true,
+        },
+    });
+    return livresEtDetails;
+};
+
+/** Recuperer tous les livres et toutes les colonnes de monPanier qu'un utilisateur a ajoutés dans monPanier et calculer la somme total des prix des livres */
+export const getLivresEtTotalPrixDansPanier = async (id_utilisateur) => {
+    const livresEtDetails = await prisma.monPanier.findMany({
+        where: {
+            id_utilisateur,
+        },
+        include: {
+            livre: true,
+        },
+    });
+
+    const totalPrix = livresEtDetails.reduce((total, item) => {
+        return total + (item.livre.prix * item.quantite);
+    }, 0);
+
+    return {
+        livresEtDetails,
+        totalPrix,
+    };
+};
+
+
+
+
 
 

@@ -34,7 +34,9 @@ import { log } from 'console';
 import { addCommande,
          getAllCommandeUser,
          getCommandes,
-         deleteCommandeBook
+         deleteCommandeBook,
+         getLivresEtDetailsDansPanier,
+         getLivresEtTotalPrixDansPanier
         } from './model/monPanier.js';
 
 // Define __dirname
@@ -260,17 +262,18 @@ app.get('/panierAchats', async (request, response) => {
             
             return response.status(401).json({ error: 'Utilisateur non connecté' });
         }
-        const cardItems = await getAllCommandeUser(id_utilisateur);
-        const livreItems = await getlivresUser(id_utilisateur);
-        log(`cardIt user+++: ${JSON.stringify(request.user.livres)}`);
-    
+      
+        const mesCommades = await getLivresEtDetailsDansPanier(id_utilisateur);
+        const mesCommadesetprix = await getLivresEtTotalPrixDansPanier(id_utilisateur);
+        console.log(`mesCommades  et total: ${JSON.stringify(mesCommadesetprix)}`);
+        
     response.render("partials/modules/panier-achats", {
         titre: "ReadEasy | Module panier d'achat ",
         styles: ["/css/modules/module-panier-achats.css"],
         scripts: ["/js/modules/module-panier-achats.js"],
         user: request.user, //Utilistateur connecter
-        cardItems,
-        livreItems
+        mesCommades: mesCommadesetprix.livresEtDetails,
+        total: mesCommadesetprix.totalPrix
     });
 });
 

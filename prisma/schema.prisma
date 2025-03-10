@@ -47,3 +47,4 @@ model monPanier {
   quantite       Int          @default(1) // Add this line
   createdAt      DateTime     @default(now())
 }
+
