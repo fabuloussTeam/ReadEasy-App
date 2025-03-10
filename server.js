@@ -35,7 +35,6 @@ import { addCommande,
          getAllCommandeUser,
          getCommandes,
          deleteCommandeBook,
-         getLivresEtDetailsDansPanier,
          getLivresEtTotalPrixDansPanier
         } from './model/monPanier.js';
 
@@ -263,9 +262,7 @@ app.get('/panierAchats', async (request, response) => {
             return response.status(401).json({ error: 'Utilisateur non connecté' });
         }
       
-        const mesCommades = await getLivresEtDetailsDansPanier(id_utilisateur);
         const mesCommadesetprix = await getLivresEtTotalPrixDansPanier(id_utilisateur);
-        console.log(`mesCommades  et total: ${JSON.stringify(mesCommadesetprix)}`);
         
     response.render("partials/modules/panier-achats", {
         titre: "ReadEasy | Module panier d'achat ",
@@ -545,12 +542,11 @@ app.get("/api/panier/:id_utilisateur", async (request, response) => {
 });
 
 // Route pour supprimer une commande
-app.delete("/api/panier/:id_panier/:id_utilisateur", async (request, response) => {
+app.delete("/api/panier/:id_panier", async (request, response) => {
     try {
         const id_panier = parseInt(request.params.id_panier);
-        const id_utilisateur = parseInt(request.params.id_utilisateur);
-        const commande = await deleteCommandeBook(id_panier, id_utilisateur);
-        return response.status(200).json({ commande, message: "Commande supprimée avec succès" });
+        const commande = await deleteCommandeBook(id_panier);
+        return response.status(200).json({ commande, message: "Livre supprimé du panier avec succès" });
     } catch (error) {
         return response.status(400).json({ error: error.message });
     }
