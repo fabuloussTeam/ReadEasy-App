@@ -2,31 +2,21 @@
     <div class="cart-left">
         <h2>Mon panier</h2>
         <div class="cart-items">
-            <div class="cart-item">
-                <img src="/assets/images/book-4860093_640.png" alt="Livre 1">
-                <div class="item-details">
-                    <p class="item-title">Travailler à partir de la maison - Tome un</p>
-                    <div class="item-qty-price">
-                        <p class="item-qty">qty: 1</p>
-                        <p class="item-price">$795.00 CAD</p>
+            {{#each cardItems}}
+                <div class="cart-item">
+                    <img src="/assets/images/book-4860093_640.png" alt="Livre {{this.id_livre}}">
+                    <div class="item-details">
+                        <p class="item-title">Travailler à partir de la maison - Tome un</p>
+                        <div class="item-qty-price">
+                            <p class="item-qty">qty: {{this.quantite}}</p>
+                            <p class="item-price">$795.00 CAD</p>
+                        </div>
                     </div>
-                </div>
-                <button class="remove-item">x</button>
-            </div>
+                    <button class="remove-item">x</button>
+                </div> 
+            {{/each}}
 
-            <div class="cart-item">
-                <img src="/assets/images/book-419589_640.jpg" alt="Livre 2">
-                <div class="item-details">
-                    <p class="item-title">Les beaux jours sont rares - un miroir de nuit</p>
-                    <div class="item-qty-price">
-                        <p class="item-qty">qty: 3</p>
-                        <p class="item-price">$80.00 CAD</p>
-                    </div>
-                </div>
-                <button class="remove-item">x</button>
-            </div>
-
-            <div class="cart-item">
+         <!--   <div class="cart-item">
                 <img src="/assets/images/bible-1868070_640.jpg" alt="Livre 3">
                 <div class="item-details">
                     <p class="item-title">Bible Louis Segon - Version 1977</p>
@@ -36,7 +26,7 @@
                     </div>
                 </div>
                 <button class="remove-item">x</button>
-            </div>
+            </div> -->
         </div>
     </div>
 

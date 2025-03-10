@@ -54,6 +54,22 @@ export const getlivre = async (id_livre) => {
 }
 
 /**
+ * Obtenir les livres d'un utilisateur
+ */
+export const getlivresUser = async (id_utilisateur) => {
+    const livres = await prisma.livre.findMany({
+        where: {
+            id_utilisateur,
+        },
+    });
+    return livres;
+}
+
+
+
+
+
+/**
  * Route pour mettre à jour un livre
  * @param {*} id 
  * @returns 

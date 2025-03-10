@@ -1,12 +1,15 @@
-   <div class="livre-panier">
+<div class="livre-panier">
     <div class="ajout-livre-panier">
         <div class="imglivre"><img 
         src="/uploads/{{livre.url_image}}" 
         alt="Img livres"></div>
         <div class="container-details-ajout-livre">
             <h1>{{livre.titre}}</h1>
+            <div>
+                 <input type="hidden" id="livreid" value="{{livre.id_livre}}">
+            </div>
             <div class="pricing">
-                <span class="original-price">$40.00</span>
+                <span class="original-price">$10.00</span>
                 <span class="discounted-price">CAD {{livre.prix}}</span>
             </div>
             <p class="description">
@@ -21,6 +24,9 @@
             <div class="details">
                 <p><strong>SKU:</strong>{{livre.isbn}}</p>
                 <p><strong>Categories:</strong> eBook, Entreprenariat</p>
+            </div>
+            <div>
+                <input type="hidden" id="id_utilisateur" value="{{user.id_utilisateur}}">
             </div>
         </div>
    </div>

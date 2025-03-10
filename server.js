@@ -17,7 +17,13 @@ import memorystore from "memorystore";
 import passport from "passport";
 import { PrismaClient } from '@prisma/client';
 import cspOption from './csp-options.js';
-import { addlivre, getlivres, updatelivre, deletelivre, getlivre } from './model/readeasy.js';
+import { addlivre,
+      getlivres,
+      updatelivre,
+      deletelivre, 
+      getlivre,
+      getlivresUser
+     } from './model/readeasy.js';
 import { getRandomBooks } from './public/js/home.js';
 import { toutLesUtilisateurs,
          utilisateurParId,
@@ -97,7 +103,6 @@ app.use(passport.session());
 app.use(express.static('public'));
 app.use('/uploads', express.static('uploads'));
 
-
 // API endpoint for user login
 app.post('/api/connexion', async (request, response, next) => {
     if (
@@ -133,7 +138,6 @@ app.post("/api/deconnexion", (request, response, next) => {
     });
   });
 
-
   // API pour affiche la page d'acceuil
 app.get('/', async (request, response) => {
 
@@ -141,11 +145,13 @@ app.get('/', async (request, response) => {
         const meslivresalaune = await getlivres();
         const randomBooks = getRandomBooks(meslivresalaune, 4);
        // console.log(`Random books: ${randomBooks.map(book => book.titre).join(', ')}`);
-       let itOption = false;
+
+        let itOption = false;
+
        // verification des session
-       console.log(`request reauest user: ${JSON.stringify(request.user)}`);
-       console.log(`request session:  ${ JSON.stringify(request.session)}`);
-       console.log(`request session user:  ${ JSON.stringify(request.session.passport)}`);
+       //   console.log(`request reauest user: ${JSON.stringify(request.user)}`);
+       //  console.log(`request session:  ${ JSON.stringify(request.session)}`);
+       //  console.log(`request session user:  ${ JSON.stringify(request.session.passport)}`);
 
        if (request.user && (request.session.passport.user == request.user.id_utilisateur)) {
           // console.log(`request user: ${JSON.stringify(request.user)}`);
@@ -194,7 +200,7 @@ app.get('/livre/:id_livre', async (request, response) => {
     const id_livre = parseInt(request.params.id_livre);
     const livre = await getlivre(id_livre);
  
-    console.log(livre.est_gratuit);
+   // console.log(livre.est_gratuit);
     
     response.render("pages/livre", {
         titre: `ReadEasy | ${livre.titre}`,
@@ -202,7 +208,6 @@ app.get('/livre/:id_livre', async (request, response) => {
         scripts: ["/js/pages/livre.js"],
         livre,
         user: request.user
-
       });
 });
 
@@ -248,22 +253,34 @@ app.get('/creer-un-compte', async (request, response) => {
 });
 
 // Route vers le panier d'achats
-app.get('/panier-achats', async (request, response) => {
+app.get('/panierAchats', async (request, response) => {
+
+        const id_utilisateur = request.user.id_utilisateur;
+        if (!id_utilisateur) {
+            
+            return response.status(401).json({ error: 'Utilisateur non connecté' });
+        }
+        const cardItems = await getAllCommandeUser(id_utilisateur);
+        const livreItems = await getlivresUser(id_utilisateur);
+        log(`cardIt user+++: ${JSON.stringify(request.user.livres)}`);
+    
     response.render("partials/modules/panier-achats", {
         titre: "ReadEasy | Module panier d'achat ",
         styles: ["/css/modules/module-panier-achats.css"],
         scripts: ["/js/modules/module-panier-achats.js"],
-        user: request.user //Utilistateur connecter
+        user: request.user, //Utilistateur connecter
+        cardItems,
+        livreItems
     });
 });
-
 
 //Route pour details ajouts d'un livre
 app.get('/details-ajout-livre/:id_livre', async (request, response) => {
 
     const id_livre = parseInt(request.params.id_livre);
     const livre = await getlivre(id_livre);
- 
+  // console.log(`livre: ${JSON.stringify(livre)}`);
+   
     response.render("partials/modules/details-ajout-livre", {
         titre: "ReadEasy | Details ajout d'un livre",
         styles: ["/css/modules/details-ajout-livre.css", "/css/style.css"],
@@ -272,7 +289,6 @@ app.get('/details-ajout-livre/:id_livre', async (request, response) => {
         livre
     });
 });
-
 
 //======================================================================
 
@@ -291,11 +307,8 @@ app.post("/api/livre", upload.fields([{ name: 'url_image' }, { name: 'document' 
         est_gratuit = Boolean(parseInt(est_gratuit)); // Ensure est_gratuit is a boolean
         prix = parseFloat(prix);
 
-
-        
         const id_utilisateur = request.user.id_utilisateur;
      
-
         const livre = await addlivre(isbn, titre, description, prix, est_gratuit, auteur, url_image, document, id_utilisateur);
         return response.status(200).json({ livre, message: "Livre ajouté avec succès" });
     } catch (error) {
@@ -590,6 +603,7 @@ app.get('/modulepresentationstyleun', async (request, response) => {
         scripts: ["/js/modules/module-presentation-livre-premiere.js"],
       });
 });
+
 // Route vers le module presentation livre style 02
 app.get('/modulepresentationstyledeux', async (request, response) => {
     response.render("modules/module-presentation-livre-deuxieme", {
@@ -626,7 +640,6 @@ app.get('/modulenospartenaires', async (request, response) => {
       });
 });
 
-
 // Route vers le module connexion utilisateur
 app.get('/moduleconnexion', async (request, response) => {
     response.render("modules/module-connexion", {
@@ -645,15 +658,14 @@ app.get('/modulecreationdecompte', async (request, response) => {
     });
 });
 
-
 // Route vers le module creation de compte utilisateur
-app.get('/panierachats', async (request, response) => {
+/** app.get('/panierachats', async (request, response) => {
     response.render("modules/module-panier-achats", {
         titre: "ReadEasy | Module panier d'achat ",
         styles: ["/css/modules/module-panier-achats.css"],
         scripts: ["/js/modules/module-panier-achats.js"],
     });
-});
+}); */
 
 
 
