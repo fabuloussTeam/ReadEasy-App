@@ -86,14 +86,10 @@ export const updatelivre = async (
     document,
     id_utilisateur
  ) => {
-
-    
     const updatedlivre = await prisma.livre.update({
         where: {
-            id_livre,
-            id_utilisateur
+            id_livre
         },
-
         data: {
             isbn,
             titre,
@@ -102,10 +98,10 @@ export const updatelivre = async (
             est_gratuit,
             auteur,
             url_image,
-            document
+            document,
+            id_utilisateur
         },
     });
-
     return updatedlivre;
 };
 

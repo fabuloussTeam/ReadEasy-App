@@ -10,7 +10,7 @@ function prepareDonnee() {
 
 
     return {
-        isbn: isbn,
+        isbn: isbn, 
         titre: titre,
         description: description,
         prix: prix,

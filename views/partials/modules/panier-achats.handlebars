@@ -2,23 +2,25 @@
     <div class="cart-left">
         <h2>Mon panier</h2>
         <div class="cart-items">
+        {{#if mesCommades.length}}
             {{#each mesCommades}}
-                <div class="cart-item">
-                    <img src="/uploads/{{this.livre.url_image}}" alt="Livre {{this.id_livre}}">
-                    <div class="item-details">
-                        <p class="item-title">{{this.livre.titre}}</p>
-                        <div class="item-qty-price">
-                            <p class="item-qty">qty: {{this.quantite}}</p>
-                            <p class="item-price">{{this.livre.prix}} CAD</p>
-                        </div>
+            <div class="cart-item">
+                <img src="/uploads/{{this.livre.url_image}}" alt="Livre {{this.id_livre}}">
+                <div class="item-details">
+                    <p class="item-title">{{this.livre.titre}}</p>
+                    <div class="item-qty-price">
+                        <p class="item-qty">qty: {{this.quantite}}</p>
+                        <p class="item-price">{{this.livre.prix}} CAD</p>
                     </div>
-                    <button data-id="{{this.id_panier}}"  class="remove-item">x</button>
-                </div> 
+                </div>
+                <button class="remove-item" data-id="{{this.id_panier}}">x</button> <!-- Add data-id attribute -->
+            </div>
             {{/each}}
-
+        {{else}}
+            <p class="empty-cart">Votre panier est vide</p>
+        {{/if}}
         </div>
     </div>
-
     <div class="cart-summary">
         <label for="promo-code">Saisir votre code promo</label>
         <input type="text" id="promo-code">
@@ -28,3 +30,28 @@
         <button class="checkout-button">P a i e</button>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const user = {{json user}}; // Ensure user object is available
+
+    document.querySelectorAll('.remove-item').forEach(button => {
+        button.addEventListener('click', async (event) => {
+            const id_panier = event.target.getAttribute('data-id');
+            try {
+                const response = await fetch(`/api/panier/${id_panier}/${user.id_utilisateur}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    throw new Error('Failed to remove item from cart');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Erreur lors de la suppression de l\'article.');
+            }
+        });
+    });
+});
+</script>
