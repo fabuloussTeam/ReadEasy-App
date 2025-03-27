@@ -1,11 +1,11 @@
 {
   "name": "template",
   "version": "1.0.0",
-  "description": "",
+  "description": "livre numerique informatique et aventures",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js",
+    "dev": "nodemon server.js",
     "deploy": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -32,7 +32,7 @@
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7",
+    "nodemon": "^3.1.9",
     "prisma": "^6.4.0"
   }
 }
