@@ -110,6 +110,22 @@
   font-size: 0.9rem;;
 }
 
+@media (max-width: 768px) {
+  .livres-container .livres-title {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border: 1px solid #000;
+    width: 100%;
+    max-width: 90px;
+    height: 800px;
+    background-image: url("../../assets/pagelivres.jpg");
+  }
+}
+
 
 
 

@@ -199,7 +199,7 @@ footer {
   align-items: center;
   width: 100%;
 }
-
+ 
 .footer-wrapper {
   display: flex;
   width: 100%;
@@ -219,6 +219,7 @@ footer {
   align-items: center;
   padding-right: 50px;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 footer nav a {
@@ -271,4 +272,17 @@ hr {
   text-align: center;
   margin: 0 auto;
   padding-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .footer-wrapper li:has( > div.logo-img){
+    display: none;
+  }
+
+  .footer-wrapper ul li {
+    display: flex;
+   gap: 15px;
+   margin-right: 10px;
+  }
+
 }

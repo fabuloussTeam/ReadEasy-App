@@ -133,6 +133,18 @@
   text-align: justify;
 }
 
+@media (max-width: 768px) {
+  .card-livre-title h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    text-align: left;
+    line-height: 2rem;
+    color: rgb(68, 66, 66);
+    padding: 3px;
+    font-weight: 550;
+  }
+}
+
 /** End CSS module livre a la une **/
 
 /** CSS module espace publicitaire **/
@@ -149,6 +161,7 @@
   height: auto;
   overflow: hidden;
 }
+
 
 .espace-publicitaire > div img {
   width: 100%;
@@ -198,6 +211,38 @@
 .container-espace-publicitaire button:hover {
   background-color: #0056b3;
 }
+
+@media (max-width: 768px) {
+  .espace-publicitaire > div:last-child {
+      display: none;
+  }
+
+  .container-espace-publicitaire h2 {
+    color: #333;
+    font-size: 1.1rem;
+  }
+
+  .container-espace-publicitaire p {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 1em;
+  }
+
+  .container-espace-publicitaire button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    width: 180px;
+    margin: 0 auto;
+  }
+
+}
+
+
 /** End CSS module espace publicitaire **/
 
 /** Start CSS module nos partenaires **/
@@ -253,6 +298,19 @@
 .partner p {
   color: #333;
   font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .container-nos-partenaires h2 {
+    font-size: 1.1em;
+  }
+
+  .container-nos-partenaires p {
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 1em;
+  }
+  
 }
 
 /** End CSS module nos partenaires **/

@@ -56,8 +56,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-//const upload = multer({ dest: 'uploads/' });
-// Initialisation de la base de données de session
+// verifier que la session est active et a ete utiliser
 const MemoryStore = memorystore(session);
 
 const hbs = expressHandlebars.create({
@@ -92,7 +91,7 @@ app.use(json());
 // Configure session management
 app.use(
     session({
-      cookie: { maxAge: 3600000 },
+      cookie: { maxAge: 3600000 }, // la dure du cookie est de 1 heure
       name: process.env.npm_package_name,
       store: new MemoryStore({ checkPeriod: 3600000 }),
       resave: false,
@@ -475,6 +474,11 @@ app.post("/api/utilisateur", async (request, response) => {
         const utilisateur = await creerUtilisateur(nom, prenom, courriel, acces, mot_de_passe);
         return response.status(200).json({ utilisateur, message: "Utilisateur créé avec succès" });
     } catch (error) {
+        console.error(error);
+        // Check if the error is a unique constraint violation
+        if (error.code === 'P2002') {
+            return response.status(409).json({ error: 'L\'adresse e-mail est déjà utilisée.' });
+        }
         return response.status(400).json({ error: error.message });
     }
 });
@@ -482,7 +486,7 @@ app.post("/api/utilisateur", async (request, response) => {
 
 /** ============================================================
  *  Mon panier d'achats
- * 
+ *  ============================================================
  */
 
 // Route pour ajouter un livre au panier

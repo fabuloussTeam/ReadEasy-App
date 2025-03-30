@@ -91,7 +91,7 @@ export async function utilisateurParCourriel(courriel) {
 export async function mettreAJourUtilisateur(id_utilisateur, nom, prenom, courriel, acces, mot_de_passe) {
     try {
         // Hash the password before updating
-        const hashedPassword = await hash(mot_de_passe, 10);
+        const hashedPassword = await hash(mot_de_passe, 50);
 
         const user = await prisma.utilisateur.update({
             where: {

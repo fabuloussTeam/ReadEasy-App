@@ -22,7 +22,6 @@
     flex: 1;
 }
 
-
 .container-espace-publicitaire {
     display: flex;
     flex-direction: column;
@@ -59,3 +58,4 @@
 .container-espace-publicitaire button:hover {
     background-color: #0056b3;
 }
+
