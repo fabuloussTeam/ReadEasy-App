@@ -7,12 +7,6 @@ document.getElementById('form-creer-un-compte').addEventListener('submit', async
     const courriel = document.getElementById('courriel').value;
     const mot_de_passe = document.getElementById('mot_de_passe').value;
 
-    // Display form data in the console
-    console.log('Nom:', nom);
-    console.log('Prénom:', prenom);
-    console.log('Courriel:', courriel);
-    console.log('Mot de passe:', mot_de_passe);
-
     // Send form data to the server
     try {
         const response = await fetch('/api/utilisateur', {

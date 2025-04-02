@@ -118,5 +118,10 @@ form > button:last-child {
     margin-bottom: 20px;
     padding: 10px;
     border: none
+}
 
+@media (max-width: 768px) {
+    .connexion-account .right {
+        display: none;
+    }
 }

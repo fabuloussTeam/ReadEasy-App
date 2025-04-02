@@ -14,24 +14,25 @@
 }
 
 
+
 .imglivre {
-    width: 500px;
-    height: 450px;
     overflow: hidden;
     margin-top: 0;
     padding: 0;
     border-radius: 15px;
     text-align: center;
-}
+    min-width: 400px;
+  }
   
-.imglivre img {
+  .imglivre img {
     position: relative;
     object-fit: cover;
     object-position: center; 
     margin-top: 0;
     padding: 0;
-    width: 70%;
-}
+    width: 50%;
+   
+  }
 
 .container-details-ajout-livre {
     max-width: 600px;
@@ -116,4 +117,23 @@ h1 {
     font-size: 12px;
     color: #666;
     margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    
+    .container-details-ajout-livre {
+        padding: 10px;
+    }
+
+
+    
+.ajout-livre-panier{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: self-start;
+    padding: 10px;
+    margin: 0 auto;
+}
 }

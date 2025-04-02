@@ -16,9 +16,6 @@ passport.use(new Strategy(config, async (courriel, motdepasse, done) => {
             return done(null, false, { erreur: 'mauvais_courriel' });
         }
 
-        console.log("mot de passe:", motdepasse);
-       // console.log("utilisateur:", JSON.stringify(utilisateur));
-
         const valide = await compare(motdepasse, utilisateur.mot_de_passe);
 
         if (!valide) {

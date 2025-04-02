@@ -6,12 +6,7 @@ document.getElementById('connexionForm').addEventListener('submit', async functi
     const motdepasse = document.getElementById('password').value;
     const remember = document.getElementById('remember').checked;
 
-    // Display form data in the console
-    console.log('Courriel:', courriel);
-    console.log('Mot de passe:', motdepasse);
-    console.log('Remember me:', remember);
-
-    // Send form data to the server
+        // Send form data to the server
     try {
         const response = await fetch('/api/connexion', {
             method: 'POST',

@@ -98,22 +98,20 @@
 }
 
 .imglivre {
-  width: 280px;
-  height: 250px;
   overflow: hidden;
   margin-top: 0;
   padding: 0;
   border-radius: 15px;
+  text-align: center;
 }
 
 .imglivre img {
   position: relative;
   object-fit: cover;
-  object-position: center;
+  object-position: center; 
   margin-top: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
+  width: 50%;
 }
 
 .content-livre-a-laune {
@@ -134,14 +132,30 @@
 }
 
 @media (max-width: 768px) {
+ 
+
   .card-livre-title h1 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.1em;
     text-align: left;
-    line-height: 2rem;
+    line-height: 1.2rem;
     color: rgb(68, 66, 66);
-    padding: 3px;
     font-weight: 550;
+  }
+
+  .livre-a-laune {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 230px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(147, 147, 147, 0.1);
+    font-size: small;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    gap: 5px;
   }
 }
 

@@ -19,7 +19,7 @@
   margin-bottom: 20px;
   border: 1px solid #000;
   width: 100%;
-  max-width: 300px;
+  max-width: 250px;
   height: 800px;
   background-image: url("../../assets/pagelivres.jpg");
 }
@@ -33,7 +33,6 @@
    text-orientation: upright;
    color: #fff;
 }
-
 
 .list-des-livres{
   display: flex;
@@ -76,24 +75,22 @@
   cursor: pointer;
 }
 
-
 .imglivre {
-  width: 280px;
-  height: 250px;
   overflow: hidden;
   margin-top: 0;
   padding: 0;
   border-radius: 15px;
+  text-align: center;
 }
 
 .imglivre img {
   position: relative;
   object-fit: cover;
-  object-position: center;
+  object-position: center; 
   margin-top: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  min-width: 35%;
 }
 
 .content-livre-a-laune h2 {
@@ -111,6 +108,14 @@
 }
 
 @media (max-width: 768px) {
+
+  
+.list-des-livres-item {
+  width: 230px;
+  padding: 0 15px;
+  gap: 10px;
+}
+
   .livres-container .livres-title {
     display: flex;
     text-align: center;
@@ -120,10 +125,48 @@
     margin-bottom: 20px;
     border: 1px solid #000;
     width: 100%;
-    max-width: 90px;
+    max-width: 40px;
     height: 800px;
     background-image: url("../../assets/pagelivres.jpg");
   }
+
+  .imglivre {
+    overflow: hidden;
+    margin-top: 0;
+    padding: 0;
+    border-radius: 5px;
+    text-align: center;
+    width: 180px;
+  }
+  
+  .imglivre img {
+    position: relative;
+    object-fit: cover;
+    object-position: center; 
+    margin-top: 0;
+    padding: 0;
+  }
+
+  .content-livre-a-laune h2 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+    text-align: left;
+  }
+
+  .content-livre-a-laune  {
+    padding: 0 8px 8px 3px;
+  }
+
+  .content-livre-a-laune > p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+    text-align: justify;
+    word-wrap: wrap;
+  }
+
+
+
 }
 
 
