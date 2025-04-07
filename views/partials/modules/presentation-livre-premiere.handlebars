@@ -1,4 +1,3 @@
-
 <div class="book-style-one">
         <div class="book-container">
             <div class="book-description">
@@ -8,7 +7,14 @@
                 </div>
                 <div class="book-details">
                     <div>
-                        <button class="book-show">Apercu</button>
+                         {{#if livre.est_gratuit}}
+                                 <button class="read-book" id="read-book-btn" 
+                                    data-book-id="{{livre.id_livre}}" 
+                                    data-book-title="{{livre.titre}}">
+                                    Apercu
+                                </button>
+                          {{/if}}
+                          
                         <span class="price">PRICE: {{livre.prix}}CAD</span>
                     </div>
                     <div> 
@@ -18,7 +24,9 @@
                          {{#if user}} <a href="/details-ajout-livre/{{livre.id_livre}}"><button class="add-to-cart">Ajouter au panier</button></a> {{/if}}
                          {{/unless}}
                         {{#if livre.est_gratuit}}
-                        <button class="download">Telecharger</button>
+                        <a href="/uploads/{{livre.document}}" download>
+                            <button class="download">Telecharger</button>
+                        </a>
                         {{/if}}
                     </div>
                    

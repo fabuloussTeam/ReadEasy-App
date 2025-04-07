@@ -114,16 +114,22 @@ app.post('/api/connexion', async (request, response, next) => {
       ) {
         passport.authenticate("local", (erreur, utilisateur, info) => {
           if (erreur) {
+            console.log(`Erreur d'authentification: ${erreur}`);
+            
             next(erreur);
           } else if (!utilisateur) {
+            console.log(`Erreur d'authentification: ${info}`);
             response.status(401).json(info);
           } else {
             request.logIn(utilisateur, (erreur) => {
               if (erreur) {
                 next(erreur);
               }
-              response.status(200).end();
+             
+             return response.status(200).end();
             });
+           // console.log(`request session  utilisateur : ${JSON.stringify(request.user)}`);
+
           }
         })(request, response, next);
       } else {
@@ -154,6 +160,7 @@ app.get('/', async (request, response) => {
             itOption = true;
        }
       
+       
         response.render('home', {
             titre: "Arlequin et Roman | ReadEasy",
             styles: ["/css/home.css"],
@@ -197,7 +204,7 @@ app.get('/livre/:id_livre', async (request, response) => {
     const livre = await getlivre(id_livre);
  
    // console.log(livre.est_gratuit);
-    
+     
     response.render("pages/livre", {
         titre: `ReadEasy | ${livre.titre}`,
         styles: ["/css/pages/livre.css", "/css/style.css"],
@@ -354,6 +361,20 @@ app.get("/api/livres", async (request, response) => {
         const livres = await getlivres();
         return response.status(200).json(livres);
 
+    } catch (error) {
+        return response.status(400).json({ error: error.message });
+    }
+});
+
+// Route pour obtenir un livre par son ID
+app.get("/api/livre/:id_livre", async (request, response) => {
+    try {
+        const id_livre = parseInt(request.params.id_livre);
+        const livre = await getlivre(id_livre);
+        if (!livre) {
+            return response.status(404).json({ error: 'Livre non trouvé' });
+        }
+        return response.status(200).json(livre);
     } catch (error) {
         return response.status(400).json({ error: error.message });
     }
