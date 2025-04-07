@@ -1,1 +1,58 @@
-<div>Page de profil</div>
+<div class="profile-container">
+    <div class="sidebar">
+        <div class="welcome-message">
+            Bienvenue, {{utilisateur.prenom}} {{utilisateur.nom}}!
+        </div>
+        <ul class="menu">
+            <li>Mon Profile</li>
+            <li>Mes publications</li>
+            <li>Mes Reservations & Payment</li>
+            <li>Paramettre Admin</li>
+            <li>Deconnexion</li>
+        </ul>
+    </div>
+    <div class="profile-content">
+        <h2>Your personal profile info</h2>
+        <form class="profile-form">
+            <div class="section">
+                <h3>1. Profile</h3>
+                <div class="form-group">
+                    <label for="first-name">Nom</label>
+                    <input type="text" id="first-name" name="first-name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Prenom</label>
+                    <input type="text" id="last-name" name="last-name" placeholder="Surname">
+                </div>
+                <div class="form-group">
+                    <label for="personal-phone">Numero de Telephone</label>
+                    <input type="text" id="personal-phone" name="personal-phone" placeholder="+380">
+                </div>
+                <div class="form-group">
+                    <label for="email">Votre e-mail</label>
+                    <input type="email" id="email" name="email" placeholder="mail@example.com">
+                </div>
+            </div>
+            <div class="section">
+                <h3>2. Password</h3>
+                <div class="form-group">
+                    <label for="old-password">Ancien mots de passe *</label>
+                    <input type="password" id="old-password" name="old-password">
+                </div>
+                <div class="form-group">
+                    <label for="new-password">Nouveau mots de passe *</label>
+                    <input type="password" id="new-password" name="new-password">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm nouveau mots de passe *</label>
+                    <input type="password" id="confirm-password" name="confirm-password">
+                </div>
+            </div>
+            <button type="submit" class="save-button">Correct. Save info</button>
+        </form>
+    </div>
+
+    <div class="mes-publications">
+        Hello
+    </div>
+</div>
