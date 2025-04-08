@@ -268,8 +268,17 @@ app.get("/monProfile", async (request, response) => {
     return response.redirect("/connexion");
   }
 
+
+
   const id_utilisateur = parseInt(request.user.id_utilisateur);
   const utilisateur = await utilisateurParId(id_utilisateur);
+
+    console.log(`utilisateur: ${JSON.stringify(utilisateur)}`);
+
+  //livre de l'utilisateur
+    const meslivres = await getlivresUser(id_utilisateur);
+    console.log(`meslivres: ${JSON.stringify(meslivres)}`);
+
   response.render("partials/modules/profil-utilisateur", {
     titre: "ReadEasy | Page profil utilisateur",
     styles: ["/css/pages/profil-utilisateur.css"],

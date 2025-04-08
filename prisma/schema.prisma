@@ -33,7 +33,7 @@ model utilisateur {
   courriel          String  @unique
   mot_de_passe      String
   acces             Int     @default(0)
-  telephone         String? @default(xxx-xxx-xxxx)
+  telephone         String? @default(000-000-0000)
   createdAt         DateTime  @default(now())
   livres            livre[]
   monPaniers        monPanier[] // Relation to monPanier

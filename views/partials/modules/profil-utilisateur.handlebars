@@ -7,10 +7,14 @@
             <li class="profile-content">Mon Profile</li>
             <li class="mes-publications">Mes publications</li>
             <li class="mes-reservations-paiement">Mes Reservations & Paiement</li>
+            <li class="statistiques">statistiques</li>
+            <li class="mots-de-passe">Mots de passe</li>
             <li class="param-admin">Param Admin</li>
             <li>Deconnexion</li>
         </ul>
     </div>
+
+ <div class="profile-container-right">
     <div class="profile-content">
         <h2>Your personal profile info</h2>
         <form class="profile-form">
@@ -18,23 +22,42 @@
                 <h3>1. Profile</h3>
                 <div class="form-group">
                     <label for="first-name">Nom</label>
-                    <input type="text" id="first-name" name="first-name" placeholder="Name">
+                    <input type="text" id="first-name" name="first-name" placeholder="Name" value="{{utilisateur.nom}}">
                 </div>
                 <div class="form-group">
                     <label for="last-name">Prenom</label>
-                    <input type="text" id="last-name" name="last-name" placeholder="Surname">
+                    <input type="text" id="last-name" name="last-name" placeholder="Surname"  value="{{utilisateur.prenom}}">
                 </div>
                 <div class="form-group">
                     <label for="personal-phone">Numero de Telephone</label>
-                    <input type="text" id="personal-phone" name="personal-phone" placeholder="+380">
+                    <input type="text" id="personal-phone" name="personal-phone" placeholder="+380" value="{{utilisateur.telephone}}">
                 </div>
                 <div class="form-group">
                     <label for="email">Votre e-mail</label>
-                    <input type="email" id="email" name="email" placeholder="mail@example.com">
+                    <input type="email" id="email" name="email" placeholder="mail@example.com" value="{{utilisateur.courriel}}">
                 </div>
             </div>
-            <div class="section">
-                <h3>2. Password</h3>
+            <button type="submit" class="save-button">Correct. Save info</button>
+        </form>
+    </div>
+  
+    <div class="mes-publications">
+        Mes publications
+    </div>
+
+    <div class="mes-reservations-paiement">
+        Mes reservation du moyen de paie
+    </div>
+
+    <div class="statistiques">
+        statistiques
+    </div>
+ 
+    <div class="mots-de-passe">
+        changer mots de passe
+        <div class="section">
+            <h3>2. Password</h3>
+            <form>
                 <div class="form-group">
                     <label for="old-password">Ancien mots de passe *</label>
                     <input type="password" id="old-password" name="old-password">
@@ -47,21 +70,17 @@
                     <label for="confirm-password">Confirm nouveau mots de passe *</label>
                     <input type="password" id="confirm-password" name="confirm-password">
                 </div>
-            </div>
-            <button type="submit" class="save-button">Correct. Save info</button>
+        </div>
+        <button type="submit" class="save-button">Correct. Save info</button>
         </form>
     </div>
 
-    <div class="mes-publications">
-        Mes publications
-    </div>
-
-    <div class="mes-reservations-paiement">
-        Mes Reservations & Paiement
-    </div>
     <div class="param-admin">
         param admin
     </div>
-   
+    <div class="deconnexion">
+        deconnexion
+    </div>
+</div>
 
 </div>
