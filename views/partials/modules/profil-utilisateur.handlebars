@@ -7,80 +7,158 @@
             <li class="profile-content">Mon Profile</li>
             <li class="mes-publications">Mes publications</li>
             <li class="mes-reservations-paiement">Mes Reservations & Paiement</li>
-            <li class="statistiques">statistiques</li>
+            {{#if isAdmin}}<li class="statistiques">statistiques</li>{{/if}}
             <li class="mots-de-passe">Mots de passe</li>
-            <li class="param-admin">Param Admin</li>
+            {{#if isAdmin}}<li class="param-admin">Param Admin</li>{{/if}}
             <li>Deconnexion</li>
         </ul>
     </div>
 
- <div class="profile-container-right">
-    <div class="profile-content">
-        <h2>Your personal profile info</h2>
-        <form class="profile-form">
+    <div class="profile-container-right">
+        <div class="profile-content">
+            <form class="profile-form">
+                <div class="section">
+                    <div class="form-group">
+                        <label for="first-name">Nom</label>
+                        <input type="text" id="first-name" name="first-name" placeholder="Name"
+                            value="{{utilisateur.nom}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Prenom</label>
+                        <input type="text" id="last-name" name="last-name" placeholder="Surname"
+                            value="{{utilisateur.prenom}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="personal-phone">Numero de Telephone</label>
+                        <input type="text" id="personal-phone" name="personal-phone" placeholder="+380"
+                            value="{{utilisateur.telephone}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Votre e-mail</label>
+                        <input type="email" id="email" name="email" placeholder="mail@example.com"
+                            value="{{utilisateur.courriel}}">
+                    </div>
+                </div>
+                <button type="submit" class="save-button">Correct. Save info</button>
+            </form>
+        </div>
+        <!-- Mes publications section -->
+        <div class="mes-publications">
             <div class="section">
-                <h3>1. Profile</h3>
-                <div class="form-group">
-                    <label for="first-name">Nom</label>
-                    <input type="text" id="first-name" name="first-name" placeholder="Name" value="{{utilisateur.nom}}">
+                {{#if mesPublications}}
+                {{#each mesPublications}}
+                <div class="publication-item">
+                    <div>
+                        <img src="/uploads/{{this.url_image}}" alt="Livre {{this.id_livre}}" />
+                    </div>
+                    <div>
+                        <div>
+                            <h4>{{this.titre}}</h4>
+                            <p>{{truncateDescription this.description}}</p>
+                        </div>
+                        <div>
+                            <a href="/modifier-un-livre/{{this.id_livre}}"><i
+                                    class="fa-regular fa-pen-to-square"></i></a>
+                            <a href="#" class="supprimer-btn" data-id="{{this.id_livre}}"><i
+                                    class="fa-regular fa-trash-can"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="last-name">Prenom</label>
-                    <input type="text" id="last-name" name="last-name" placeholder="Surname"  value="{{utilisateur.prenom}}">
-                </div>
-                <div class="form-group">
-                    <label for="personal-phone">Numero de Telephone</label>
-                    <input type="text" id="personal-phone" name="personal-phone" placeholder="+380" value="{{utilisateur.telephone}}">
-                </div>
-                <div class="form-group">
-                    <label for="email">Votre e-mail</label>
-                    <input type="email" id="email" name="email" placeholder="mail@example.com" value="{{utilisateur.courriel}}">
-                </div>
+                {{/each}}
+                {{else}}
+                <p>Aucune publication trouvée.</p>
+                {{/if}}
+            </div>
+        </div>
+        <!-- End of Mes publications section -->
+
+        <!-- Mes reservations & Paiement section -->
+
+        <div class="mes-reservations-paiement">
+            Mes reservation du moyen de paie
+        </div>
+        <!-- End of Mes reservations & Paiement section -->
+
+
+        <!-- Sesstion statistiques section -->
+
+        {{#if isAdmin}}
+        <div class="statistiques">
+            <h3>Statistiques</h3>
+            <p>Nombre de publications: {{nombrePublications}}</p>
+            <p>Nombre de réservations: {{nombreReservations}}</p>
+            <p>Nombre de paiements: {{nombrePaiements}}</p>
+            <p>Nombre de messages: {{nombreMessages}}</p>
+            <p>Nombre de commentaires: {{nombreCommentaires}}</p>
+            <p>Nombre de likes: {{nombreLikes}}</p>
+            <p>Nombre de partages: {{nombrePartages}}</p>
+            <p>Nombre de signalements: {{nombreSignalements}}</p>
+            <p>Nombre de utilisateurs: {{nombreUtilisateurs}}</p>
+            <p>Nombre de livres: {{nombreLivres}}</p>
+        </div>
+        {{/if}}
+
+        <!-- End of Sesstion statistiques section -->
+
+        <!-- Changer mots de passe section -->
+        <div class="mots-de-passe">
+            changer mots de passe
+            <div class="section">
+                <h3>2. Password</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="old-password">Ancien mots de passe *</label>
+                        <input type="password" id="old-password" name="old-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">Nouveau mots de passe *</label>
+                        <input type="password" id="new-password" name="new-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm nouveau mots de passe *</label>
+                        <input type="password" id="confirm-password" name="confirm-password">
+                    </div>
             </div>
             <button type="submit" class="save-button">Correct. Save info</button>
-        </form>
-    </div>
-  
-    <div class="mes-publications">
-        Mes publications
-    </div>
-
-    <div class="mes-reservations-paiement">
-        Mes reservation du moyen de paie
-    </div>
-
-    <div class="statistiques">
-        statistiques
-    </div>
- 
-    <div class="mots-de-passe">
-        changer mots de passe
-        <div class="section">
-            <h3>2. Password</h3>
-            <form>
-                <div class="form-group">
-                    <label for="old-password">Ancien mots de passe *</label>
-                    <input type="password" id="old-password" name="old-password">
-                </div>
-                <div class="form-group">
-                    <label for="new-password">Nouveau mots de passe *</label>
-                    <input type="password" id="new-password" name="new-password">
-                </div>
-                <div class="form-group">
-                    <label for="confirm-password">Confirm nouveau mots de passe *</label>
-                    <input type="password" id="confirm-password" name="confirm-password">
-                </div>
+            </form>
         </div>
-        <button type="submit" class="save-button">Correct. Save info</button>
-        </form>
-    </div>
+        <!-- End of Changer mots de passe section -->
 
-    <div class="param-admin">
-        param admin
+
+        <!-- session param admin section -->
+
+        {{#if isAdmin}}
+        <div class="param-admin">
+            <h4>Liste des utilisateurs</h4>
+            <table class="user-table">
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Num-Tel</th>
+                    <th>E-mail</th>
+                    <th>Date-creation</th>
+                    <th>Niveau-access</th>
+                </tr>
+                {{#each toutLesU}}
+                <tr>
+                    <td data-label="ID">{{this.id_utilisateur}}</td>
+                    <td data-label="Nom">{{this.nom}}</td>
+                    <td data-label="Prenom">{{this.prenom}}</td>
+                    <td data-label="Num-Tel">{{this.telephone}}</td>
+                    <td data-label="E-mail">{{this.courriel}}</td>
+                    <td data-label="Date-creation">{{this.createdAt}}</td>
+                    <td data-label="Niveau-access">{{this.acces}}</td>
+                    <td data-label="Actions"><a href="">Editer</a></td>
+                    <td data-label="Actions"><a href="">Supprimer</a></td>
+                </tr>
+                {{/each}}
+            </table>
+
+        </div>
+
+        {{/if}}
+
     </div>
-    <div class="deconnexion">
-        deconnexion
-    </div>
-</div>
 
 </div>

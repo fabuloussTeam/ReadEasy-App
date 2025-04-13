@@ -2,32 +2,17 @@
     display: flex; 
     flex-direction: row;
     justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-wrap: wrap-reverse;
+    align-items: top;
     font-family: Arial, sans-serif;
-    margin: 0 auto;
+    margin: 0 auto; 
+    padding: 8px 0 ;
 }
 
 .profile-container-right {
     padding: 0 5px;
     display: flex;
     flex: 1;
-}
-
-@media (max-width: 768px) {
-    .profile-container {
-        flex-direction: column-reverse;
-        align-items: center;  
-        width: 100%;
-        padding: 0 10px;
-    }
-
-    .sidebar {
-        width: 100%;
-        background-color: #007bff;
-        color: white;
-        padding: 20px;
-    }
 }
 
 .sidebar {
@@ -43,7 +28,7 @@
     margin-bottom: 20px;
 }
 
-.sidebar .menu {
+.sidebar .menu { 
     list-style: none;
     padding: 0;
 }
@@ -54,8 +39,8 @@
 }
 
 .profile-content {
-    width: 75%;
-    padding: 20px;
+    width: 80%;
+    padding: 20px; 
 }
 
 .active {
@@ -124,3 +109,200 @@
     font-weight: bold;
     border-bottom: 2px solid #e6b800;
 }
+
+.mes-publications .section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mes-publications .publication-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 15px;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.mes-publications .publication-item img {
+    width: 80%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.mes-publications .publication-item h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.mes-publications .publication-item p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.mes-publications .publication-item div:last-child {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.mes-publications .publication-item a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.mes-publications .publication-item a:hover {
+    color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    
+
+    .mes-publications .publication-item {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        gap: 8px;
+        align-items: center;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .mes-publications .publication-item div:last-child {
+        justify-content: center;
+    }
+
+    .profile-container {
+        flex-direction: column-reverse;
+        align-items: center;  
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .sidebar {
+        width: 100%;
+        background-color: #007bff;
+        color: white;
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    .profile-content {
+        width: 100%;
+        padding: 20px 0; 
+    }
+}
+
+
+/* Sessions Param Admin */
+
+/* Style pour le tableau dans la section param-admin */
+.param-admin .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.param-admin .user-table th, 
+.param-admin .user-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.param-admin .user-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.param-admin .user-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.param-admin .user-table tr:hover {
+    background-color: #e6f7ff;
+    cursor: pointer;
+}
+
+.param-admin .user-table td a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.param-admin .user-table td a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Styles pour rendre le tableau responsive */
+@media (max-width: 768px) {
+    .param-admin .user-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        border: none;
+    }
+
+    .param-admin .user-table thead {
+        display: none;
+    }
+
+    .param-admin .user-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .param-admin .user-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 10px;
+        border: none;
+        font-size: 14px;
+    }
+
+    .param-admin .user-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #555;
+        flex: 1;
+        text-align: left;
+    }
+
+    .param-admin .user-table td a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .param-admin .user-table td a:hover {
+        color: #0056b3;
+    }
+
+    .param-admin tr:first-child {
+        display: none;
+    }
+
+    .param-admin .user-table th {
+       display: none;
+    }
+}
+
