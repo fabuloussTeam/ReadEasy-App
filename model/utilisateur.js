@@ -21,6 +21,7 @@ export async function toutLesUtilisateurs() {
                 prenom: true,
                 courriel: true,
                 acces: true,
+                createdAt: true,
                 mot_de_passe: false, // Exclude mot_de_passe field
                 livres: true,
             }

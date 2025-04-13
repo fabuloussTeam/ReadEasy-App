@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const menuItems = document.querySelectorAll(".sidebar .menu li");
   const sections = document.querySelectorAll(".profile-container-right > div");
+  const boutonsDelete = document.querySelectorAll(".supprimer-btn");
 
   menuItems[0].classList.add("active");
   sections.forEach((section) => {
@@ -90,7 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
         sections[0].style.display = "none";
       }
 
-       
       if (
         sections[5].classList.contains("param-admin") ==
         item.classList.contains("param-admin")
@@ -103,8 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
         sections[0].style.display = "none";
       }
       
-      
-      
     });
   });
 
@@ -113,4 +111,44 @@ document.addEventListener("DOMContentLoaded", () => {
   if (firstSection) {
     firstSection.style.display = "block"; // Change to "block" to show
   }
+
+  // supprimer un livre:  <!-- Mes publications section -->
+  async function deleteLivreServeur(event) {
+    // Bouton 
+    const bouton = event.currentTarget;
+    event.preventDefault();
+
+    // Préparer les données
+    const id_livre = parseInt(bouton.dataset.id);
+
+    console.log({ id_livre });
+    
+    try {
+      // Envoyer les données au serveur
+      const response = await fetch(`/api/livre/${id_livre}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      // Redirection à la page d'accueil si tout a bien fonctionné
+      if (response.ok) {
+        console.log("Book deleted");
+        bouton.closest(".publication-item").remove();
+      } else {
+        const errorData = await response.json();
+        console.error(`Failed to delete book: ${errorData.error}`);
+        alert(`Erreur: ${errorData.error}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Une erreur est survenue lors de la suppression du livre.");
+    }
+  }
+
+  for (let bouton of boutonsDelete) {
+      bouton.addEventListener('click', deleteLivreServeur);
+  }
+
+
 });
+

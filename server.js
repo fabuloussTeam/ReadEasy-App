@@ -33,7 +33,6 @@ import {
   creerUtilisateur,
 } from "./model/utilisateur.js";
 import "./authentification.js";
-import { log } from "console";
 import {
   addCommande,
   getAllCommandeUser,
@@ -41,6 +40,7 @@ import {
   deleteCommandeBook,
   getLivresEtTotalPrixDansPanier,
 } from "./model/monPanier.js";
+import { log } from "console";
 
 // Define __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -204,8 +204,6 @@ app.get("/livre/:id_livre", async (request, response) => {
   const id_livre = parseInt(request.params.id_livre);
   const livre = await getlivre(id_livre);
 
-  // console.log(livre.est_gratuit);
-
   response.render("pages/livre", {
     titre: `ReadEasy | ${livre.titre}`,
     styles: ["/css/pages/livre.css", "/css/style.css"],
@@ -268,23 +266,52 @@ app.get("/monProfile", async (request, response) => {
     return response.redirect("/connexion");
   }
 
-
-
   const id_utilisateur = parseInt(request.user.id_utilisateur);
+  const mesPublications = await getlivresUser(id_utilisateur);
   const utilisateur = await utilisateurParId(id_utilisateur);
 
-    console.log(`utilisateur: ${JSON.stringify(utilisateur)}`);
+  const isAdmin = utilisateur.acces == "1" ? true : false;
 
-  //livre de l'utilisateur
-    const meslivres = await getlivresUser(id_utilisateur);
-    console.log(`meslivres: ${JSON.stringify(meslivres)}`);
+  let toutLesU = null;
+
+  if (isAdmin) {
+    console.log(`L'utilisateur est un administrateur.`);
+    toutLesU = await toutLesUtilisateurs();
+
+    toutLesU = toutLesU.map((utilisateur) => {
+      return {
+        id_utilisateur: utilisateur.id_utilisateur,
+        nom: utilisateur.nom,
+        prenom: utilisateur.prenom,
+        courriel: utilisateur.courriel,
+        telephone: utilisateur.telephone,
+        // Check if createdAt exists before formatting
+        createdAt: utilisateur.createdAt
+          ? utilisateur.createdAt.toLocaleString("fr-FR", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+          : "Date inconnue", // Fallback value if createdAt is undefined
+        acces: utilisateur.acces,
+        livres: utilisateur.livres,
+      };
+    });
+
+    console.log(`tous les utilisateurs: ${JSON.stringify(utilisateur)}`);
+  }
 
   response.render("partials/modules/profil-utilisateur", {
     titre: "ReadEasy | Page profil utilisateur",
     styles: ["/css/pages/profil-utilisateur.css"],
     scripts: ["/js/pages/profil-utilisateur.js"],
     utilisateur,
-    user: request.user, //Utilistateur connecter
+    user: request.user, //Utilistateur connecter,
+    mesPublications,
+    isAdmin,
+    toutLesU,
   });
 });
 
@@ -517,7 +544,7 @@ app.delete("/api/livre/:id_livre", async (request, response) => {
         fs.unlinkSync(document_path);
       }
 
-      // Delete the book from the database
+      // Delete the book from the database 
       await deletelivre(id_livre);
       return response
         .status(200)
