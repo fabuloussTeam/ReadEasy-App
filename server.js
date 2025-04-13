@@ -644,6 +644,62 @@ app.post("/api/utilisateur", async (request, response) => {
   }
 });
 
+// Route pour supprimer un utilisateur et attribuer ses livres à un autre utilisateur acces 1
+
+app.delete("/api/utilisateur/:id_utilisateur", async (request, response) => {
+  try {
+    // si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
+    if (!request.user) {
+      return response.redirect("/connexion");
+    }
+    const id_utilisateur = parseInt(request.params.id_utilisateur);
+    const utilisateur = await utilisateurParId(id_utilisateur);
+    if (!utilisateur) {
+      return response.status(404).json({ error: "Utilisateur non trouvé" });
+    }
+    // Check if the user has access level 1
+    if (utilisateur.acces == "1") {
+      // Get the ID of the first user with access level 1
+      const firstUserWithAccess1 = await toutLesUtilisateurs().then((users) =>
+        users.find((user) => user.acces == "1")
+      );
+      if (firstUserWithAccess1) {
+        // Update the books of the user to be deleted to be assigned to the first user with access level 1
+        await getlivresUser(id_utilisateur).then((books) => {
+          books.forEach(async (book) => {
+            await updatelivre(
+              book.id_livre,
+              book.isbn,
+              book.titre,
+              book.description,
+              book.prix,
+              book.est_gratuit,
+              book.auteur,
+              book.url_image,
+              book.document,
+              firstUserWithAccess1.id_utilisateur
+            );
+          });
+        });
+      }
+      // Delete the user
+      await utilisateurParId(id_utilisateur).then((user) => {
+        user.delete();
+      });
+      return response
+        .status(200)
+        .json({ utilisateur, message: "Utilisateur supprimé avec succès" });
+    } else {
+      return response.status(403).json({
+        error: "Vous ne pouvez pas supprimer cet utilisateur.",
+      });
+    }
+  } catch (error) {
+    return response.status(400).json({ error: error.message });
+  }
+});
+
+
 /** ============================================================
  *  Mon panier d'achats
  *  ============================================================
