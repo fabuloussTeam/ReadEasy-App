@@ -31,6 +31,7 @@ import {
   utilisateurParId,
   mettreAJourUtilisateur,
   creerUtilisateur,
+  supprimerUtilisateur,
 } from "./model/utilisateur.js";
 import "./authentification.js";
 import {
@@ -275,7 +276,6 @@ app.get("/monProfile", async (request, response) => {
   let toutLesU = null;
 
   if (isAdmin) {
-    console.log(`L'utilisateur est un administrateur.`);
     toutLesU = await toutLesUtilisateurs();
 
     toutLesU = toutLesU.map((utilisateur) => {
@@ -644,60 +644,70 @@ app.post("/api/utilisateur", async (request, response) => {
   }
 });
 
-// Route pour supprimer un utilisateur et attribuer ses livres à un autre utilisateur acces 1
-
-app.delete("/api/utilisateur/:id_utilisateur", async (request, response) => {
+// Route pour supprimer un utilisateur avec tous ses livres
+app.delete("/api/utilisateur", async (request, response) => {
   try {
     // si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
     if (!request.user) {
       return response.redirect("/connexion");
     }
-    const id_utilisateur = parseInt(request.params.id_utilisateur);
+    const id_utilisateur = parseInt(request.body.id_utilisateur);
     const utilisateur = await utilisateurParId(id_utilisateur);
-    if (!utilisateur) {
-      return response.status(404).json({ error: "Utilisateur non trouvé" });
-    }
-    // Check if the user has access level 1
-    if (utilisateur.acces == "1") {
-      // Get the ID of the first user with access level 1
-      const firstUserWithAccess1 = await toutLesUtilisateurs().then((users) =>
-        users.find((user) => user.acces == "1")
-      );
-      if (firstUserWithAccess1) {
-        // Update the books of the user to be deleted to be assigned to the first user with access level 1
-        await getlivresUser(id_utilisateur).then((books) => {
-          books.forEach(async (book) => {
-            await updatelivre(
-              book.id_livre,
-              book.isbn,
-              book.titre,
-              book.description,
-              book.prix,
-              book.est_gratuit,
-              book.auteur,
-              book.url_image,
-              book.document,
-              firstUserWithAccess1.id_utilisateur
-            );
-          });
-        });
+    if (utilisateur) {
+
+      let mesLivres = await getlivresUser(id_utilisateur);
+      // Delete the files associated with the books
+
+      if (mesLivres.length !== 0 && mesLivres.length > 0) {
+        for (let livre of mesLivres) {
+          const url_image_path = path.join(
+            __dirname,
+            "uploads",
+            livre.url_image
+          );
+          const document_path = path.join(__dirname, "uploads", livre.document);
+  
+          // Check if the files exist and delete them
+          if (fs.existsSync(url_image_path)) {
+            fs.unlinkSync(url_image_path);
+          }
+          if (fs.existsSync(document_path)) {
+            fs.unlinkSync(document_path);
+          }
+        }
+        // Delete the books from the database
+        for (let livre of mesLivres) {
+          await deletelivre(livre.id_livre);
+        }
       }
-      // Delete the user
-      await utilisateurParId(id_utilisateur).then((user) => {
-        user.delete();
+    }
+   
+    // Delete the user session
+    if (request.user.id_utilisateur === id_utilisateur) {
+
+      request.logOut((error) => {
+        if (error) {
+          console.error("Error logging out:", error);
+        }
       });
-      return response
-        .status(200)
-        .json({ utilisateur, message: "Utilisateur supprimé avec succès" });
+
+      await supprimerUtilisateur(id_utilisateur);
+      return response.status(200).end();
     } else {
-      return response.status(403).json({
-        error: "Vous ne pouvez pas supprimer cet utilisateur.",
+      await supprimerUtilisateur(id_utilisateur);
+      return response.status(200).json({
+        message: "Utilisateur supprimé avec succès",
       });
     }
+
+    return response.ok
   } catch (error) {
     return response.status(400).json({ error: error.message });
   }
+
+
 });
+
 
 
 /** ============================================================

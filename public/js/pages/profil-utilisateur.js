@@ -157,32 +157,34 @@ document.addEventListener("DOMContentLoaded", () => {
    * <!-- Paramètres administratifs section -->
    */
 
-  
+
   async function deleteUserServeur(event) {
     // Bouton 
     const bouton = event.currentTarget;
     event.preventDefault();
 
     // Préparer les données
-    const id_user = parseInt(bouton.dataset.id);
+    const id_utilisateur = parseInt(bouton.dataset.id);
 
-    console.log({ id_user });
+    console.log({ id_utilisateur });
     
     try {
       // Envoyer les données au serveur
-      const response = await fetch(`/api/utilisateur/${id_user}`, {
+      const response = await fetch(`/api/utilisateur`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id_utilisateur }), // Envoyer l'ID de l'utilisateur à supprimer
       });
 
       // Redirection à la page d'accueil si tout a bien fonctionné
-      if (response.ok) {
-        console.log("User deleted");
+      if (response.ok == 200) {
         bouton.closest(".user-item").remove();
+        response.json().then(data => {
+          console.log("User deleted successfully:", data);
+        });
       } else {
         const errorData = await response.json();
         console.error(`Failed to delete user: ${errorData.error}`);
-        alert(`Erreur: ${errorData.error}`);
       }
     } catch (error) {
       console.error("Error:", error);
