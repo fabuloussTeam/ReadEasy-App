@@ -161,6 +161,26 @@
     color: #0056b3;
 }
 
+/* Rendre la section mes-publications scrollable */
+.mes-publications {
+    max-height: 400px; 
+    overflow-y: auto; 
+}
+
+/* Style pour les barres de défilement (optionnel) */
+.mes-publications::-webkit-scrollbar {
+    width: 8px;
+}
+
+.mes-publications::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 4px;
+}
+
+.mes-publications::-webkit-scrollbar-thumb:hover {
+    background-color: #0056b3;
+}
+
 @media (max-width: 768px) {
 
     .mes-publications .publication-item {
@@ -309,11 +329,6 @@
 .table-responsive {
     max-height: 400px; /* Hauteur maximale pour activer le défilement */
     overflow-y: auto; /* Activer le défilement vertical */
-    border: 1px solid #ddd; /* Bordure externe */
-    padding: 10px;
-    background-color: #fff; /* Couleur de fond */
-    border-radius: 8px; /* Coins arrondis */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
 }
 
 /* Style pour les barres de défilement (optionnel) */
@@ -327,6 +342,26 @@
 }
 
 .table-responsive::-webkit-scrollbar-thumb:hover {
+    background-color: #0056b3;
+}
+
+/* Rendre la section param-admin scrollable */
+.param-admin {
+    max-height: 400px; /* Hauteur maximale pour activer le défilement */
+    overflow-y: auto; /* Activer le défilement vertical */
+}
+
+/* Style pour les barres de défilement (optionnel) */
+.param-admin::-webkit-scrollbar {
+    width: 8px;
+}
+
+.param-admin::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 4px;
+}
+
+.param-admin::-webkit-scrollbar-thumb:hover {
     background-color: #0056b3;
 }
 

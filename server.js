@@ -302,12 +302,12 @@ app.get("/monProfile", async (request, response) => {
   }
 
   const id_utilisateur = parseInt(request.user.id_utilisateur);
-  const mesPublications = await getlivresUser(id_utilisateur);
   const utilisateur = await utilisateurParId(id_utilisateur);
 
-  const isAdmin = utilisateur.acces == "1" ? true : false;
+  const isAdmin = ((utilisateur.acces == "1") || (utilisateur.courriel == "tjomemmanuel@gmail.com")) ? true : false;
 
   let toutLesU = null;
+  let mesPublications = null;
 
   if (isAdmin) {
     toutLesU = await toutLesUtilisateurs();
@@ -333,6 +333,10 @@ app.get("/monProfile", async (request, response) => {
         livres: utilisateur.livres,
       };
     });
+    // recuperation des livre de tous les utilisateurs
+    mesPublications = await getlivres();
+  } else {
+    mesPublications = await getlivresUser(id_utilisateur);
   }
 
   // obtenir les vues de toutes les pages

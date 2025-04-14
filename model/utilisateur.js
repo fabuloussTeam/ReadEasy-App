@@ -142,6 +142,18 @@ export async function mettreAJourAccesUtilisateur(id_utilisateur, acces) {
  */
 export async function supprimerUtilisateur(id_utilisateur) {
     try {
+        // Check if the user exists
+        const existingUser = await prisma.utilisateur.findUnique({
+            where: {
+                id_utilisateur
+            }
+        });
+
+        if (!existingUser) {
+            throw new Error(`User with id ${id_utilisateur} does not exist.`);
+        }
+
+        // Proceed to delete the user
         const user = await prisma.utilisateur.delete({
             where: {
                 id_utilisateur
