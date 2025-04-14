@@ -140,11 +140,8 @@ app.post("/api/connexion", async (request, response, next) => {
   if (request.body.courriel && request.body.motdepasse) {
     passport.authenticate("local", (erreur, utilisateur, info) => {
       if (erreur) {
-        console.log(`Erreur d'authentification: ${erreur}`);
-
         next(erreur);
       } else if (!utilisateur) {
-        console.log(`Erreur d'authentification: ${info}`);
         response.status(401).json(info);
       } else {
         request.logIn(utilisateur, (erreur) => {
@@ -154,7 +151,6 @@ app.post("/api/connexion", async (request, response, next) => {
 
           return response.status(200).end();
         });
-        // console.log(`request session  utilisateur : ${JSON.stringify(request.user)}`);
       }
     })(request, response, next);
   } else {
@@ -183,7 +179,6 @@ app.get("/", async (request, response) => {
       request.user &&
        (request.user.acces == "1")
     ) {
-      // console.log(`request user: ${JSON.stringify(request.user)}`);
       itOption = true;
     }
 
@@ -422,7 +417,6 @@ app.get("/details-ajout-livre/:id_livre", async (request, response) => {
 
   const id_livre = parseInt(request.params.id_livre);
   const livre = await getlivre(id_livre);
-  // console.log(`livre: ${JSON.stringify(livre)}`);
 
   response.render("partials/modules/details-ajout-livre", {
     titre: "ReadEasy | Details ajout d'un livre",
@@ -606,8 +600,6 @@ app.delete("/api/livre/:id_livre", async (request, response) => {
       // Delete the files associated with the book
       const url_image_path = path.join(__dirname, "uploads", livre.url_image);
       const document_path = path.join(__dirname, "uploads", livre.document);
-      console.log(`url_image_path: ${url_image_path}`);
-      console.log(`document_path: ${document_path}`);
 
       // Check if the files exist and delete them
       if (fs.existsSync(url_image_path)) {
@@ -673,9 +665,6 @@ app.patch("/api/utilisateur/:id_utilisateur", async (request, response) => {
       return response.redirect("/connexion");
     }
     const { id_utilisateur, acces } = request.body;
-
-    console.log(id_utilisateur, acces);
-    
     const utilisateur = await mettreAJourAccesUtilisateur(
       id_utilisateur,
       acces,

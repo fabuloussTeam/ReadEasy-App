@@ -99,7 +99,7 @@ export async function mettreAJourUtilisateur(id_utilisateur, nom, prenom, courri
                 id_utilisateur
             },
             data: {
-                nom,
+                nom, 
                 prenom,
                 courriel,
                 acces,
@@ -114,7 +114,6 @@ export async function mettreAJourUtilisateur(id_utilisateur, nom, prenom, courri
         await prisma.$disconnect();
     }
 }
-
 
 // Mettre l'acces d'un utilisateur
 export async function mettreAJourAccesUtilisateur(id_utilisateur, acces) {
