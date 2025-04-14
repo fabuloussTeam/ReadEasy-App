@@ -8,7 +8,6 @@ function prepareDonnee() {
     const url_image = document.getElementById('url_image').files[0];
     const documentFile = document.getElementById('document').files[0];
 
-
     return {
         isbn: isbn, 
         titre: titre,

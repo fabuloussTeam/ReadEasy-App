@@ -162,7 +162,6 @@
 }
 
 @media (max-width: 768px) {
-    
 
     .mes-publications .publication-item {
         display: grid;
@@ -265,7 +264,7 @@
     .param-admin .user-table tr {
         display: block;
         margin-bottom: 15px;
-        border: 1px solid #ddd;
+        border: 1px solid #ddd; 
         border-radius: 8px;
         padding: 10px;
         background-color: #f9f9f9;
@@ -306,3 +305,112 @@
     }
 }
 
+/* Rendre la div table-responsive scrollable */
+.table-responsive {
+    max-height: 400px; /* Hauteur maximale pour activer le défilement */
+    overflow-y: auto; /* Activer le défilement vertical */
+    border: 1px solid #ddd; /* Bordure externe */
+    padding: 10px;
+    background-color: #fff; /* Couleur de fond */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* Style pour les barres de défilement (optionnel) */
+.table-responsive::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background-color: #0056b3;
+}
+
+/* Style pour le tableau */
+.statistiques-table {
+    width: 100%;
+    border-collapse: collapse; /* Supprimer les espaces entre les bordures */
+    font-size: 16px;
+    text-align: left;
+    background-color: #f9f9f9; /* Couleur de fond */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Style pour les en-têtes */
+.statistiques-table th {
+    background-color: #007bff; /* Couleur principale */
+    color: white; /* Texte blanc */
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 12px 15px;
+    border-bottom: 2px solid #0056b3; /* Bordure inférieure */
+}
+
+/* Style pour les lignes */
+.statistiques-table tr {
+    border-bottom: 1px solid #ddd; /* Bordure entre les lignes */
+}
+
+/* Style pour les cellules */
+.statistiques-table td {
+    padding: 12px 15px;
+    color: #333; /* Couleur du texte */
+}
+
+/* Style pour les lignes alternées */
+.statistiques-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Couleur de fond alternée */
+}
+
+/* Effet au survol */
+.statistiques-table tr:hover {
+    background-color: #e6f7ff; /* Couleur de survol */
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .statistiques-table {
+        display: block; /* Afficher le tableau comme un bloc */
+        overflow-x: auto; /* Activer le défilement horizontal */
+        white-space: nowrap; /* Empêcher le retour à la ligne */
+        border: none; /* Supprimer la bordure */
+    }
+
+    .statistiques-table thead {
+        display: none; /* Masquer l'en-tête sur mobile */
+    }
+
+    .statistiques-table tr {
+        display: block; /* Afficher chaque ligne comme un bloc */
+        margin-bottom: 15px; /* Espacement entre les lignes */
+        border: 1px solid #ddd; /* Bordure autour de chaque ligne */
+        border-radius: 8px; /* Coins arrondis */
+        padding: 10px; /* Espacement interne */
+        background-color: #f9f9f9; /* Couleur de fond */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    }
+
+    .statistiques-table td {
+        display: flex; /* Afficher les cellules comme des flexbox */
+        justify-content: space-between; /* Espacement entre les éléments */
+        padding: 8px 10px; /* Espacement interne */
+        border: none; /* Supprimer la bordure des cellules */
+        font-size: 14px; /* Taille de police réduite pour mobile */
+    }
+
+    .statistiques-table td::before {
+        content: attr(data-label); /* Afficher l'étiquette de la cellule avant le contenu */
+        font-weight: bold; /* Mettre en gras l'étiquette */
+        color: #555; /* Couleur de l'étiquette */
+        flex: 1; /* Prendre tout l'espace disponible */
+        text-align: left; /* Alignement à gauche de l'étiquette */
+    }
+    .statistiques-table tr:first-child {
+        display: none; /* Masquer la première ligne (en-tête) sur mobile */
+    }
+}

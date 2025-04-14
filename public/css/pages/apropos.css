@@ -1,3 +1,4 @@
+
 .apropos {
   display: flex;
   justify-content: center;
@@ -6,8 +7,7 @@
   font-family: Arial, sans-serif;
   line-height: 1.6;
   margin: 0;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  background: #f9f7f7;
 }
 
 .container {

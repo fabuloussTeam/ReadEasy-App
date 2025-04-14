@@ -22,8 +22,8 @@ model livre {
   document      String?
   createdAt     DateTime  @default(now())
   utilisateur   utilisateur @relation(fields: [id_utilisateur], references: [id_utilisateur])
-  id_utilisateur Int     @default(1) // Assuming 1 is the ID of the default user
-  monPaniers    monPanier[] // Relation to monPanier
+  id_utilisateur Int     @default(1) 
+  monPaniers    monPanier[] 
 }
 
 model utilisateur {
@@ -33,10 +33,10 @@ model utilisateur {
   courriel          String  @unique
   mot_de_passe      String
   acces             Int     @default(0)
-  telephone         String? @default(000-000-0000)
+  telephone         String? @default("000-000-0000")
   createdAt         DateTime  @default(now())
   livres            livre[]
-  monPaniers        monPanier[] // Relation to monPanier
+  monPaniers        monPanier[] 
 }
 
 model monPanier {
@@ -45,7 +45,17 @@ model monPanier {
   id_utilisateur Int
   livre          livre        @relation(fields: [id_livre], references: [id_livre])
   id_livre       Int
-  quantite       Int          @default(1) // Add this line
+  quantite       Int          @default(1) 
   createdAt      DateTime     @default(now())
 }
+
+model statistique {
+  id_statistique Int      @id @default(autoincrement())
+  page           String   @unique 
+  vues           Int      @default(0) 
+  createdAt      DateTime @default(now()) 
+  updatedAt      DateTime @updatedAt 
+}
+
+
 

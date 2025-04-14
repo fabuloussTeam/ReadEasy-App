@@ -115,6 +115,28 @@ export async function mettreAJourUtilisateur(id_utilisateur, nom, prenom, courri
     }
 }
 
+
+// Mettre l'acces d'un utilisateur
+export async function mettreAJourAccesUtilisateur(id_utilisateur, acces) {
+    try {
+        const user = await prisma.utilisateur.update({
+            where: {
+                id_utilisateur
+            },
+            data: {
+                acces
+            }
+        });
+        return user;
+    } catch (error) {
+        console.error("Error updating user access:", error);
+        throw error;
+    } finally {
+        await prisma.$disconnect();
+    }
+}
+
+
 /**
  * Supprimer un utilisateur
  * @param {number} id_utilisateur 

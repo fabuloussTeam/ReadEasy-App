@@ -84,16 +84,30 @@
         {{#if isAdmin}}
         <div class="statistiques">
             <h3>Statistiques</h3>
-            <p>Nombre de publications: {{nombrePublications}}</p>
-            <p>Nombre de réservations: {{nombreReservations}}</p>
-            <p>Nombre de paiements: {{nombrePaiements}}</p>
-            <p>Nombre de messages: {{nombreMessages}}</p>
-            <p>Nombre de commentaires: {{nombreCommentaires}}</p>
-            <p>Nombre de likes: {{nombreLikes}}</p>
-            <p>Nombre de partages: {{nombrePartages}}</p>
-            <p>Nombre de signalements: {{nombreSignalements}}</p>
-            <p>Nombre de utilisateurs: {{nombreUtilisateurs}}</p>
-            <p>Nombre de livres: {{nombreLivres}}</p>
+            <div class="table-responsive">
+                <table class="statistiques-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Page</th>
+                            <th>Vues</th>
+                            <th>Date de Création</th>
+                            <th>Dernière Mise à Jour</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each pagesvues}}
+                        <tr>
+                            <td>{{this.id_statistique}}</td>
+                            <td>{{this.page}}</td>
+                            <td>{{this.vues}}</td>
+                            <td>{{this.createdAt}}</td>
+                            <td>{{this.updatedAt}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
         </div>
         {{/if}}
 
@@ -148,7 +162,7 @@
                     <td data-label="E-mail">{{this.courriel}}</td>
                     <td data-label="Date-creation">{{this.createdAt}}</td>
                     <td data-label="Niveau-access">{{this.acces}}</td>
-                    <td data-label="Actions"><a href="">Editer</a></td>
+                    <td data-label="Actions"><a href="/monProfile/editUser/{{this.id_utilisateur}}" class="editer-btn">Editer</a></td>
                     <td data-label="Actions"><button data-id="{{this.id_utilisateur}}" class="supprimer-btn">Supprimer</a></td>
                 </tr>
                 {{/each}}

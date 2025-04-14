@@ -1,45 +1,36 @@
+<div class="user-profile">
 
-             <div class="user-profile">       
-                <form class="user-profile-form">
-                <div class="section">
-                     <div class="form-group">
-                        <label for="id_utilisateur">ID Utilisateur</label>
-                        <input type="text" id="id_utilisateur" name="id_utilisateur" placeholder="id_utilisateur"
-                            value="{{this.id_utilisateur}}">
-                    </div>
-                    <div class="form-group"> 
-                        <label for="first-name">Nom:</label>
-                        <input type="text" id="first-name" name="first-name" placeholder="Name"
-                            value="{{this.nom}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="last-name">Prenom:</label>
-                        <input type="text" id="last-name" name="last-name" placeholder="Surname"
-                            value="{{this.prenom}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="personal-phone">Numero de Telephone:</label>
-                        <input type="text" id="personal-phone" name="personal-phone" placeholder="+380"
-                            value="{{this.telephone}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Votre e-mail:</label>
-                        <input type="email" id="email" name="email" placeholder="mail@example.com"
-                            value="{{this.courriel}}">
-                    </div>
-                     <div class="form-group">
-                        <label for="dateCreated">Date creation:</label>
-                        <input type="dateCreated" id="dateCreated" name="email" placeholder="mail@example.com"
-                            value="{{this.createdAt}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="acces">Niveau access:</label>
-                        <select id="acces" name="acces">
-                           <option value="{{this.acces}}" selected>{{this.acces}}</option>
-                           <option value="0">0 - utilisateur</option>
-                           <option value="1">1 - admin</option>
-                        </select>
-                    </div>
-                </div>
-                <button type="submit" class="save-button">Valider</button>
-            </form>
+    <h2>Modifier les drois d'acces</h2>
+    <form class="user-profile-form">
+        <div class="section">
+            <div class="form-group">
+                <label for="id_utilisateur">ID Utilisateur</label>
+                <input type="text" id="id_utilisateur" name="id_utilisateur" placeholder="id_utilisateur"
+                    value="{{userIdEditUser.id_utilisateur}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="first-name">Nom:</label>
+                <input type="text" id="first-name" name="first-name" placeholder="Name" value="{{userIdEditUser.nom}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Prenom:</label>
+                <input type="text" id="last-name" name="last-name" placeholder="Surname" value="{{userIdEditUser.prenom}}" readonly>
+            </div>
+           
+            <div class="form-group">
+                <label for="email">Votre e-mail:</label>
+                <input type="email" id="email" name="email" placeholder="mail@example.com" value="{{userIdEditUser.courriel}}" readonly>
+            </div>
+          
+            <div class="form-group">
+                <label for="acces">Niveau access:</label>
+                <select id="acces" name="acces" >
+                    <option value="{{userIdEditUser.acces}}" selected>{{userIdEditUser.acces}}</option>
+                    <option value="0">0 - utilisateur</option>
+                    <option value="1">1 - admin</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="save-button">Valider</button>
+    </form>
+</div>

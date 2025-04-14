@@ -9,7 +9,7 @@ import helmet from "helmet";
 import compression from "compression";
 import cors from "cors";
 import multer from "multer";
-import path from "path";
+import path, { parse } from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
 import session from "express-session";
@@ -29,9 +29,9 @@ import { getRandomBooks } from "./public/js/home.js";
 import {
   toutLesUtilisateurs,
   utilisateurParId,
-  mettreAJourUtilisateur,
   creerUtilisateur,
   supprimerUtilisateur,
+  mettreAJourAccesUtilisateur
 } from "./model/utilisateur.js";
 import "./authentification.js";
 import {
@@ -42,6 +42,7 @@ import {
   getLivresEtTotalPrixDansPanier,
 } from "./model/monPanier.js";
 import { log } from "console";
+import { addVuesHome, getVues } from "./model/statistique.js";
 
 // Define __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -111,6 +112,29 @@ app.use(passport.session());
 app.use(express.static("public"));
 app.use("/uploads", express.static("uploads"));
 
+
+// Nombre de personnes qui ont visiter la page
+const pageVisits = {};
+
+app.use((request, response, next) => {
+  const route = request.path;
+  if (!pageVisits[route]) {
+    pageVisits[route] = 0;
+  }
+  pageVisits[route]++;
+  //console.log(`Visites pour ${route}: ${pageVisits[route]}`);
+
+  addVuesHome(route, pageVisits[route])
+    .then(() => {
+     // console.log(`Vue ajoutée pour la page: ${route}`);
+    })
+    .catch((error) => {
+     // console.error(`Erreur lors de l'ajout de la vue pour ${route}:`, error);
+    });
+  // Passer au middleware suivant
+  next();
+});
+
 // API endpoint for user login
 app.post("/api/connexion", async (request, response, next) => {
   if (request.body.courriel && request.body.motdepasse) {
@@ -157,7 +181,7 @@ app.get("/", async (request, response) => {
     let itOption = false;
     if (
       request.user &&
-      request.session.passport.user == request.user.id_utilisateur
+       (request.user.acces == "1")
     ) {
       // console.log(`request user: ${JSON.stringify(request.user)}`);
       itOption = true;
@@ -186,6 +210,17 @@ app.get("/readeasyapropos", async (request, response) => {
     user: request.user,
   });
 });
+
+// la pages contact
+app.get("/readeasycontact", async (request, response) => {
+  response.render("pages/contact", {
+    titre: "ReadEasy | Page contact",
+    styles: ["/css/pages/contact.css"],
+    scripts: ["/js/pages/contact.js"],
+    user: request.user,
+  });
+});
+
 
 // Afficher tous les livres
 app.get("/nos-livres", async (request, response) => {
@@ -216,6 +251,11 @@ app.get("/livre/:id_livre", async (request, response) => {
 
 //Creer une publication
 app.get("/publier-un-livre", async (request, response) => {
+
+  if (!request.user) {
+    return response.redirect("/connexion");
+  }
+
   response.render("partials/modules/publier-un-livre", {
     titre: "ReadEasy | Publier un livre",
     styles: ["/css/modules/publier-un-livre.css"],
@@ -226,11 +266,9 @@ app.get("/publier-un-livre", async (request, response) => {
 
 // Mise a jour d'un livre
 app.get("/modifier-un-livre/:id_livre", async (request, response) => {
-  // si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
   if (!request.user) {
     return response.redirect("/connexion");
   }
-
   const id_livre = parseInt(request.params.id_livre);
   const livre = await getlivre(id_livre);
   response.render("partials/modules/publier-un-livre", {
@@ -260,8 +298,9 @@ app.get("/creer-un-compte", async (request, response) => {
   });
 });
 
-//page de modification de compte
+//page de profil utilisateur
 app.get("/monProfile", async (request, response) => {
+
   // si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
   if (!request.user) {
     return response.redirect("/connexion");
@@ -299,10 +338,11 @@ app.get("/monProfile", async (request, response) => {
         livres: utilisateur.livres,
       };
     });
-
-    console.log(`tous les utilisateurs: ${JSON.stringify(utilisateur)}`);
   }
 
+  // obtenir les vues de toutes les pages
+  const pagesvues = await getVues();
+  // Ouvrir la page de profil utilisateur
   response.render("partials/modules/profil-utilisateur", {
     titre: "ReadEasy | Page profil utilisateur",
     styles: ["/css/pages/profil-utilisateur.css"],
@@ -312,8 +352,41 @@ app.get("/monProfile", async (request, response) => {
     mesPublications,
     isAdmin,
     toutLesU,
+    pagesvues,
   });
 });
+
+// Page editer un  profil utilisateur quelconque
+app.get("/monProfile/editUser/:idToEdit", async (request, response) => {
+  // si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
+  if (!request.user) {
+    return response.redirect("/connexion");
+  }
+  
+  const id_utilisateur = parseInt(request.user.id_utilisateur);
+  const utilisateur = await utilisateurParId(id_utilisateur);
+  const isAdmin = utilisateur.acces == "1" ? true : false;
+  if (!isAdmin) {
+    return response.redirect("/monProfile");
+  }
+
+  const idEditUser = parseInt(request.params.idToEdit);
+  const userIdEditUser = await utilisateurParId(idEditUser);
+  if (!userIdEditUser) {
+    return response.status(404).json({ error: "Utilisateur non trouvé" });
+  }
+ 
+  response.render("partials/modules/edit-profil-utilisateur", {
+    titre: "ReadEasy | Modifier un profil",
+    styles: ["/css/modules/edit-profil-utilisateur.css", "/css/style.css"],
+    scripts: ["/js/modules/edit-profil-utilisateur.js"],
+    user: request.user,
+    userIdEditUser,
+    utilisateur,
+    isAdmin,
+  });
+});
+
 
 // Route vers le panier d'achats
 app.get("/panierAchats", async (request, response) => {
@@ -592,22 +665,20 @@ app.get("/api/utilisateur/:id_utilisateur", async (request, response) => {
   }
 });
 
-// Route pour mettre à jour un utilisateur
+// Route pour mettre à jour les access d'un utilisateur
 app.patch("/api/utilisateur/:id_utilisateur", async (request, response) => {
   try {
     // si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
     if (!request.user) {
       return response.redirect("/connexion");
     }
-    const id_utilisateur = parseInt(request.params.id_utilisateur);
-    const { nom, prenom, courriel, acces, mot_de_passe } = request.body;
-    const utilisateur = await mettreAJourUtilisateur(
+    const { id_utilisateur, acces } = request.body;
+
+    console.log(id_utilisateur, acces);
+    
+    const utilisateur = await mettreAJourAccesUtilisateur(
       id_utilisateur,
-      nom,
-      prenom,
-      courriel,
       acces,
-      mot_de_passe
     );
     return response
       .status(200)
@@ -620,7 +691,6 @@ app.patch("/api/utilisateur/:id_utilisateur", async (request, response) => {
 // Route pour creer un utilisateur
 app.post("/api/utilisateur", async (request, response) => {
   try {
-   
     const { nom, prenom, courriel, acces, mot_de_passe } = request.body;
     const utilisateur = await creerUtilisateur(
       nom,
