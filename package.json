@@ -6,6 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon server.js",
+    "start": "node server.js",
+    "build": "prisma generate",
+    "migrate": "prisma migrate dev --name init",
+    "migrate:deploy": "prisma migrate deploy",
     "deploy": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

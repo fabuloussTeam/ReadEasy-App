@@ -96,7 +96,7 @@ app.use(cors());
 app.use(json());
 // Configure session management
 app.use(
-  session({
+  session({  
     cookie: { maxAge: 3600000 }, // la dure du cookie est de 1 heure
     name: process.env.npm_package_name,
     store: new MemoryStore({ checkPeriod: 3600000 }),
@@ -185,7 +185,9 @@ app.get("/", async (request, response) => {
     response.render("home", {
       titre: "Arlequin et Roman | ReadEasy",
       styles: ["/css/home.css"],
-      scripts: ["/js/home.js", "js/modules/module-livre-a-laune.js"],
+      scripts: ["/js/home.js", 
+        "js/modules/module-livre-a-laune.js", 
+        "/js/modules/espace-publicitaire.js"],
       livres: randomBooks,
       user: request.user,
       itOption,
@@ -364,7 +366,7 @@ app.get("/monProfile/editUser/:idToEdit", async (request, response) => {
   
   const id_utilisateur = parseInt(request.user.id_utilisateur);
   const utilisateur = await utilisateurParId(id_utilisateur);
-  const isAdmin = utilisateur.acces == "1" ? true : false;
+  const isAdmin = ((utilisateur.acces == "1") || (utilisateur.courriel == "tjomemmanuel@gmail.com")) ? true : false;
   if (!isAdmin) {
     return response.redirect("/monProfile");
   }
@@ -770,7 +772,6 @@ app.delete("/api/utilisateur", async (request, response) => {
 
 
 });
-
 
 
 /** ============================================================

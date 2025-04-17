@@ -161,13 +161,11 @@
     color: #0056b3;
 }
 
-/* Rendre la section mes-publications scrollable */
 .mes-publications {
     max-height: 400px; 
     overflow-y: auto; 
 }
 
-/* Style pour les barres de défilement (optionnel) */
 .mes-publications::-webkit-scrollbar {
     width: 8px;
 }
@@ -182,6 +180,11 @@
 }
 
 @media (max-width: 768px) {
+
+    .mes-publications {
+        max-height: 400px; 
+        overflow-y: auto; 
+    }
 
     .mes-publications .publication-item {
         display: grid;
@@ -206,7 +209,16 @@
     }
 
     .sidebar {
-        width: 100%;
+        width: 300px;
+        background-color: #007bff;
+        color: white;
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    
+    .sidebar > .menu {
+        width: 250px;
         background-color: #007bff;
         color: white;
         padding: 20px;
@@ -216,6 +228,55 @@
     .profile-content {
         width: 100%;
         padding: 20px 0; 
+    }
+}
+
+@media (max-width: 480px) {
+    .mes-publications {
+        max-height: 400px; 
+        overflow-y: auto; 
+        margin: 10px;
+    }
+
+    .profile-container {
+        flex-direction: column-reverse;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -ms-align-items: center;
+        -webkit-box-align: center;
+        align-items: center;  
+        width: 100%;
+        padding: 0 10px;
+        margin: 0 auto;
+        justify-content: center;
+    }
+    .profile-container-right {
+        padding: 0 5px;
+        display: flex;
+        flex: 1;
+    }
+    .profile-container-right {
+        width: 100%;
+        padding: 0 10px;
+    }
+    .sidebar {
+        display: flex;
+        width: 200px;
+        padding: 10px;
+        border: 1px solid red;
+        margin: 0 auto;
+    }
+    .sidebar .welcome-message {
+       display: none;
+    }
+
+    .sidebar .menu{
+        font-size: 12px;
+    }
+
+    .profile-content {
+        width: 100%;
+        padding: 10px; 
     }
 }
 
@@ -409,6 +470,9 @@
 }
 
 @media (max-width: 768px) {
+
+   
+
     .statistiques-table {
         display: block; /* Afficher le tableau comme un bloc */
         overflow-x: auto; /* Activer le défilement horizontal */
@@ -447,5 +511,47 @@
     }
     .statistiques-table tr:first-child {
         display: none; /* Masquer la première ligne (en-tête) sur mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        flex-direction: column-reverse;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -ms-align-items: center;
+        -webkit-box-align: center;
+        align-items: center;  
+        width: 100%;
+        padding: 0 10px;
+       margin-left: 15px;
+        justify-content: center;
+    }
+
+    .statistiques {
+        margin: 10px;
+        padding: 5px;
+        width: 100%;
+    }
+
+    .statistiques-table {
+        display: block; /* Afficher le tableau comme un bloc */
+        overflow-x: auto; /* Activer le défilement horizontal */
+        white-space: wrap; /* Empêcher le retour à la ligne */
+        border: none; /* Supprimer la bordure */
+    }
+
+    .mots-de-passe {
+        margin: 10px;
+        padding: 5px;
+        width: 100%;
+    }
+
+    .param-admin {
+        max-height: 400px; /* Hauteur maximale pour activer le défilement */
+        overflow-y: auto; /* Activer le défilement vertical */
+        margin: 10px;
+        padding: 5px;
+        width: 100%;
     }
 }
